@@ -20,6 +20,10 @@ const actions = {
         let res = await axios.post(`${serverUrl}/add-details`, user, createHeaders())
         return res;
     },
+    addEvent: async (event) => {
+        let res = await axios.post(`${serverUrl}/add-event`, event, createHeaders())
+        return res;
+    },
     addPost: async (post) => {
         let res = await axios.post(`${serverUrl}/add-post`, post, createHeaders())
         return res;

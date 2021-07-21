@@ -1,16 +1,16 @@
 const { Schema, model } = require("mongoose");
 
 const eventSchema = new Schema({
+  userId: String,
   location: String,
-  date: { type: Date, default: Date.now },
-  time: String,
+  date: { type: String },
   sport: String,
   level: String,
   age: String,
-  members: [],
+  //   members: [],
   creator: Object,
-  picture: String,
-  event: String,
+  image: String,
+  eventName: String,
   description: String,
 });
 
