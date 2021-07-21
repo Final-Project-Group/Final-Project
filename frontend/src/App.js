@@ -1,13 +1,14 @@
 import logo from './logo.svg';
-import { useEffect, useState } from 'react'
-import actions from './api'
+import { useEffect, useState } from 'react';
+import actions from './api';
 import './App.css';
-import { Switch, Link, Route } from 'react-router-dom'
+import { Switch, Link, Route } from 'react-router-dom';
 import TheContext from './TheContext';
-import Home from './components/Home'
-import Auth from './components/Auth'
-import AddPost from './components/AddPost'
-import Profile from './components/Profile'
+import Home from './components/Home';
+import Auth from './components/Auth';
+import AddPost from './components/AddPost';
+import Profile from './components/Profile';
+import UserInfo from './components/UserInfo';
 
 function App() {
 
@@ -37,7 +38,7 @@ function App() {
             : <Link to='/Auth'>Login/Signup</Link>}
         </nav>
         <Switch>
-          
+          <Route exact path="/UserInfo" render={(props) => <UserInfo {...props} />} /> 
           <Route exact path="/" render={(props) => <Home {...props} />} />
           <Route exact path="/AddPost" render={(props) => <AddPost {...props} />} />
           <Route exact path="/Auth" render={(props) => <Auth {...props} />} />
