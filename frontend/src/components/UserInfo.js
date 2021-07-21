@@ -123,6 +123,7 @@ function UserInfo(props) {
                     variant="filled"
                     size="small"
                     onChange={handleChange}
+                    required={true}
                 />
                 <br/>
                 Soccer 
@@ -132,11 +133,13 @@ function UserInfo(props) {
                     inputProps={{ 'aria-label': 'primary checkbox' }}
                 />
                 <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                name="soccer"
-                value={level}
-                onChange={handleChange2}
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    name="soccer"
+                    value={level}
+                    onChange={handleChange2}
+                    displayEmpty={checked}
+                    renderValue={() => level ? level : 'beginner'}
                 >
                     <MenuItem value='beginner'>beginner</MenuItem>
                     <MenuItem value='intermediate'>intermediate</MenuItem>
@@ -155,6 +158,8 @@ function UserInfo(props) {
                     name="basketball"
                     value={level2}
                     onChange={handleChange2}
+                    displayEmpty={checked2}
+                    renderValue={() => level2 ? level2 : 'beginner'}
                 >
                     <MenuItem value='beginner'>beginner</MenuItem>
                     <MenuItem value='intermediate'>intermediate</MenuItem>
@@ -173,6 +178,8 @@ function UserInfo(props) {
                     name="tennis"
                     value={level3}
                     onChange={handleChange2}
+                    displayEmpty={checked3}
+                    renderValue={() => level3 ? level3 : 'beginner'}
                 >
                     <MenuItem value='beginner'>beginner</MenuItem>
                     <MenuItem value='intermediate'>intermediate</MenuItem>

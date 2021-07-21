@@ -25,8 +25,6 @@ function Auth(props) {
                 onFailure={responseGoogle}
                 cookiePolicy={'single_host_origin'}
             />
-
-
         </div>
     );
 }
