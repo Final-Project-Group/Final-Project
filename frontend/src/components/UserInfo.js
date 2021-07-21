@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import actions from '../api'
 
 
 function UserInfo(props) {
@@ -16,8 +17,7 @@ function UserInfo(props) {
 
 
     const [user, setUser] = useState({
-        name: '',
-        country: '',
+        country: 'usa',
         sports: [
             {
                 soccer: false,
@@ -36,18 +36,14 @@ function UserInfo(props) {
 
 
     const handleChange = (e) => {
-        if (e.target.name === 'name') {
-            let u = {...user};
-            u.name = e.target.value;
-            setUser(u);
-        }
+
         if (e.target.name === 'country') {
             let u = {...user};
             u.country = e.target.value;
             setUser(u);
         }
 
-        if (e.target.id == 'soccer') {
+        if (e.target.id === 'soccer') {
             let u = {...user};
 
             if (checked) {
@@ -61,7 +57,7 @@ function UserInfo(props) {
             };
         }
 
-        if (e.target.id == 'basketball') {
+        if (e.target.id === 'basketball') {
             let u = {...user};
 
             if (checked2) {
@@ -75,7 +71,7 @@ function UserInfo(props) {
             };
         }
 
-        if (e.target.id == 'tennis') {
+        if (e.target.id === 'tennis') {
             let u = {...user};
 
             if (checked3) {
@@ -109,24 +105,16 @@ function UserInfo(props) {
     }
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // axios.post('http://localhost:5000/addUser')
-        console.log(user)
+        let res = await actions.addDetails({ user })
+        console.log(user);
     }
 
 
     return (
         <div>
             <form className="UserInfo" onSubmit={handleSubmit}>
-                <TextField
-                    label="name"
-                    name="name"
-                    id="filled-size-small"
-                    variant="filled"
-                    size="small"
-                    onChange={handleChange}
-                />
                 <br/>
                 <TextField
                     label="country"

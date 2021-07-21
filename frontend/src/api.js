@@ -16,10 +16,13 @@ const actions = {
     getUser: async () => {
         return await axios.get(`${serverUrl}/get-the-user`, createHeaders())
     },
-
+    addDetails: async (user) => {
+        let res = await axios.post(`${serverUrl}/add-details`, user, createHeaders())
+        return res;
+    },
     addPost: async (post) => {
         let res = await axios.post(`${serverUrl}/add-post`, post, createHeaders())
-        return res
+        return res;
     },
     getAllPosts: async (post) => {
         return await axios.get(`${serverUrl}/all-the-posts`, createHeaders())
