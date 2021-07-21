@@ -31,6 +31,7 @@ function App() {
         <nav>
           <Link to='/'>Home</Link>
           <Link to='/splash'>Splash</Link>
+          <Link to='/UserInfo'>User info</Link>
 
           {user?.name ?
             <>

@@ -33,25 +33,6 @@ router.get('/all-the-posts', (req, res) => {
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 router.post('/authenticate', async (req, res) => {
     let user = await User.findOne({ email: req.body.email })
 
