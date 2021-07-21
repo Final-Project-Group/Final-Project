@@ -25,7 +25,6 @@ function App() {
   return (
     <TheContext.Provider value={{ user, setUser, getTheUser }}>
       <div className="App">
-        <h1>🚀 MERN APP TORO 🎯 </h1>
         <i>{user?.name}</i>
         <nav>
           <Link to='/'>Home</Link>
@@ -38,6 +37,7 @@ function App() {
             : <Link to='/Auth'>Login/Signup</Link>}
         </nav>
         <Switch>
+          
           <Route exact path="/" render={(props) => <Home {...props} />} />
           <Route exact path="/AddPost" render={(props) => <AddPost {...props} />} />
           <Route exact path="/Auth" render={(props) => <Auth {...props} />} />
