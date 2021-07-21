@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link} from 'react-router-dom';
 import axios from 'axios'
 import actions from '../api'
 
@@ -12,14 +13,16 @@ function Home(props) {
         setAllPosts(res.data)
     }, [])
 
-    const ShowPosts = () => allPosts.map(eachPost => <li key={eachPost._id}>{eachPost.post} <i>created by ...{eachPost.userId?.name}</i></li>)
+    //const ShowPosts = () => allPosts.map(eachPost => <li key={eachPost._id}>{eachPost.post} <i>created by ...{eachPost.userId?.name}</i></li>)
+    
 
     return (
         <div>
             Home
-            <ul>
-                <ShowPosts />
-            </ul>
+          
+            <Link to="/createEvent"><button>Create event</button></Link>
+                {/* <ShowPosts /> */}
+            
         </div>
     );
 }

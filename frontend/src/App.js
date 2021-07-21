@@ -10,6 +10,7 @@ import AddPost from './components/AddPost'
 import Profile from './components/Profile'
 import Splash from './components/Splash'
 import UserInfo from './components/UserInfo';
+import CreateEvent from './components/CreateEvent';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
   const getTheUser = async () => {
     let res = await actions.getUser()
     setUser(res.data)
+    // console.log(res.data)
   }
 
   useEffect(() => {
@@ -42,6 +44,7 @@ function App() {
         </nav>
         <Switch>
           
+          <Route exact path="/createEvent" render={(props) => <CreateEvent {...props} />} />
           <Route exact path="/splash" render={(props) => <Splash {...props} />} />
           <Route exact path="/UserInfo" render={(props) => <UserInfo {...props} />} /> 
           <Route exact path="/" render={(props) => <Home {...props} />} />

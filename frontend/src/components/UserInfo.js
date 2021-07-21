@@ -114,6 +114,8 @@ function UserInfo(props) {
 
     return (
         <div>
+
+        <h2>Please set up your profile</h2>
             <form className="UserInfo" onSubmit={handleSubmit}>
                 <br/>
                 <TextField
