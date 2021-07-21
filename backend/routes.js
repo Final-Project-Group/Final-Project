@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const router = express.Router()
 const Post = require('./models/Post')
 const User = require('./models/User')
+const Details = require('./models/Details')
 /**ALL OUR BACKEND ROUTES */
 
 
@@ -22,6 +23,16 @@ router.post('/add-post', authorize, async (req, res) => {
     newPost.userId = res.locals.user._id
     Post.create(newPost).then(post => {
         res.json(post)
+    })
+})
+
+router.post('/add-details', authorize, async (req, res) => {
+    let updatedUser = req.body
+    console.log(updatedUser);
+    updatedUser.userId = res.locals.user._id
+    console.log(updatedUser.userId);
+    User.findOneAndUpdate({ _id: updatedUser.userId }, { country: updatedUser.user.country, sports: updatedUser.user.sports }).then(user => {
+        res.json(user);
     })
 })
 

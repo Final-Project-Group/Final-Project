@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 require('dotenv').config();
 
 
-const URI = process.env.MONGODB_URI || 'mongodb://localhost/Toro'
+const URI = process.env.MONGODB_URI || 'mongodb://localhost/jogo'
 console.log(URI)
 mongoose
     .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
