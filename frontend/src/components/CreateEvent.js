@@ -13,8 +13,6 @@ function CreateEvent(props) {
   const [age, setAge] = useState("");
 
   const handleChange = (e) => {
-    // console.log(e.target.value);
-    // console.log(typeof e.target.value);
     let eventInfo = { ...event };
     eventInfo[e.target.name] = e.target.value;
     setEvent(eventInfo);
@@ -27,6 +25,7 @@ function CreateEvent(props) {
       setAge(e.target.value);
     }
   };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     let res = await actions.addEvent( event );

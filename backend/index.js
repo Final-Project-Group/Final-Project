@@ -20,10 +20,7 @@ app.use(cors({
 }))
 
 
-
 app.use('/api', require('./routes.js'))
-
-
 
 
 //Sends our one single page on all requests 
