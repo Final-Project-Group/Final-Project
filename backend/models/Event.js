@@ -8,6 +8,7 @@ const eventSchema = new Schema({
   level: String,
   age: String,
   members: [],
+  spots: Number,
   creator: Object,
   image: String,
   eventName: String,
