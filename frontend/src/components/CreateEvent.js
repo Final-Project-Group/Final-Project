@@ -24,7 +24,6 @@ function CreateEvent(props) {
   const handleChange = (e, val) => {
     let eventInfo = { ...event };
     eventInfo[e.target.name] = e.target.value;
-    console.log(e.target.defaultValue);
     setEvent(eventInfo);
 
     if (e.target.name === "sport") {
@@ -156,12 +155,10 @@ function CreateEvent(props) {
         style={{width: '10%'}}
         defaultValue={1}
         onChange={ (e, val) => setSpots(val) }  
-        // getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-custom"
         step={2}
         valueLabelDisplay="auto"
         max={22}
-        // marks={marks}
       />
       <br/>
       <br/>

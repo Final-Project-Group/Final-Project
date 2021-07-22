@@ -52,15 +52,15 @@ function UserInfo(props) {
     // newUser.sports[Number(e.target.name)].level = e.target.value;
     // setUser(newUser);
 
-    if (e.target.name === "soccer") {
+    if (e.target.name === "soccer" && newUser.sports[0].favorite === true) {
       newUser.sports[0].level = e.target.value;
       setUser(newUser);
       setLevel(e.target.value);
-    } else if (e.target.name === "basketball") {
+    } else if (e.target.name === "basketball" && newUser.sports[1].favorite === true) {
       setLevel2(e.target.value);
       newUser.sports[1].level = e.target.value;
       setUser(newUser);
-    } else if (e.target.name === "tennis") {
+    } else if (e.target.name === "tennis" && newUser.sports[2].favorite === true) {
       setLevel3(e.target.value);
       newUser.sports[2].level = e.target.value;
       setUser(newUser);
