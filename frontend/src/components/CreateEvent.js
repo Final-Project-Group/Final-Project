@@ -43,44 +43,7 @@ function CreateEvent(props) {
     let res = await actions.addEvent( event );
   }
 
-  // const handleChange2 = (e) => {
-  //     let eventInfo = { ...event };
-
-  //     eventInfo[e.target.name] = e.target.value;
-  //     setEvent(eventInfo);
-  //     //   if (e.target.name === "soccer") {
-  //     //     setLevel(e.target.value);
-  //     // //     eventInfo.sports[0].level = e.target.value;
-
-  //     //     setEvent(eventInfo);
-  //     //   }
-  //     // else if (e.target.name === "basketball") {
-  //     //     setLevel2(e.target.value);
-  //     //     eventInfo.sports[1].level = e.target.value;
-  //     //     setEvent(eventInfo);
-  //     //   } else {
-  //     //     setLevel3(e.target.value);
-  //     //     eventInfo.sports[2].level = e.target.value;
-  //     //     setEvent(eventInfo);
-  //     //   }
-  //     };
-
-  //console.log(event);
-
-  // const handleChange = (e) => {
-  //     if (e.target.name === "country") {
-  //       let u = { ...user };
-  //       u.country = e.target.value;
-  //       setUser(u);
-  //     } else {
-  //       let u = { ...user };
-  //       u.sports[Number(e.target.name)][e.target.id] = e.target.checked;
-
-  //       setUser(u);
-  //     }
-  // }
-
-  return (
+   return (
     <div>
       <h1>Create Event</h1>
       <br />
