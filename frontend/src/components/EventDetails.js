@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import actions from "../api";
 
 function EventDetails(props) {
   const [details, setDetails] = useState({});
 
-  useEffect(() => {
-    axios
-      .get(
-        `http://localhost:5000/get-event-details/${props.match.params.dynamicId}`
-      )
-      .then((res) => {
-        setDetails(res.data)
-        console.log(res.data);
-      });
+  useEffect(async () => {
+    let res = await actions.getDetail(props)
+    console.log(res.data)
   }, [props.match.params.dynamicId]);
 
   console.log(props.match.params.dynamicId);
@@ -20,6 +15,7 @@ function EventDetails(props) {
   return (
     <div>
       <h1>EVENT DETAILS</h1>
+      
     </div>
   );
 }
