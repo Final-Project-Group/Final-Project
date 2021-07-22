@@ -24,8 +24,8 @@ function App() {
   }
 
   useEffect(() => {
-    getTheUser()
-  }, [user])
+    getTheUser();
+  }, [])
 
   return (
     <TheContext.Provider value={{ user, setUser, getTheUser }}>

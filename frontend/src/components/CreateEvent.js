@@ -21,7 +21,9 @@ function CreateEvent(props) {
     let eventInfo = { ...event };
     eventInfo['spots'] = spots;
     eventInfo['members'] = [];
+    eventInfo['memberIds'] = [];
     eventInfo['members'].push(user);
+    eventInfo['memberIds'].push(user._id);
     console.log(eventInfo)
     setEvent(eventInfo);
   }, [spots])

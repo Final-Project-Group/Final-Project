@@ -32,7 +32,6 @@ function UserInfo(props) {
     ],
   });
 
-  console.log(user);
   const handleChange = (e) => {
     if (e.target.name === "country") {
       let newUser = { ...user };

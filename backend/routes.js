@@ -37,8 +37,9 @@ router.post("/add-details", authorize, async (req, res) => {
   console.log(updatedUser.userId);
   User.findOneAndUpdate(
     { _id: updatedUser.userId },
-    { country: updatedUser.user.country, sports: updatedUser.user.sports }
-  ).then((user) => {
+    { country: updatedUser.user.country, sports: updatedUser.user.sports },
+    { new: true }
+  ).populate('memberIds').then((user) => {
     res.json(user);
   });
 });
@@ -62,17 +63,14 @@ router.post("/join-event", authorize, async (req, res) => {
 
   Event.findOneAndUpdate(
     { _id: updatedEvent._id },
-    { members: updatedEvent.members }
-  ).then((user) => {
-    res.json(user);
-  });
+    { members: updatedEvent.members },
+    { new: true }
+  ).populate('memberIds')
 });
 
 
-
 router.get("/all-the-events", (req, res) => {
-    Event.find()
-    // .populate("userId")
+    Event.find().populate('memberIds')
     .then((posts) => {
       res.json(posts);
     });
@@ -80,9 +78,8 @@ router.get("/all-the-events", (req, res) => {
 
 router.get("/get-event-details/:dynamicId", (req, res) => {
     console.log("anythnig")
-    Event.findOne({_id: req.params.dynamicId}).then((event) => {
+    Event.findOne({_id: req.params.dynamicId}).populate('memberIds').then((event) => {
         res.json(event)
-        
         console.log(event)
     })
 });

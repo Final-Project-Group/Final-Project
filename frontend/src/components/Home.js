@@ -32,7 +32,7 @@ function Home(props) {
         if (currSport) {
             if(event.sport === currSport) {
                 return (
-                    <Link to={`/eventDetails/${event._id}`}>
+                    <Link to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}>
                         <li key={`${event.userId}+${event._id}`}>
                             IMAGE
                             <br/>
@@ -50,7 +50,7 @@ function Home(props) {
                 )
             } else if (currSport === 'all') {
                 return (
-                    <Link to={`/eventDetails/${event._id}`}>
+                    <Link to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}>
                         <li key={`${event.userId}+${event._id}`}>
                             <br/>
                             {event.description} 

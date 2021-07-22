@@ -8,6 +8,7 @@ const eventSchema = new Schema({
   level: String,
   age: String,
   members: Array,
+  memberIds: [{type: Schema.Types.ObjectId, ref: 'User'}],
   spots: Number,
   creator: Object,
   image: String,

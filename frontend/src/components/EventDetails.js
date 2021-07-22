@@ -9,7 +9,7 @@ function EventDetails(props) {
 
   useEffect(async () => {
     let res = await actions.getDetail(props);
-    //console.log(res.data);
+    console.log(res.data);
     setDetails(res.data);
   }, [props, user]);
 
@@ -29,8 +29,9 @@ function EventDetails(props) {
         let copy = { ...details };
         console.log(user);
         copy.members.push(user);
+        copy.memberIds.push(user._id)
         setDetails(copy);
-        actions.joinEvent(details);
+        actions.joinEvent(copy);
       } else {
         console.log("you already joined dummy!");
       }
