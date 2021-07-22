@@ -7,9 +7,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import actions from "../api";
 
 function UserInfo(props) {
-  const [checked, setChecked] = useState(false);
-  const [checked2, setChecked2] = useState(false);
-  const [checked3, setChecked3] = useState(false);
   const [level, setLevel] = useState("");
   const [level2, setLevel2] = useState("");
   const [level3, setLevel3] = useState("");
@@ -18,15 +15,18 @@ function UserInfo(props) {
     country: "usa",
     sports: [
       {
-        soccer: false,
+        name: 'soccer',
+        favorite: false,
         level: "",
       },
       {
-        basketball: false,
+        name: 'basketball',
+        favorite: false,
         level: "",
       },
       {
-        tennis: false,
+        name: 'tennis',
+        favorite: false,
         level: "",
       },
     ],
@@ -35,32 +35,35 @@ function UserInfo(props) {
   console.log(user);
   const handleChange = (e) => {
     if (e.target.name === "country") {
-      let u = { ...user };
-      u.country = e.target.value;
-      setUser(u);
+      let newUser = { ...user };
+      newUser.country = e.target.value;
+      setUser(newUser);
     } else {
-      let u = { ...user };
-      u.sports[Number(e.target.name)][e.target.id] = e.target.checked;
+      let newUser = { ...user };
+      newUser.sports[Number(e.target.name)].favorite = e.target.checked;
 
-      setUser(u);
+      setUser(newUser);
     }
   };
 
   const handleChange2 = (e) => {
-    let u = { ...user };
+    let newUser = { ...user };
+    
+    // newUser.sports[Number(e.target.name)].level = e.target.value;
+    // setUser(newUser);
 
     if (e.target.name === "soccer") {
+      newUser.sports[0].level = e.target.value;
+      setUser(newUser);
       setLevel(e.target.value);
-      u.sports[0].level = e.target.value;
-      setUser(u);
     } else if (e.target.name === "basketball") {
       setLevel2(e.target.value);
-      u.sports[1].level = e.target.value;
-      setUser(u);
-    } else {
+      newUser.sports[1].level = e.target.value;
+      setUser(newUser);
+    } else if (e.target.name === "tennis") {
       setLevel3(e.target.value);
-      u.sports[2].level = e.target.value;
-      setUser(u);
+      newUser.sports[2].level = e.target.value;
+      setUser(newUser);
     }
   };
 
@@ -98,7 +101,6 @@ function UserInfo(props) {
           name="soccer"
           value={level}
           onChange={handleChange2}
-          displayEmpty={checked}
           renderValue={() => (level ? level : "beginner")}
         >
           <MenuItem value="beginner">beginner</MenuItem>
@@ -119,7 +121,6 @@ function UserInfo(props) {
           name="basketball"
           value={level2}
           onChange={handleChange2}
-          displayEmpty={checked2}
           renderValue={() => (level2 ? level2 : "beginner")}
         >
           <MenuItem value="beginner">beginner</MenuItem>
@@ -140,7 +141,6 @@ function UserInfo(props) {
           name="tennis"
           value={level3}
           onChange={handleChange2}
-          displayEmpty={checked3}
           renderValue={() => (level3 ? level3 : "beginner")}
         >
           <MenuItem value="beginner">beginner</MenuItem>

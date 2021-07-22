@@ -36,11 +36,11 @@ router.post("/add-details", authorize, async (req, res) => {
     res.json(user);
   });
 });
+
+
 router.post("/add-event", authorize, async (req, res) => {
   let newEvent = req.body;
-  // console.log(newEvent);
-  newEvent.userId = res.locals.user._id;
-  //   console.log(newEvent.userId);
+  newEvent.creator = res.locals.user;
   Event.create(req.body).then((event) => {
     res.json(event);
   });

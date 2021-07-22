@@ -1,38 +1,85 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext} from 'react';
 import { Link} from 'react-router-dom';
 import axios from 'axios'
 import actions from '../api'
+import TheContext from "../TheContext";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 
 function Home(props) {
 
-    const [allEvents, setAllEvents] = useState([])
+    const [currSport, setCurrSport] = useState('');
+    const [sport, setSport] = useState([]);
+    const [allEvents, setAllEvents] = useState([]);
+    const { user } = useContext(TheContext);
 
     useEffect(async () => {
         let res = await actions.getEvents()
         console.log(res)
-        setAllEvents(res.data)
+        setAllEvents(res.data);
+        setSport(res.data)
     }, [])
 
+    const handleChange = (e) => {
+        console.log(e.target.value);
+        setCurrSport(e.target.value);
 
+    }
 
-    const showEvents = () => allEvents.map(event => {
-        return (
-            <li key={event.userId}>
-                <br/>
-                {event.description} 
-                <br/>
-                {event.location}
-                <br/>
-                {event.date.split('T', 1)}
-                <br/>
-                <i>{event.userId}</i>
-            </li>
-        )
+    console.log(user);
+
+    const showEvents = () => sport.map(event => {
+        if (currSport) {
+            if(event.sport === currSport) {
+                return (
+                    <li key={event.userId}>
+                        <br/>
+                        {event.description} 
+                        <br/>
+                        {event.location}
+                        <br/>
+                        {event.date.split('T', 1)}
+                        <br/>
+                        {event.creator.name}
+                        <br/>
+                        <i>{event.userId}</i>
+                    </li>
+                )
+            } else if (currSport === 'all') {
+                return (
+                    <li key={event.userId}>
+                        <br/>
+                        {event.description} 
+                        <br/>
+                        {event.location}
+                        <br/>
+                        {event.date.split('T', 1)}
+                        <br/>
+                        {event.creator.name}
+                        <br/>
+                        <i>{event.userId}</i>
+                    </li>
+                )
+            }
+        } 
     })
     
 
     return (
         <div>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          name="soccer"
+          value={currSport}
+          onChange={handleChange}
+        >
+          <MenuItem value="soccer">soccer</MenuItem>
+          <MenuItem value="basketball">basketball</MenuItem>
+          <MenuItem value="tennis">tennis</MenuItem>
+          <MenuItem value="all">all</MenuItem>
+        </Select>
+            <br/>
             Home<br/>
             <Link to="/createEvent"><button>Create event</button></Link>
             {showEvents()}
