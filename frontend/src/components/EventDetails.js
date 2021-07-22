@@ -6,8 +6,8 @@ function EventDetails(props) {
   const [details, setDetails] = useState({});
 
   useEffect(async () => {
-    let res = await actions.getDetail(props)
-    console.log(res.data)
+    let res = await actions.getDetail(props);
+    console.log(res.data);
   }, [props.match.params.dynamicId]);
 
   console.log(props.match.params.dynamicId);
@@ -15,7 +15,6 @@ function EventDetails(props) {
   return (
     <div>
       <h1>EVENT DETAILS</h1>
-      
     </div>
   );
 }
