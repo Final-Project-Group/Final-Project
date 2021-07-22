@@ -44,49 +44,6 @@ function UserInfo(props) {
 
       setUser(u);
     }
-
-    //         if (e.target.id === 'soccer') {
-    //             let u = {...user};
-
-    //             if (checked) {
-    //                 setChecked(false);
-    //                 u.sports[0].soccer = false;
-    //                 setUser(u);
-    //             } else {
-    //                 setChecked(true)
-    //                 u.sports[0].soccer = true;
-    //                 setUser(u);
-    //             };
-    //         }
-    // console.log(e, e.target.id, e.target.checked, e.target.name)
-    //         if (e.target.id === 'basketball') {
-    //             let u = {...user};
-
-    //             if (checked2) {
-    //                 setChecked2(false);
-    //                 // u.sports[1].basketball = false;
-    //                 u.sports[Number(e.target.name)][e.target.id] = e.target.checked;
-    //                 setUser(u);
-    //             } else {
-    //                 setChecked2(true)
-    //                 u.sports[1].basketball = true;
-    //                 setUser(u);
-    //             };
-    //         }
-
-    //         if (e.target.id === 'tennis') {
-    //             let u = {...user};
-
-    //             if (checked3) {
-    //                 setChecked3(false);
-    //                 u.sports[2].tennis = false;
-    //                 setUser(u);
-    //             } else {
-    //                 setChecked3(true)
-    //                 u.sports[2].tennis = true;
-    //                 setUser(u);
-    //             };
-    //         }
   };
 
   const handleChange2 = (e) => {

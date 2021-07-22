@@ -46,9 +46,9 @@ router.post("/add-event", authorize, async (req, res) => {
   });
 });
 
-router.get("/all-the-posts", (req, res) => {
-  Post.find()
-    .populate("userId")
+router.get("/all-the-events", (req, res) => {
+    Event.find()
+    // .populate("userId")
     .then((posts) => {
       res.json(posts);
     });

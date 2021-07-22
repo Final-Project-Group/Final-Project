@@ -5,23 +5,37 @@ import actions from '../api'
 
 function Home(props) {
 
-    const [allPosts, setAllPosts] = useState([])
+    const [allEvents, setAllEvents] = useState([])
 
     useEffect(async () => {
-        let res = await actions.getAllPosts()
+        let res = await actions.getEvents()
         console.log(res)
-        setAllPosts(res.data)
+        setAllEvents(res.data)
     }, [])
 
-    //const ShowPosts = () => allPosts.map(eachPost => <li key={eachPost._id}>{eachPost.post} <i>created by ...{eachPost.userId?.name}</i></li>)
+
+
+    const showEvents = () => allEvents.map(event => {
+        return (
+            <li key={event.userId}>
+                <br/>
+                {event.description} 
+                <br/>
+                {event.location}
+                <br/>
+                {event.date.split('T', 1)}
+                <br/>
+                <i>{event.userId}</i>
+            </li>
+        )
+    })
     
 
     return (
         <div>
-            Home
-          
+            Home<br/>
             <Link to="/createEvent"><button>Create event</button></Link>
-                {/* <ShowPosts /> */}
+            {showEvents()}
             
         </div>
     );

@@ -28,8 +28,8 @@ const actions = {
         let res = await axios.post(`${serverUrl}/add-post`, post, createHeaders())
         return res;
     },
-    getAllPosts: async (post) => {
-        return await axios.get(`${serverUrl}/all-the-posts`, createHeaders())
+    getEvents: async (post) => {
+        return await axios.get(`${serverUrl}/all-the-events`, createHeaders())
     },
 
     authenticate: async (profileObj) => {
