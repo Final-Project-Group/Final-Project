@@ -11,6 +11,7 @@ import Profile from './components/Profile'
 import Splash from './components/Splash'
 import UserInfo from './components/UserInfo';
 import CreateEvent from './components/CreateEvent';
+import EventDetails from './components/EventDetails';
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
         </nav>
         <Switch>
           
+          <Route exact path="/eventDetails/:dynamicId" render={(props) => <EventDetails {...props} />} />
           <Route exact path="/createEvent" render={(props) => <CreateEvent {...props} />} />
           <Route exact path="/splash" render={(props) => <Splash {...props} />} />
           <Route exact path="/UserInfo" render={(props) => <UserInfo {...props} />} /> 

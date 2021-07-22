@@ -10,6 +10,12 @@ const Event = require("./models/Event");
 router.get("/", (req, res) => {
   res.json({ serverWorking: true });
 });
+// router.get("/", (req, res) => {
+//     Event.find().then(events => {
+//         res.json(events)
+//         console.log(events)
+//     })
+// });
 
 router.get("/get-the-user", authorize, async (req, res) => {
   let user = await User.findById(res.locals.user._id);
@@ -43,6 +49,7 @@ router.post("/add-event", authorize, async (req, res) => {
   newEvent.creator = res.locals.user;
   Event.create(req.body).then((event) => {
     res.json(event);
+    console.log(event)
   });
 });
 
@@ -52,6 +59,15 @@ router.get("/all-the-events", (req, res) => {
     .then((posts) => {
       res.json(posts);
     });
+});
+
+router.get("/get-event-details/:dynamicId", (req, res) => {
+    console.log("anythnig")
+    Event.findOne({_id: req.params.dynamicId}).then((event) => {
+        res.json(event)
+        
+        console.log(event)
+    })
 });
 
 router.post("/authenticate", async (req, res) => {

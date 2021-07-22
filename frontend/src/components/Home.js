@@ -32,18 +32,20 @@ function Home(props) {
         if (currSport) {
             if(event.sport === currSport) {
                 return (
-                    <li key={event.userId}>
-                        <br/>
-                        {event.description} 
-                        <br/>
-                        {event.location}
-                        <br/>
-                        {event.date.split('T', 1)}
-                        <br/>
-                        {event.creator.name}
-                        <br/>
-                        <i>{event.userId}</i>
-                    </li>
+                    <Link to={`/eventDetails/${event._id}`}>
+                        <li key={event.userId}>
+                            <br/>
+                            {event.description}
+                            <br/>
+                            {event.location}
+                            <br/>
+                            {event.date.split('T', 1)}
+                            <br/>
+                            {event.creator.name}
+                            <br/>
+                            <i>{event.userId}</i>
+                        </li>
+                    </Link>
                 )
             } else if (currSport === 'all') {
                 return (

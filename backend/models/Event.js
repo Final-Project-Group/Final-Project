@@ -7,7 +7,7 @@ const eventSchema = new Schema({
   sport: String,
   level: String,
   age: String,
-  //   members: [],
+  members: [],
   creator: Object,
   image: String,
   eventName: String,
