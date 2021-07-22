@@ -33,7 +33,7 @@ function Home(props) {
             if(event.sport === currSport) {
                 return (
                     <Link to={`/eventDetails/${event._id}`}>
-                        <li key={event.userId}>
+                        <li key={`${event.userId}+${event._id}`}>
                             <br/>
                             {event.description}
                             <br/>
@@ -49,18 +49,20 @@ function Home(props) {
                 )
             } else if (currSport === 'all') {
                 return (
-                    <li key={event.userId}>
-                        <br/>
-                        {event.description} 
-                        <br/>
-                        {event.location}
-                        <br/>
-                        {event.date.split('T', 1)}
-                        <br/>
-                        {event.creator.name}
-                        <br/>
-                        <i>{event.userId}</i>
-                    </li>
+                    <Link to={`/eventDetails/${event._id}`}>
+                        <li key={`${event.userId}+${event._id}`}>
+                            <br/>
+                            {event.description} 
+                            <br/>
+                            {event.location}
+                            <br/>
+                            {event.date.split('T', 1)}
+                            <br/>
+                            {event.creator.name}
+                            <br/>
+                            <i>{event.userId}</i>
+                        </li>
+                    </Link>
                 )
             }
         } 
