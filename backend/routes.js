@@ -53,6 +53,23 @@ router.post("/add-event", authorize, async (req, res) => {
   });
 });
 
+router.post("/join-event", authorize, async (req, res) => {
+  let updatedEvent = req.body;
+  // console.log(updatedEvent);
+  console.log(updatedEvent._id);
+  console.log(updatedEvent.members);
+
+
+  Event.findOneAndUpdate(
+    { _id: updatedEvent._id },
+    { members: updatedEvent.members }
+  ).then((user) => {
+    res.json(user);
+  });
+});
+
+
+
 router.get("/all-the-events", (req, res) => {
     Event.find()
     // .populate("userId")

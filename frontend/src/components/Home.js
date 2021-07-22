@@ -40,7 +40,7 @@ function Home(props) {
                             <br/>
                             {event.location}
                             <br/>
-                            {event.date.split('T', 1)}
+                            {/* {event.date.split('T', 1)} */}
                             <br/>
                             {event.creator.name}
                             <br/>
@@ -57,7 +57,7 @@ function Home(props) {
                             <br/>
                             {event.location}
                             <br/>
-                            {event.date.split('T', 1)}
+                            {/* {event.date.split('T', 1)} */}
                             <br/>
                             {event.creator.name}
                             <br/>

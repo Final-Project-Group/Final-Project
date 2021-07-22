@@ -33,6 +33,14 @@ const actions = {
     );
     return res;
   },
+  joinEvent: async (event) => {
+    let res = await axios.post(
+      `${serverUrl}/join-event`,
+      event,
+      createHeaders()
+    );
+    return res;
+  },
   addEvent: async (event) => {
     let res = await axios.post(
       `${serverUrl}/add-event`,

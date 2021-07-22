@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Slider from '@material-ui/core/Slider';
 import actions from "../api";
 import { useState, useEffect } from "react";
+import TheContext from "../TheContext";
 
 function CreateEvent(props) {
   let [event, setEvent] = useState({});
@@ -13,11 +14,15 @@ function CreateEvent(props) {
   const [level, setLevel] = useState("");
   const [age, setAge] = useState("");
   const [spots, setSpots] = useState("");
+  const { user } = useContext(TheContext);
 
 
   useEffect(() => {
     let eventInfo = { ...event };
     eventInfo['spots'] = spots;
+    eventInfo['members'] = [];
+    eventInfo['members'].push(user);
+    console.log(eventInfo)
     setEvent(eventInfo);
   }, [spots])
 
