@@ -8,7 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 function Home(props) {
 
-    const [currSport, setCurrSport] = useState('');
+    const [currSport, setCurrSport] = useState('all');
     const [sport, setSport] = useState([]);
     const [allEvents, setAllEvents] = useState([]);
     const { user } = useContext(TheContext);

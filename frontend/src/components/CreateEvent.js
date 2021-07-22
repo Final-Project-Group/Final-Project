@@ -2,8 +2,9 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import Slider from '@material-ui/core/Slider';
 import actions from "../api";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function CreateEvent(props) {
   let [event, setEvent] = useState({});
@@ -11,10 +12,19 @@ function CreateEvent(props) {
   const [sport, setSport] = useState("");
   const [level, setLevel] = useState("");
   const [age, setAge] = useState("");
+  const [spots, setSpots] = useState("");
 
-  const handleChange = (e) => {
+
+  useEffect(() => {
+    let eventInfo = { ...event };
+    eventInfo['spots'] = spots;
+    setEvent(eventInfo);
+  }, [spots])
+
+  const handleChange = (e, val) => {
     let eventInfo = { ...event };
     eventInfo[e.target.name] = e.target.value;
+    console.log(e.target.defaultValue);
     setEvent(eventInfo);
 
     if (e.target.name === "sport") {
@@ -25,11 +35,12 @@ function CreateEvent(props) {
       setAge(e.target.value);
     }
   };
-  
+
+  console.log(spots);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     let res = await actions.addEvent( event );
-    console.log(event);
   }
 
   // const handleChange2 = (e) => {
@@ -174,6 +185,22 @@ function CreateEvent(props) {
         onChange={handleChange}
         required={true}
       />
+      <br/>
+      <br/>
+      Spots:
+      <Slider
+        name="spots"
+        style={{width: '10%'}}
+        defaultValue={1}
+        onChange={ (e, val) => setSpots(val) }  
+        // getAriaValueText={valuetext}
+        aria-labelledby="discrete-slider-custom"
+        step={2}
+        valueLabelDisplay="auto"
+        max={22}
+        // marks={marks}
+      />
+      <br/>
       <br/>
       <input type="submit" value="Submit" />
       </form>
