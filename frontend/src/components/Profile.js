@@ -14,7 +14,7 @@ function Profile(props) {
             let res = await actions.getUser(props)
             setUserUpdated(res.data)
           })()
-    })
+    }, [])
 
     const logOut = () => {
         localStorage.removeItem('token')
