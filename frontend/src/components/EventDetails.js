@@ -61,7 +61,14 @@ function EventDetails(props) {
           <p>
             spots / filled spots: {details?.spots} / {details?.members?.length}
           </p>
-          <p>members: Jhonson</p>
+          <ul>
+            Members:
+            {details?.members?.map((member) => {
+              return (
+                <li key={member._id}><h5>{member.name}</h5></li>
+              )
+            })}
+          </ul>
           <p>Description: {details?.description}</p>
           { user._id === details?.creator?._id ? <Link to={`/editEvent/${details?._id}`}> <button> Edit </button> </Link> : <button onClick={memberJoin}>Join Event</button>}
           <br />
