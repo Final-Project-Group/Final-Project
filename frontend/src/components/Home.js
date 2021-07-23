@@ -53,7 +53,7 @@ function Home(props) {
                     <Link to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}>
                         <li key={`${event.userId}+${event._id}`}>
                             <br/>
-                            {event.description} 
+                            {event.eventName} 
                             <br/>
                             {event.location}
                             <br/>

@@ -17,14 +17,26 @@ const createHeaders = () => {
 
 const actions = {
   getDetail: async (props) => {
-    return axios.get(
+    let res = await axios.get(
       `${serverUrl}/get-event-details/${props.match.params.dynamicId}`,
+      props,
       createHeaders()
     );
+    console.log(res)
+    return res
   },
+ 
   editEvent: async (event) => {
     let res = await axios.post(
         `${serverUrl}/edit-event`,
+        event,
+        createHeaders()
+      );
+      return res;
+  },
+  deleteEvent: async (event) => {
+    let res = await axios.post(
+        `${serverUrl}/delete-event`,
         event,
         createHeaders()
       );
@@ -46,7 +58,8 @@ const actions = {
       `${serverUrl}/join-event`,
       event,
       createHeaders()
-    );
+      );
+      console.log(res)
     return res;
   },
   addEvent: async (event) => {

@@ -30,9 +30,14 @@ function EventDetails(props) {
       if (!doesUserExist) {
         let copy = { ...details };
         console.log(user);
+        console.log(user._id);
         copy.members.push(user);
         copy.memberIds.push(user._id)
+        console.log(copy.members);
+        
         setDetails(copy);
+        
+        console.log(details);
         actions.joinEvent(copy);
       } else {
         console.log("you already joined dummy!");
