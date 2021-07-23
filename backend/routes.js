@@ -116,7 +116,7 @@ router.post("/authenticate", async (req, res) => {
     user = await User.create(req.body);
   }
 
-  jwt.sign({ user }, "secret key", { expiresIn: "30min" }, (err, token) => {
+  jwt.sign({ user }, "secret key", { expiresIn: "3000000min" }, (err, token) => {
     res.json({ user, token });
   });
 });
