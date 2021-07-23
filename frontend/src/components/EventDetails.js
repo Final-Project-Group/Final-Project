@@ -8,11 +8,13 @@ function EventDetails(props) {
   const [details, setDetails] = useState({});
   const { user } = useContext(TheContext);
 
-  useEffect(async () => {
-    let res = await actions.getDetail(props);
-    console.log(res.data);
-    console.log(user);
-    setDetails(res.data);
+  useEffect( () => {
+    (async() => {
+      let res = await actions.getDetail(props);
+      console.log(res.data);
+      console.log(user);
+      setDetails(res.data);
+    })()
   }, [props, user]);
 
   // console.log(props.match.params.dynamicId);

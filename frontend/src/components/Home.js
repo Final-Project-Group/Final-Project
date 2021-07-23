@@ -13,11 +13,13 @@ function Home(props) {
     const [allEvents, setAllEvents] = useState([]);
     const { user } = useContext(TheContext);
 
-    useEffect(async () => {
-        let res = await actions.getEvents()
-        console.log(res)
-        setAllEvents(res.data);
-        setSport(res.data)
+    useEffect( () => {
+        (async () => {
+            let res = await actions.getEvents()
+            console.log(res)
+            setAllEvents(res.data);
+            setSport(res.data)
+        }) ()
     }, [])
 
     const handleChange = (e) => {

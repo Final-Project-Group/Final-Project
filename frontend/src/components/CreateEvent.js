@@ -77,10 +77,10 @@ function CreateEvent(props) {
           required={false}
         />
         <br />
+        Date & time:
         <TextField
           name="date"
           id="datetime-local"
-          label="Date & time"
           type="datetime-local"
           InputLabelProps={{
             shrink: false,

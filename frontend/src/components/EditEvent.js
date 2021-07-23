@@ -16,11 +16,13 @@ function EditEvent(props) {
   const { user } = useContext(TheContext);
   const history = useHistory()
 
-  useEffect(async () => {
-    let res = await actions.getDetail(props);
-    console.log(res.data);
-    console.log(user);
-    setDetails(() => res.data);
+  useEffect( () => {
+    (async () => {
+        let res = await actions.getDetail(props);
+        console.log(res.data);
+        console.log(user);
+        setDetails(() => res.data)
+    })()
   }, [props, user]);
 
   const [sport, setSport] = useState(details?.sport);

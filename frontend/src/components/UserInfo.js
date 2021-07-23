@@ -5,11 +5,13 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import actions from "../api";
+import { useHistory } from "react-router-dom";
 
 function UserInfo(props) {
   const [level, setLevel] = useState("");
   const [level2, setLevel2] = useState("");
   const [level3, setLevel3] = useState("");
+  const history = useHistory();
 
   const [user, setUser] = useState({
     country: "usa",
@@ -68,8 +70,9 @@ function UserInfo(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let res = await actions.addDetails({ user });
-    console.log(user);
+    await actions.addDetails({ user }).then(() => {
+        history.push(`/Profile`);
+    });
   };
 
   return (
