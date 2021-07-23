@@ -22,6 +22,31 @@ router.get("/get-the-user", authorize, async (req, res) => {
   res.json(user);
 });
 
+
+router.post("/edit-event", authorize, async (req, res) => {
+    let updatedEvent = req.body;
+    console.log(updatedEvent._id);
+    console.log(updatedEvent.members);
+  
+    Event.findOneAndUpdate(
+        { _id: updatedEvent._id },
+        { 
+            location: updatedEvent.location,
+            date: updatedEvent.date,
+            sport: updatedEvent.sport,
+            level: updatedEvent.level,
+            age: updatedEvent.age,
+            spots: updatedEvent.spots,
+            image: updatedEvent.image,
+            eventName: updatedEvent.eventName,
+            description: updatedEvent.description,
+        },
+      { new: true }
+    ).populate('memberIds')
+  });
+
+  
+
 router.post("/add-post", authorize, async (req, res) => {
   let newPost = req.body;
   newPost.userId = res.locals.user._id;

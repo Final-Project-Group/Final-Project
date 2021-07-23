@@ -70,7 +70,6 @@ function CreateEvent(props) {
         id="datetime-local"
         label="Date & time"
         type="datetime-local"
-        defaultValue="2017-05-24T10:30"
         InputLabelProps={{
           shrink: true,
         }}

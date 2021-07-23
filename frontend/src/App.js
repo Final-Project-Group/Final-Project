@@ -12,6 +12,7 @@ import Splash from './components/Splash'
 import UserInfo from './components/UserInfo';
 import CreateEvent from './components/CreateEvent';
 import EventDetails from './components/EventDetails';
+import EditEvent from './components/EditEvent';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
         </nav>
         <Switch>
           
+          <Route exact path="/editEvent/:dynamicId" render={(props) => <EditEvent {...props} />} />
           <Route exact path="/eventDetails/:dynamicId" render={(props) => <EventDetails {...props} />} />
           <Route exact path="/createEvent" render={(props) => <CreateEvent {...props} />} />
           <Route exact path="/splash" render={(props) => <Splash {...props} />} />

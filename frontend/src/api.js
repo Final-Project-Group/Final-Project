@@ -22,6 +22,14 @@ const actions = {
       createHeaders()
     );
   },
+  editEvent: async (event) => {
+    let res = await axios.post(
+        `${serverUrl}/edit-event`,
+        event,
+        createHeaders()
+      );
+      return res;
+  },
   getUser: async () => {
     return await axios.get(`${serverUrl}/get-the-user`, createHeaders());
   },
@@ -66,7 +74,6 @@ const actions = {
     );
     console.log(res);
     localStorage.setItem("token", res.data.token);
-
     return res;
   },
 };
