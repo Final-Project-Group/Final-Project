@@ -13,7 +13,7 @@ function CreateEvent(props) {
   const [sport, setSport] = useState("");
   const [level, setLevel] = useState("");
   const [age, setAge] = useState("");
-  const [spots, setSpots] = useState("");
+  const [spots, setSpots] = useState(2);
   const { user } = useContext(TheContext);
   const [eventId, setEventId] = useState("");
 
@@ -141,7 +141,7 @@ function CreateEvent(props) {
           variant="filled"
           size="small"
           onChange={handleChange}
-          required={true}
+          required={false}
         />
         <br />
         Event name:
@@ -171,7 +171,7 @@ function CreateEvent(props) {
         <Slider
           name="spots"
           style={{ width: "10%" }}
-          defaultValue={1}
+          defaultValue={2}
           onChange={(e, val) => setSpots(val)}
           aria-labelledby="discrete-slider-custom"
           step={2}

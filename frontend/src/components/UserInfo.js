@@ -38,7 +38,9 @@ function UserInfo(props) {
   useEffect(() => {
     (async () => {
       let res = await actions.getUser(props);
+
       setCurrentUser(res.data);
+
       console.log(res.data);
     })();
   }, [props]);
@@ -51,14 +53,17 @@ function UserInfo(props) {
       setUser(newUser);
     } else {
       let newUser = { ...user };
+      newUser.country = currentUser.country;
       newUser.sports[Number(e.target.name)].favorite = e.target.checked;
 
       setUser(newUser);
+      setCurrentUser(newUser);
     }
   };
 
   const handleChange2 = (e) => {
     let newUser = { ...user };
+    newUser.country = currentUser.country;
 
     // newUser.sports[Number(e.target.name)].level = e.target.value;
     // setUser(newUser);
@@ -93,17 +98,34 @@ function UserInfo(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (user.country === "") {
+     
+
       let copyOfUser = { ...user };
       console.log(currentUser);
       console.log(user);
 
       copyOfUser.country = currentUser.country;
       setUser(copyOfUser);
+      setCurrentUser(copyOfUser);
     }
-    console.log({ user });
-    await actions.addDetails({ currentUser }).then(() => {
-      history.push(`/Profile`);
+    const array = [];
+    user.sports.map((eachSport) => {
+      array.push(eachSport.favorite);
     });
+
+    let counter = 1;
+    let favoriteCheck = array.map((favorite) => {
+      return favorite === false ? counter++ : counter;
+    });
+    console.log(favoriteCheck);
+    if (favoriteCheck[2] === 3) {
+      alert("you need at least one sport");
+    } else {
+      console.log({ user });
+      await actions.addDetails({ currentUser }).then(() => {
+        history.push(`/Profile`);
+      });
+    }
   };
 
   return (
@@ -117,7 +139,7 @@ function UserInfo(props) {
           id="filled-size-small"
           variant="filled"
           size="small"
-          value={`${currentUser?.country}`}
+          value={`${currentUser?.country ? currentUser?.country : ""}`}
           onChange={handleChange}
           required={true}
         />

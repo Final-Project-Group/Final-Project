@@ -61,7 +61,7 @@ function EventDetails(props) {
           <p>Ages: {details?.age}</p>
           <p>Level: {details?.level}</p>
           <p>
-            spots / filled spots: {details?.spots} / {details?.members?.length}
+            {`Total: ${details?.spots} / Available: ${details?.spots - details?.members?.length}`}
           </p>
           <ul>
             Members:

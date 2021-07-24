@@ -6,23 +6,23 @@ import Slider from "@material-ui/core/Slider";
 import actions from "../api";
 import { useState, useEffect } from "react";
 import TheContext from "../TheContext";
-import {Link, useHistory} from "react-router-dom"
+import { Link, useHistory } from "react-router-dom";
 
 function EditEvent(props) {
   let [event, setEvent] = useState({});
-  const [spots, setSpots] = useState("");
+  const [spots, setSpots] = useState(2);
 
   const [details, setDetails] = useState({});
   const { user } = useContext(TheContext);
-  const history = useHistory()
+  const history = useHistory();
 
-  useEffect( () => {
+  useEffect(() => {
     (async () => {
-        let res = await actions.getDetail(props);
-        console.log(res.data);
-        console.log(user);
-        setDetails(() => res.data)
-    })()
+      let res = await actions.getDetail(props);
+      console.log(res.data);
+      console.log(user);
+      setDetails(() => res.data);
+    })();
   }, [props, user]);
 
   const [sport, setSport] = useState(details?.sport);
@@ -54,9 +54,9 @@ function EditEvent(props) {
   };
 
   const deleteEvent = () => {
-    actions.deleteEvent( details )
-    console.log("delete")
-  }
+    actions.deleteEvent(details);
+    console.log("delete");
+  };
 
   return (
     <div>
@@ -181,16 +181,19 @@ function EditEvent(props) {
           }}
           name="spots"
           style={{ width: "10%" }}
-          defaultValue={1}
+          defaultValue={2}
           // onChange={ (e, val) => setSpots(val) }
           aria-labelledby="discrete-slider-custom"
           step={2}
           valueLabelDisplay="auto"
           max={22}
+          min={2}
         />
         <br />
         <br />
-        <Link to="/"><button onClick={deleteEvent}>Delete</button></Link>
+        <Link to="/">
+          <button onClick={deleteEvent}>Delete</button>
+        </Link>
         <input type="submit" value="Save" />
       </form>
     </div>
