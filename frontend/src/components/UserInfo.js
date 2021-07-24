@@ -38,8 +38,12 @@ function UserInfo(props) {
   useEffect(() => {
     (async () => {
       let res = await actions.getUser(props);
-
-      setCurrentUser(res.data);
+      const copy = res.data;
+      copy.sports.map((eachSport) => {
+        eachSport.favorite = false;
+      })
+      console.log(copy);
+      setCurrentUser(copy);
 
       console.log(res.data);
     })();
@@ -109,16 +113,18 @@ function UserInfo(props) {
       setCurrentUser(copyOfUser);
     }
     const array = [];
-    user.sports.map((eachSport) => {
+    currentUser.sports.map((eachSport) => {
       array.push(eachSport.favorite);
     });
 
-    let counter = 1;
+    let counter = 0;
     let favoriteCheck = array.map((favorite) => {
       return favorite === false ? counter++ : counter;
     });
-    console.log(favoriteCheck);
-    if (favoriteCheck[2] === 3) {
+
+    console.log(counter);
+    console.log(array)
+    if (counter === 3) {
       alert("you need at least one sport");
     } else {
       console.log({ user });
