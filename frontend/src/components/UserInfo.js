@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -11,6 +11,7 @@ function UserInfo(props) {
   const [level, setLevel] = useState("");
   const [level2, setLevel2] = useState("");
   const [level3, setLevel3] = useState("");
+  const [currentUser, setCurrentUser] = useState({})
   const history = useHistory();
 
   const [user, setUser] = useState({
@@ -34,10 +35,19 @@ function UserInfo(props) {
     ],
   });
 
+  useEffect( () => {
+    (async () => {            
+        let res = await actions.getUser(props)
+        setCurrentUser(res.data)
+        console.log(res.data)
+      })()
+},[props])
+
   const handleChange = (e) => {
     if (e.target.name === "country") {
       let newUser = { ...user };
       newUser.country = e.target.value;
+      setCurrentUser(newUser)
       setUser(newUser);
     } else {
       let newUser = { ...user };
@@ -86,6 +96,7 @@ function UserInfo(props) {
           id="filled-size-small"
           variant="filled"
           size="small"
+          value={`${currentUser?.country}`}
           onChange={handleChange}
           required={true}
         />
@@ -150,6 +161,7 @@ function UserInfo(props) {
           <MenuItem value="advanced">advanced</MenuItem>
         </Select>
         <br />
+        {/* { user._id === details?.creator?._id ? <Link to={`/editEvent/${details?._id}`}> <button> Edit </button> </Link> : <button onClick={memberJoin}>Join Event</button>} */}
         <input type="submit" value="Submit" />
       </form>
     </div>
