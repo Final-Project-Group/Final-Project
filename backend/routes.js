@@ -75,7 +75,7 @@ router.post("/add-details", authorize, async (req, res) => {
   // console.log(updatedUser.userId);
   User.findOneAndUpdate(
     { _id: updatedUser.userId },
-    { country: updatedUser.user.country, sports: updatedUser.user.sports },
+    { country: updatedUser.currentUser.country, sports: updatedUser.currentUser.sports },
     { new: true }
   )
     .populate("memberIds")

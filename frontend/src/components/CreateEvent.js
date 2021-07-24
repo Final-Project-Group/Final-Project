@@ -74,7 +74,7 @@ function CreateEvent(props) {
           variant="filled"
           size="small"
           onChange={handleChange}
-          required={false}
+          required={true}
         />
         <br />
         Date & time:
@@ -86,7 +86,7 @@ function CreateEvent(props) {
             shrink: false,
           }}
           onChange={handleChange}
-          required={false}
+          required={true}
         />
         <br />
         Sport:
@@ -97,7 +97,7 @@ function CreateEvent(props) {
           value={sport}
           // renderValue={() => (event.sport ? event.sport : "")}
           onChange={handleChange}
-          required={false}
+          required={true}
         >
           <MenuItem value="soccer">soccer</MenuItem>
           <MenuItem value="basketball">basketball</MenuItem>
@@ -126,7 +126,7 @@ function CreateEvent(props) {
           value={age}
           onChange={handleChange}
           // renderValue={() => (level3 ? level3 : "beginner")}
-          required={false}
+          required={true}
         >
           <MenuItem value="kids">kids</MenuItem>
           <MenuItem value="teens">teens</MenuItem>
@@ -141,7 +141,7 @@ function CreateEvent(props) {
           variant="filled"
           size="small"
           onChange={handleChange}
-          required={false}
+          required={true}
         />
         <br />
         Event name:
@@ -152,7 +152,7 @@ function CreateEvent(props) {
           variant="filled"
           size="small"
           onChange={handleChange}
-          required={false}
+          required={true}
         />
         <br />
         Description:
@@ -163,7 +163,7 @@ function CreateEvent(props) {
           variant="filled"
           size="small"
           onChange={handleChange}
-          required={false}
+          required={true}
         />
         <br />
         <br />
@@ -177,6 +177,7 @@ function CreateEvent(props) {
           step={2}
           valueLabelDisplay="auto"
           max={22}
+          min={2}
         />
         <br />
         <br />

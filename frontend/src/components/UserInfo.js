@@ -11,43 +11,43 @@ function UserInfo(props) {
   const [level, setLevel] = useState("");
   const [level2, setLevel2] = useState("");
   const [level3, setLevel3] = useState("");
-  const [currentUser, setCurrentUser] = useState({})
+  const [currentUser, setCurrentUser] = useState({});
   const history = useHistory();
 
   const [user, setUser] = useState({
-    country: "usa",
+    country: "",
     sports: [
       {
-        name: 'soccer',
+        name: "soccer",
         favorite: false,
-        level: "",
+        level: "beginner",
       },
       {
-        name: 'basketball',
+        name: "basketball",
         favorite: false,
-        level: "",
+        level: "beginner",
       },
       {
-        name: 'tennis',
+        name: "tennis",
         favorite: false,
-        level: "",
+        level: "beginner",
       },
     ],
   });
 
-  useEffect( () => {
-    (async () => {            
-        let res = await actions.getUser(props)
-        setCurrentUser(res.data)
-        console.log(res.data)
-      })()
-},[props])
+  useEffect(() => {
+    (async () => {
+      let res = await actions.getUser(props);
+      setCurrentUser(res.data);
+      console.log(res.data);
+    })();
+  }, [props]);
 
   const handleChange = (e) => {
     if (e.target.name === "country") {
       let newUser = { ...user };
       newUser.country = e.target.value;
-      setCurrentUser(newUser)
+      setCurrentUser(newUser);
       setUser(newUser);
     } else {
       let newUser = { ...user };
@@ -59,29 +59,50 @@ function UserInfo(props) {
 
   const handleChange2 = (e) => {
     let newUser = { ...user };
-    
+
     // newUser.sports[Number(e.target.name)].level = e.target.value;
     // setUser(newUser);
 
     if (e.target.name === "soccer" && newUser.sports[0].favorite === true) {
       newUser.sports[0].level = e.target.value;
       setUser(newUser);
+      newUser.country = currentUser.country;
+      setCurrentUser(newUser);
       setLevel(e.target.value);
-    } else if (e.target.name === "basketball" && newUser.sports[1].favorite === true) {
+    } else if (
+      e.target.name === "basketball" &&
+      newUser.sports[1].favorite === true
+    ) {
       setLevel2(e.target.value);
       newUser.sports[1].level = e.target.value;
       setUser(newUser);
-    } else if (e.target.name === "tennis" && newUser.sports[2].favorite === true) {
+      newUser.country = currentUser.country;
+      setCurrentUser(newUser);
+    } else if (
+      e.target.name === "tennis" &&
+      newUser.sports[2].favorite === true
+    ) {
       setLevel3(e.target.value);
       newUser.sports[2].level = e.target.value;
       setUser(newUser);
+      newUser.country = currentUser.country;
+      setCurrentUser(newUser);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await actions.addDetails({ user }).then(() => {
-        history.push(`/Profile`);
+    if (user.country === "") {
+      let copyOfUser = { ...user };
+      console.log(currentUser);
+      console.log(user);
+
+      copyOfUser.country = currentUser.country;
+      setUser(copyOfUser);
+    }
+    console.log({ user });
+    await actions.addDetails({ currentUser }).then(() => {
+      history.push(`/Profile`);
     });
   };
 
@@ -107,12 +128,13 @@ function UserInfo(props) {
           id="soccer"
           onChange={handleChange}
           inputProps={{ "aria-label": "primary checkbox" }}
+          // checked={currentUser?.sports?.map((sport, i) => sport.favorite ? true : false) }
         />
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           name="soccer"
-          value={level}
+          value={level ? level : "beginner"}
           onChange={handleChange2}
           renderValue={() => (level ? level : "beginner")}
         >
@@ -132,7 +154,7 @@ function UserInfo(props) {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           name="basketball"
-          value={level2}
+          value={level2 ? level2 : "beginner"}
           onChange={handleChange2}
           renderValue={() => (level2 ? level2 : "beginner")}
         >
@@ -152,7 +174,7 @@ function UserInfo(props) {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           name="tennis"
-          value={level3}
+          value={level3 ? level3 : "beginner"}
           onChange={handleChange2}
           renderValue={() => (level3 ? level3 : "beginner")}
         >
