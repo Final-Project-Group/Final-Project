@@ -2,11 +2,13 @@ import { useState, useContext, useEffect } from 'react';
 import {Link} from 'react-router-dom'
 import TheContext from '../TheContext';
 import actions from '../api';
+import { useHistory } from 'react-router-dom';
 
 
 function Profile(props) {
     const { user, setUser } = useContext(TheContext)
     const [userUpdated, setUserUpdated] = useState({})
+    const history = useHistory();
 
     useEffect( () => {
         (async () => {            
@@ -20,6 +22,7 @@ function Profile(props) {
     const logOut = () => {
         localStorage.removeItem('token')
         setUser(null)
+        history.push('/Auth')
     }
 
     const showSports= () => {
@@ -31,10 +34,11 @@ function Profile(props) {
     }
 
     console.log(user);
+
     return (
         <div>
-            <h2>Profile {props.user?.name}</h2>
-            <img src={user?.imageUrl} />
+            <h2>Profile {userUpdated.name}</h2>
+            <img src={userUpdated.imageUrl} />
             <h2>country: {userUpdated.country}</h2>
             
             <h2>Sports: {showSports()}</h2>
