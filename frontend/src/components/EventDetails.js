@@ -4,6 +4,7 @@ import actions from "../api";
 import TheContext from "../TheContext";
 import { Link } from 'react-router-dom';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+// require('dotenv').config()
 
 function EventDetails(props) {
   const defaultLocation = {  lat: 25.7617, lng: 80.1918  };
@@ -27,6 +28,7 @@ function EventDetails(props) {
 
   }, [props, user]);
 
+  console.log(process.env)
   // console.log(props.match.params.dynamicId);
   const memberJoin = () => {
     //console.log(details.members);
@@ -116,8 +118,9 @@ function EventDetails(props) {
     </Map>
     </div>
   );
+  
 }
 
 export default GoogleApiWrapper({
-  apiKey: ("AIzaSyAf6-uRnVV8NM67T9FobkbcynWfDGe-0oY")
+  apiKey: (process.env.REACT_APP_API_KEY)
 })(EventDetails)
