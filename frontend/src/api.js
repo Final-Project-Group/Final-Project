@@ -16,6 +16,27 @@ const createHeaders = () => {
 };
 
 const actions = {
+ 
+  // getGeocoding: async (props) => {
+
+
+  //   let res = await axios.get(
+  //     `https://maps.googleapis.com/maps/api/geocode/json?address=29+champs+elys%C3%A9e+paris&key=AIzaSyAf6-uRnVV8NM67T9FobkbcynWfDGe-0oY`,
+  //     props,
+  //     createHeaders()
+  //   );
+  //   console.log(res)
+  //   return res
+  // },
+  
+  leaveEvent: async (event) => {
+    let res = await axios.post(
+        `${serverUrl}/leave-event`,
+        event,
+        createHeaders()
+      );
+      return res;
+  },
   getDetail: async (props) => {
     let res = await axios.get(
       `${serverUrl}/get-event-details/${props.match.params.dynamicId}`,

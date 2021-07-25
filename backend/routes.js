@@ -48,6 +48,22 @@ router.post("/edit-event", authorize, async (req, res) => {
     });
 });
 
+router.post("/leave-event", authorize, async (req, res) => {
+  let leftEvent = req.body;
+  // console.log(leftEvent);
+  leftEvent.userId = res.locals.user._id;
+  // console.log(leftEvent.userId);
+  User.findOneAndUpdate(
+    { _id: leftEvent.details._id },
+    { members: leftEvent.details.members, memberIds: leftEvent.details.memberIds },
+    { new: true }
+  )
+    .populate("memberIds")
+    .then((user) => {
+      res.json(user);
+    });
+});
+
 router.post("/delete-event", authorize, async (req, res) => {
   let deletedEvent = req.body;
   // console.log(deletedEvent);
