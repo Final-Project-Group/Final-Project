@@ -54,12 +54,28 @@ function EventDetails(props) {
         console.log(details);
         actions.joinEvent(copy);
       } else {
-        console.log("you already joined dummy!");
+        alert("you already joined dummy!");
       }
     } else {
       console.log("party is full!");
     }
   };
+
+  const memberUnjoined = () => {
+    let copy = { ...details };
+    console.log(user);
+    console.log(user._id);
+    
+    if (details.members.indexOf(user)) {
+      copy.members.pop(user);
+      copy.memberIds.pop(user._id)
+      console.log(copy.members);
+      
+      setDetails(copy);
+    }
+    console.log(details);
+    // actions.joinEvent(copy);
+  }
 
   console.log(props.google)
 
@@ -86,7 +102,7 @@ function EventDetails(props) {
             })}
           </ul>
           <p>Description: {details?.description}</p>
-          { user._id === details?.creator?._id ? <Link to={`/editEvent/${details?._id}`}> <button> Edit </button> </Link> : <button onClick={memberJoin}>Join Event</button>}
+          { user._id === details?.creator?._id ? <Link to={`/editEvent/${details?._id}`}> <button> Edit </button> </Link> : (details?.members?.includes(user) ? <button onClick={memberJoin}>Join Event</button> : <button onClick={memberJoin}>Join Event</button>)}
           <br />
           <br />
         </div>
