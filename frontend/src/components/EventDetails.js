@@ -10,8 +10,8 @@ const JOSE_API_KEY = process.env.REACT_APP_API_KEY;
 
 function EventDetails(props) {
   // const defaultLocation = {  lat: 25.7617, lng: 80.1918  };
-  const [marketPosition, setMarketPosition] = useState("");
-  const [address, setAddress] = useState("");
+  const [userPosition, setUserPosition] = useState("");
+  const [eventPosition, setEventPosition] = useState("");
   const [details, setDetails] = useState({});
   const { user } = useContext(TheContext);
 
@@ -21,49 +21,38 @@ function EventDetails(props) {
       console.log(res.data);
       console.log(user);
       setDetails(res.data);
+      getGeocode(res.data);
       // console.log(address)
-    })().then((async () => {})());
+    })();
 
     navigator.geolocation.getCurrentPosition(function (position) {
       console.log("Latitude is :", position.coords.latitude);
       console.log("Longitude is :", position.coords.longitude);
-      setMarketPosition({
+      setUserPosition({
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       });
     });
   }, [props, user]);
 
-  (async () => {
-    if (address === "") {
-      //  WE ARE VERY CLOSE BUT IT DOES INFINITE LOOP.
-      // IF WE PUT THIS CODE ON USEEFFECT, details
-      // COMES OUT AS undefined!!!
-      // let convert = details?.location;
-      // console.log(details?.location);
-      // console.log(typeof details?.location);
-      // console.log(convert);
-      // // const regex = /\s/i;
-      // // convert = convert?.replace(regex, "+");
-      // convert = convert
-      //   ?.split("")
-      //   ?.map((char) => (char === " " ? "+" : char))
-      //   .join("");
-      // console.log(convert);
-      // // setAddress(convert)
-      // let ras = await axios.get(
-      //   // `https://maps.googleapis.com/maps/api/geocode/json?address=29+champs+elys%C3%A9e+paris&key=AIzaSyAf6-uRnVV8NM67T9FobkbcynWfDGe-0oY`
-      //   `https://maps.googleapis.com/maps/api/geocode/json?address=${convert}&key=${JOSE_API_KEY}`
-      // );
-      // console.log(ras);
-      // // .then((res) => {
-      // //   console.log(res);
-      // setAddress(ras.data);
-      // // });
-    } else {
-      console.log("address is UNDEFINED mf");
-    }
-  })();
+  const getGeocode = async (details) => {
+    let convert = details?.location;
+    // console.log(details?.location);
+    // console.log(typeof details?.location);
+    // console.log(convert);
+    convert = convert
+      ?.split("")
+      ?.map((char) => (char === " " ? "+" : char))
+      .join("");
+    console.log(convert);
+    // setAddress(convert)
+    let ras = await axios.get(
+      // `https://maps.googleapis.com/maps/api/geocode/json?address=29+champs+elys%C3%A9e+paris&key=AIzaSyAf6-uRnVV8NM67T9FobkbcynWfDGe-0oY`
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${convert}&key=${JOSE_API_KEY}`
+    );
+    console.log(ras);
+    setEventPosition(ras.data.results[0].geometry.location);
+  };
 
   // console.log(process.env);
   // console.log(props.match.params.dynamicId);
@@ -98,46 +87,31 @@ function EventDetails(props) {
       alert("party is full!");
     }
   };
-  console.log(details?.members?.map((each) => each._id === user._id).includes(true));
+  //console.log(details?.members?.map((each) => each._id === user._id).includes(true));
 
   const leave = () => {
-    
-    // if (details?.members.indexOf(user) !== -1) {
-      let copy = { ...details };
-      //console.log(user);
-      // console.log(user._id);
-      for( var i = 0; i < copy.members.length; i++ ){ 
-        if ( copy.members[i]._id  === user._id) { 
-          console.log('hahahahah')
-          copy.members.splice(i, 1); 
-          copy.memberIds.splice(i, 1);
-        }
-      } 
-      // console.log(copy.members);
+    let copy = { ...details };
+    //console.log(user);
+    // console.log(user._id);
+    for (var i = 0; i < copy.members.length; i++) {
+      if (copy.members[i]._id === user._id) {
+        console.log("hahahahah");
+        copy.members.splice(i, 1);
+        copy.memberIds.splice(i, 1);
+      }
+    }
+    // console.log(copy.members);
+    // console.log(user);
+    // console.log(copy.members);
 
-      console.log(user)
-      console.log(copy.members);
-      setDetails(copy);
+    setDetails(copy);
 
-      // console.log(details);
-      actions.leaveEvent(copy);
-    // }
+    // console.log(details);
+    actions.leaveEvent(copy);
+
     console.log(details);
     // actions.joinEvent(copy);
   };
-
-  // console.log(props.google);
-
-  // console.log(details);
-  // const convertToAddressBar = () => {
-  //   let convert = details?.location;
-
-  //   const regex = /\s/i;
-  //   convert.replace(regex, "+");
-  //   console.log(convert);
-  // };
-
-  const test = () => {};
 
   const showEvent = (props) => {
     return (
@@ -172,7 +146,9 @@ function EventDetails(props) {
               {" "}
               <button> Edit </button>{" "}
             </Link>
-          ) : (details?.members?.map((each) => each._id === user._id).includes(true)) ? (
+          ) : details?.members
+              ?.map((each) => each._id === user._id)
+              .includes(true) ? (
             <button onClick={leave}>Leave Event</button>
           ) : (
             <button onClick={memberJoin}>Join Event</button>
@@ -188,19 +164,22 @@ function EventDetails(props) {
     <div>
       <h1>EVENT DETAILS</h1>
       {showEvent()}
-      {test()}
-      {/* {convertToAddressBar()} */}
       <Map
         google={props.google}
-        zoom={6}
-        // defaultZoom={marketPosition}
+        zoom={13}
         zoomControl={true}
+        center={eventPosition}
       >
         <Marker
           onClick={props.onMarkerClick}
-          defaultCenter={marketPosition}
           name={"Current location"}
-          position={marketPosition}
+          position={userPosition}
+          streetViewControl={true}
+        />
+        <Marker
+          onClick={props.onMarkerClick}
+          name={"Current location"}
+          position={eventPosition}
           streetViewControl={true}
         />
 
