@@ -51,7 +51,7 @@ function EventDetails(props) {
       `https://maps.googleapis.com/maps/api/geocode/json?address=${convert}&key=${JOSE_API_KEY}`
     );
     console.log(ras);
-    setEventPosition(ras.data.results.length === 0 ? alert('Can not read address. Change and do not forget the state and country') : ras.data.results[0].geometry.location);
+    setEventPosition(ras.data.results.length === 0 ? (alert('Can not read address. Change and do not forget the state and country')) : ras.data.results[0].geometry.location);
   };
 
   // console.log(process.env);
