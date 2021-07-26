@@ -14,6 +14,15 @@ function EventDetails(props) {
   const [eventPosition, setEventPosition] = useState("");
   const [details, setDetails] = useState({});
   const { user } = useContext(TheContext);
+  const [showingInfoWindow, setShowingInfoWindow] = useState(false);
+  const [activeMarker, setActiveMarker] = useState({});
+  const [selectedPlace, setSelectedPlace] = useState({});
+ 
+  const onMarkerClick = (props, marker, e) => {
+    setSelectedPlace(props);
+    setActiveMarker(marker);
+    setShowingInfoWindow(true);
+  }
 
   useEffect(() => {
     (async () => {
@@ -52,13 +61,7 @@ function EventDetails(props) {
       `https://maps.googleapis.com/maps/api/geocode/json?address=${convert}&key=${JOSE_API_KEY}`
     );
     console.log(ras);
-    setEventPosition(
-      ras.data.results.length === 0
-        ? alert(
-            "Can not read address. Change and do not forget the state and country"
-          )
-        : ras.data.results[0].geometry.location
-    );
+    setEventPosition(ras.data.results.length === 0 ? (alert('Can not read address. Change and do not forget the state and country')) : ras.data.results[0].geometry.location);
     console.log("Event coordinates: ", ras.data.results[0].geometry.location);
   };
 
@@ -172,31 +175,33 @@ function EventDetails(props) {
     <div>
       <h1>EVENT DETAILS</h1>
       {showEvent()}
-      <Map
-        google={props.google}
-        zoom={13}
-        zoomControl={true}
-        center={eventPosition}
-      >
-        <Marker
-          onClick={props.onMarkerClick}
-          name={"Current location"}
-          position={userPosition}
-          streetViewControl={true}
-        />
-        <Marker
-          onClick={props.onMarkerClick}
-          name={"Current location"}
-          position={eventPosition}
-          streetViewControl={true}
-        />
-
-        <InfoWindow onClose={props.onInfoWindowClose}>
-          <div>
-            <h1>Coral Park Miami</h1>
-          </div>
-        </InfoWindow>
-      </Map>
+        <Map
+          google={props.google}
+          zoom={13}
+          zoomControl={true}
+          center={eventPosition}
+          scrollwheel={false}
+        >
+          <Marker
+            onClick={onMarkerClick}
+            name={"User location"}
+            position={userPosition}
+            streetViewControl={true}
+          />
+          <Marker
+            onClick={onMarkerClick}
+            name={"Event location"}
+            position={eventPosition}
+            streetViewControl={true}
+          />
+          <InfoWindow
+            marker={activeMarker}
+            visible={showingInfoWindow}>
+              <div>
+                <h3>{activeMarker.name === 'Event location' ? details?.location : 'Your location'}</h3>
+              </div>
+          </InfoWindow>
+        </Map>
     </div>
   );
 }
