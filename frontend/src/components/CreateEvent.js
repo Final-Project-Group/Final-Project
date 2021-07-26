@@ -6,10 +6,14 @@ import Slider from "@material-ui/core/Slider";
 import actions from "../api";
 import TheContext from "../TheContext";
 import { useHistory } from "react-router-dom";
+import axios from 'axios';
+
+const JOSE_API_KEY = process.env.REACT_APP_API_KEY;
 
 function CreateEvent(props) {
   let [event, setEvent] = useState({});
 
+  const [eventPosition, setEventPosition] = useState("");
   const [sport, setSport] = useState("");
   const [level, setLevel] = useState("");
   const [age, setAge] = useState("");
@@ -44,21 +48,48 @@ function CreateEvent(props) {
     }
   };
 
+  const getGeocode = async (event) => {
+    let convert = event?.location;
+    // console.log(details?.location);
+    // console.log(typeof details?.location);
+    // console.log(convert);
+    convert = convert
+      ?.split("")
+      ?.map((char) => (char === " " ? "+" : char))
+      .join("");
+    console.log(convert);
+    // setAddress(convert)
+    let ras = await axios.get(
+      // `https://maps.googleapis.com/maps/api/geocode/json?address=29+champs+elys%C3%A9e+paris&key=AIzaSyAf6-uRnVV8NM67T9FobkbcynWfDGe-0oY`
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${convert}&key=${JOSE_API_KEY}`
+    );
+    console.log(ras);
+    if (ras.data.results.length === 0 ) {
+      alert('Can not read address. Change and do not forget the state and country')
+      return 0;
+    } else {
+      return 1;
+    }
+  };
+
   console.log(spots);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(event);
-    await actions.addEvent(event).then((res) => {
-      console.log(res.data);
-      props.match.params.dynamicId = res.data._id;
-      console.log(props.match.params.dynamicId);
-    });
-    await actions.getDetail(props).then((res) => {
-      console.log(res.data);
-      setEventId(res.data._id);
-      history.push(`/eventDetails/${res.data._id}`);
-    });
+
+    if(await getGeocode(event)) {
+      await actions.addEvent(event).then((res) => {
+        console.log(res.data);
+        props.match.params.dynamicId = res.data._id;
+        console.log(props.match.params.dynamicId);
+      });
+      await actions.getDetail(props).then((res) => {
+        console.log(res.data);
+        setEventId(res.data._id);
+        history.push(`/eventDetails/${res.data._id}`);
+      });
+    }
   };
 
   return (
