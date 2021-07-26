@@ -19,21 +19,10 @@ function EventDetails(props) {
   const [selectedPlace, setSelectedPlace] = useState({});
  
   const onMarkerClick = (props, marker, e) => {
-    console.log(eventPosition.lat)
-    console.log(marker);
-    console.log(props.mapCenter.lat);
     setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);
   }
- 
-  const onMapClicked = (props) => {
-    if (showingInfoWindow) {
-      setShowingInfoWindow(false)
-      setActiveMarker(null)
-    }
-    console.log('map click');
-  };
 
   useEffect(() => {
     (async () => {
@@ -184,33 +173,33 @@ function EventDetails(props) {
     <div>
       <h1>EVENT DETAILS</h1>
       {showEvent()}
-      <Map
-        google={props.google}
-        zoom={13}
-        zoomControl={true}
-        center={eventPosition}
-        onClick={onMapClicked}
-      >
-        <Marker
-          onClick={onMarkerClick}
-          name={"User location"}
-          position={userPosition}
-          streetViewControl={true}
-        />
-        <Marker
-          onClick={onMarkerClick}
-          name={"Event location"}
-          position={eventPosition}
-          streetViewControl={true}
-        />
-        <InfoWindow
-          marker={activeMarker}
-          visible={showingInfoWindow}>
-            <div>
-              <h1>{activeMarker.name === 'Event location' ? details?.location : 'You'}</h1>
-            </div>
-        </InfoWindow>
-      </Map>
+        <Map
+          google={props.google}
+          zoom={13}
+          zoomControl={true}
+          center={eventPosition}
+          scrollwheel={false}
+        >
+          <Marker
+            onClick={onMarkerClick}
+            name={"User location"}
+            position={userPosition}
+            streetViewControl={true}
+          />
+          <Marker
+            onClick={onMarkerClick}
+            name={"Event location"}
+            position={eventPosition}
+            streetViewControl={true}
+          />
+          <InfoWindow
+            marker={activeMarker}
+            visible={showingInfoWindow}>
+              <div>
+                <h3>{activeMarker.name === 'Event location' ? details?.location : 'Your location'}</h3>
+              </div>
+          </InfoWindow>
+        </Map>
     </div>
   );
 }
