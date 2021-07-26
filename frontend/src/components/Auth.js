@@ -28,7 +28,7 @@ function Auth(props) {
 
   const sendRedirectUser = () => {
     if (user?.country && localStorage?.token) {
-      props.history.push("/");
+      props.history.push("/home");
     } else if (!user?.country && localStorage?.token) {
       props.history.push("/UserInfo");
     } else {

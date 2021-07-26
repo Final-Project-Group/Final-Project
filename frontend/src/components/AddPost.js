@@ -16,15 +16,15 @@ function AddPost(props) {
         e.preventDefault();
 
         let res = await actions.addPost({ post })
-        history.push('/') //props.history.push is also an option
+        history.push('/home') //props.history.push is also an option
     }
 
     return (
         <div>
-            <h3>Add Post</h3>
+            <h3>Add Comment</h3>
             <form onSubmit={handleSubmit}>
                 <input type="text" onChange={handleChange} placeholder="Enter a post" />
-                <button>TORO</button>
+                <button>Submit</button>
             </form>
         </div>
     );

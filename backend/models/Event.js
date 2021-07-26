@@ -11,7 +11,7 @@ const eventSchema = new Schema({
   memberIds: [{type: Schema.Types.ObjectId, ref: 'User'}],
   spots: Number,
   creator: Object,
-  image: String,
+  image:  {type: String, default:"https://wallpaperaccess.com/full/1337873.jpg"},
   eventName: String,
   description: String,
 });

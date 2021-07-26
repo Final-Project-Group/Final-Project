@@ -28,13 +28,30 @@ function App() {
     getTheUser();
   }, [])
 
+ function Navbar() {
+  return (<nav>
+  <Link to='/home'>Home</Link>
+  {/* <Link to='/'>Splash</Link> */}
+  <Link to='/CreateEvent'>Create Event</Link>
+  <Link to='/UserInfo'>User info</Link>
+
+  {/* {user?.name ? */}
+    <>
+      <Link to='/Profile'>Profile</Link>
+      <Link to='/AddPost'>AddPost</Link>
+    </>
+    {/* : <Link to='/Auth'>Login/Signup</Link>} */}
+        </nav> )
+ }
+
   return (
     <TheContext.Provider value={{ user, setUser, getTheUser }}>
       <div className="App">
         <i>{user?.name}</i>
-        <nav>
-          <Link to='/'>Home</Link>
-          <Link to='/splash'>Splash</Link>
+         {/* Development navbar, comment when done! */}
+        {/* <nav>
+          <Link to='/home'>Home</Link>
+          <Link to='/'>Splash</Link>
           <Link to='/CreateEvent'>Create Event</Link>
           <Link to='/UserInfo'>User info</Link>
 
@@ -44,15 +61,17 @@ function App() {
               <Link to='/AddPost'>AddPost</Link>
             </>
             : <Link to='/Auth'>Login/Signup</Link>}
-        </nav>
+        </nav> */}
+        {user?.name ? Navbar() : null}
+        
         <Switch>
           
           <Route exact path="/editEvent/:dynamicId" render={(props) => <EditEvent {...props} />} />
           <Route exact path="/eventDetails/:dynamicId" render={(props) => <EventDetails {...props} />} />
           <Route exact path="/createEvent" render={(props) => <CreateEvent {...props} />} />
-          <Route exact path="/splash" render={(props) => <Splash {...props} />} />
+          <Route exact path="/" render={(props) => <Splash {...props} />} />
           <Route exact path="/UserInfo" render={(props) => <UserInfo {...props} />} /> 
-          <Route exact path="/" render={(props) => <Home {...props} />} />
+          <Route exact path="/home" render={(props) => <Home {...props} />} />
           <Route exact path="/AddPost" render={(props) => <AddPost {...props} />} />
           <Route exact path="/Auth" render={(props) => <Auth {...props} />} />
           <Route exact path="/Profile" render={(props) => <Profile {...props} user={user} />} />
