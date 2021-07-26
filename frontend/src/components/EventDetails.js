@@ -26,8 +26,8 @@ function EventDetails(props) {
     })();
 
     navigator.geolocation.getCurrentPosition(function (position) {
-      console.log("Latitude is :", position.coords.latitude);
-      console.log("Longitude is :", position.coords.longitude);
+      console.log("User Latitude is :", position.coords.latitude);
+      console.log("User Longitude is :", position.coords.longitude);
       setUserPosition({
         lat: position.coords.latitude,
         lng: position.coords.longitude,
@@ -38,13 +38,14 @@ function EventDetails(props) {
   const getGeocode = async (details) => {
     let convert = details?.location;
     // console.log(details?.location);
-    // console.log(typeof details?.location);
+    // console.log(typeof details?.location);    
+    // Convert from spaces to + signs:
     // console.log(convert);
     convert = convert
       ?.split("")
       ?.map((char) => (char === " " ? "+" : char))
       .join("");
-    console.log(convert);
+    // console.log(convert);
     // setAddress(convert)
     let ras = await axios.get(
       // `https://maps.googleapis.com/maps/api/geocode/json?address=29+champs+elys%C3%A9e+paris&key=AIzaSyAf6-uRnVV8NM67T9FobkbcynWfDGe-0oY`
@@ -52,6 +53,7 @@ function EventDetails(props) {
     );
     console.log(ras);
     setEventPosition(ras.data.results[0].geometry.location);
+    console.log("Event coordinates: ",ras.data.results[0].geometry.location);
   };
 
   // console.log(process.env);
