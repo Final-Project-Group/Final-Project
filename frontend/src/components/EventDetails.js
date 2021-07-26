@@ -14,6 +14,26 @@ function EventDetails(props) {
   const [eventPosition, setEventPosition] = useState("");
   const [details, setDetails] = useState({});
   const { user } = useContext(TheContext);
+  const [showingInfoWindow, setShowingInfoWindow] = useState(false);
+  const [activeMarker, setActiveMarker] = useState({});
+  const [selectedPlace, setSelectedPlace] = useState({});
+ 
+  const onMarkerClick = (props, marker, e) => {
+    console.log(eventPosition.lat)
+    console.log(marker);
+    console.log(props.mapCenter.lat);
+    setSelectedPlace(props);
+    setActiveMarker(marker);
+    setShowingInfoWindow(true);
+  }
+ 
+  const onMapClicked = (props) => {
+    if (showingInfoWindow) {
+      setShowingInfoWindow(false)
+      setActiveMarker(null)
+    }
+    console.log('map click');
+  };
 
   useEffect(() => {
     (async () => {
@@ -169,24 +189,26 @@ function EventDetails(props) {
         zoom={13}
         zoomControl={true}
         center={eventPosition}
+        onClick={onMapClicked}
       >
         <Marker
-          onClick={props.onMarkerClick}
-          name={"Current location"}
+          onClick={onMarkerClick}
+          name={"User location"}
           position={userPosition}
           streetViewControl={true}
         />
         <Marker
-          onClick={props.onMarkerClick}
-          name={"Current location"}
+          onClick={onMarkerClick}
+          name={"Event location"}
           position={eventPosition}
           streetViewControl={true}
         />
-
-        <InfoWindow onClose={props.onInfoWindowClose}>
-          <div>
-            <h1>Coral Park Miami</h1>
-          </div>
+        <InfoWindow
+          marker={activeMarker}
+          visible={showingInfoWindow}>
+            <div>
+              <h1>{activeMarker.name === 'Event location' ? details?.location : 'You'}</h1>
+            </div>
         </InfoWindow>
       </Map>
     </div>
