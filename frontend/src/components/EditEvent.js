@@ -191,7 +191,7 @@ function EditEvent(props) {
         />
         <br />
         <br />
-        <Link to="/">
+        <Link to="/home">
           <button onClick={deleteEvent}>Delete</button>
         </Link>
         <input type="submit" value="Save" />
