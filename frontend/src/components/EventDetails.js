@@ -88,6 +88,7 @@ function EventDetails(props) {
 
         setDetails(copy);
 
+        console.log(copy.memberIds);
         // console.log(details);
         actions.joinEvent(copy);
       } else {
@@ -97,24 +98,30 @@ function EventDetails(props) {
       alert("party is full!");
     }
   };
+  console.log(details?.members?.map((each) => each._id === user._id).includes(true));
 
-  const memberUnjoin = () => {
-    let copy = { ...details };
-    console.log(user);
-    console.log(user._id);    
-    console.log(details);    
-    console.log(details.members.indexOf(user));    
+  const leave = () => {
     
-    if (details.members.indexOf(user) !== -1) {
-      console.log(details.members.indexOf(user));
+    // if (details?.members.indexOf(user) !== -1) {
+      let copy = { ...details };
+      //console.log(user);
+      // console.log(user._id);
+      for( var i = 0; i < copy.members.length; i++ ){ 
+        if ( copy.members[i]._id  === user._id) { 
+          console.log('hahahahah')
+          copy.members.splice(i, 1); 
+          copy.memberIds.splice(i, 1);
+        }
+      } 
+      // console.log(copy.members);
 
-      copy.members.pop(user);
-      copy.memberIds.pop(user._id);
+      console.log(user)
       console.log(copy.members);
-
       setDetails(copy);
-      //actions.leaveEvent(details) //not working yet
-    }
+
+      // console.log(details);
+      actions.leaveEvent(copy);
+    // }
     console.log(details);
     // actions.joinEvent(copy);
   };
@@ -165,10 +172,10 @@ function EventDetails(props) {
               {" "}
               <button> Edit </button>{" "}
             </Link>
-          ) : details?.memberIds?.includes(user._id) === false ? (
-            <button onClick={memberJoin}>Join Event</button>
+          ) : (details?.members?.map((each) => each._id === user._id).includes(true)) ? (
+            <button onClick={leave}>Leave Event</button>
           ) : (
-            <button onClick={memberUnjoin}>Leave Event</button>
+            <button onClick={memberJoin}>Join Event</button>
           )}
           <br />
           <br />

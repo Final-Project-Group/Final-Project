@@ -44,22 +44,26 @@ router.post("/edit-event", authorize, async (req, res) => {
   )
     .populate("memberIds")
     .then((event) => {
+      console.log('joined', User);
       res.json(event);
     });
 });
 
 router.post("/leave-event", authorize, async (req, res) => {
-  let leftEvent = req.body;
+  let updatedEvent = req.body;
   // console.log(leftEvent);
-  leftEvent.userId = res.locals.user._id;
+  // leftEvent.userId = res.locals.user._id;
   // console.log(leftEvent.userId);
-  User.findOneAndUpdate(
-    { _id: leftEvent.details._id },
-    { members: leftEvent.details.members, memberIds: leftEvent.details.memberIds },
+  Event.findOneAndUpdate(
+    { _id: updatedEvent._id },
+    { members: updatedEvent.members,
+      memberIds: updatedEvent.memberIds
+    },
     { new: true }
   )
     .populate("memberIds")
     .then((user) => {
+      console.log('left', Event.members);
       res.json(user);
     });
 });
