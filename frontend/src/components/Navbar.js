@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -77,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PersistentDrawerLeft() {
+export default function Navbar() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -110,7 +111,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Home
           </Typography>
         </Toolbar>
       </AppBar>
@@ -130,7 +131,7 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {[<Link to="/home">Home</Link>, <Link to="/CreateEvent">Create Event</Link>, <Link to="/Profile">Profile</Link>].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
@@ -147,7 +148,7 @@ export default function PersistentDrawerLeft() {
           ))}
         </List>
       </Drawer>
-      <main
+      {/* <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
@@ -176,7 +177,7 @@ export default function PersistentDrawerLeft() {
           nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
-      </main>
+      </main> */}
     </div>
   );
 }

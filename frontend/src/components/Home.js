@@ -5,6 +5,7 @@ import actions from '../api'
 import TheContext from "../TheContext";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import Navbar from "./Navbar"
 
 function Home(props) {
 
@@ -74,6 +75,9 @@ function Home(props) {
 
     return (
         <div>
+
+        
+
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
