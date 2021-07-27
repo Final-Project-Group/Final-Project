@@ -7,6 +7,11 @@ import actions from "../api";
 import { useState, useEffect } from "react";
 import TheContext from "../TheContext";
 import { Link, useHistory } from "react-router-dom";
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SaveIcon from '@material-ui/icons/Save';
+import '../App.css';
+
 
 function EditEvent(props) {
   let [event, setEvent] = useState({});
@@ -59,11 +64,9 @@ function EditEvent(props) {
   };
 
   return (
-    <div>
+    <div className='editevent-container'>
       <h1>Edit Event</h1>
-      <br />
       <form className="UserInfo" onSubmit={handleSubmit}>
-        Location:
         {console.log(details)}
         <TextField
           value={`${details?.location}`}
@@ -75,7 +78,7 @@ function EditEvent(props) {
           size="small"
           required={true}
         />
-        <br />
+        <br/>
         <TextField
           value={`${details?.date}`}
           onChange={handleChange}
@@ -89,7 +92,8 @@ function EditEvent(props) {
           // onChange={handleChange}
           required={true}
         />
-        <br />
+
+        <br/>
         Sport:
         <Select
           value={`${details?.sport}`}
@@ -103,7 +107,7 @@ function EditEvent(props) {
           <MenuItem value="basketball">basketball</MenuItem>
           <MenuItem value="tennis">tennis</MenuItem>
         </Select>
-        <br />
+
         Level:
         <Select
           value={`${details?.level}`}
@@ -116,7 +120,7 @@ function EditEvent(props) {
           <MenuItem value="intermediate">intermediate</MenuItem>
           <MenuItem value="advanced">advanced</MenuItem>
         </Select>
-        <br />
+
         Age:
         <Select
           value={`${details?.age}`}
@@ -130,8 +134,7 @@ function EditEvent(props) {
           <MenuItem value="teens">teens</MenuItem>
           <MenuItem value="adults">adults</MenuItem>
         </Select>
-        <br />
-        Image:
+        <br/>
         <TextField
           value={`${details?.image}`}
           onChange={handleChange}
@@ -143,8 +146,8 @@ function EditEvent(props) {
           // onChange={handleChange}
           required={false}
         />
-        <br />
-        Event name:
+
+        <br/>
         <TextField
           value={`${details?.eventName}`}
           onChange={handleChange}
@@ -156,8 +159,8 @@ function EditEvent(props) {
           // onChange={handleChange}
           required={true}
         />
-        <br />
-        Description:
+
+        <br/>
         <TextField
           value={`${details?.description}`}
           onChange={handleChange}
@@ -169,8 +172,8 @@ function EditEvent(props) {
           // onChange={handleChange}
           required={true}
         />
-        <br />
-        <br />
+
+        <br/>
         Spots:
         <Slider
           value={`${details?.spots}`}
@@ -189,12 +192,35 @@ function EditEvent(props) {
           max={22}
           min={2}
         />
-        <br />
-        <br />
-        <Link to="/home">
-          <button onClick={deleteEvent}>Delete</button>
-        </Link>
-        <input type="submit" value="Save" />
+
+
+        <div className="editevent-edit-buttons">
+          <div className="edit-buttons">
+            <Link to="/home" style={{ textDecoration: 'none' }}>
+              <Button
+                onClick={deleteEvent}
+                variant="contained"
+                color="default"
+                // className={classes.button}
+                startIcon={<DeleteIcon />}
+              >
+                Delete
+              </Button>
+            </Link>
+          </div>
+          <div className="edit-buttons">
+            <Button
+                variant="contained"
+                color="default"
+                type="submit"
+                value="Save" 
+                // className={classes.button}
+                startIcon={<SaveIcon />}
+              >
+                Save
+            </Button>
+          </div>
+        </div>
       </form>
     </div>
   );
