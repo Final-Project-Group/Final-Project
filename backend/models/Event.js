@@ -8,10 +8,13 @@ const eventSchema = new Schema({
   level: String,
   age: String,
   members: Array,
-  memberIds: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  memberIds: [{ type: Schema.Types.ObjectId, ref: "User" }],
   spots: Number,
   creator: Object,
-  image:  {type: String, default:"https://wallpaperaccess.com/full/1337873.jpg"},
+  image: {
+    type: String,
+    default: "https://wallpaperaccess.com/full/1337873.jpg",
+  },
   eventName: String,
   description: String,
 });

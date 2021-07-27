@@ -82,11 +82,19 @@ router.post("/delete-event", authorize, async (req, res) => {
 
 router.post("/add-post", authorize, async (req, res) => {
   let newPost = req.body;
+  console.log(res.locals.user)
   newPost.userId = res.locals.user._id;
+  newPost.userInfo = res.locals.user;
   Post.create(newPost).then((post) => {
     res.json(post);
   });
 });
+
+router.get('/all-the-posts', (req, res) => {
+  Post.find().populate('userId').then(posts => {
+      res.json(posts)
+  })
+})
 
 router.post("/add-details", authorize, async (req, res) => {
   let updatedUser = req.body;

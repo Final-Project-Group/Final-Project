@@ -16,9 +16,7 @@ const createHeaders = () => {
 };
 
 const actions = {
- 
   // getGeocoding: async (props) => {
-
 
   //   let res = await axios.get(
   //     `https://maps.googleapis.com/maps/api/geocode/json?address=29+champs+elys%C3%A9e+paris&key=AIzaSyAf6-uRnVV8NM67T9FobkbcynWfDGe-0oY`,
@@ -28,14 +26,14 @@ const actions = {
   //   console.log(res)
   //   return res
   // },
-  
+
   leaveEvent: async (event) => {
     let res = await axios.post(
-        `${serverUrl}/leave-event`,
-        event,
-        createHeaders()
-      );
-      return res;
+      `${serverUrl}/leave-event`,
+      event,
+      createHeaders()
+    );
+    return res;
   },
   getDetail: async (props) => {
     let res = await axios.get(
@@ -43,25 +41,24 @@ const actions = {
       props,
       createHeaders()
     );
-    console.log(res)
-    return res
+    console.log(res);
+    return res;
   },
- 
   editEvent: async (event) => {
     let res = await axios.post(
-        `${serverUrl}/edit-event`,
-        event,
-        createHeaders()
-      );
-      return res;
+      `${serverUrl}/edit-event`,
+      event,
+      createHeaders()
+    );
+    return res;
   },
   deleteEvent: async (event) => {
     let res = await axios.post(
-        `${serverUrl}/delete-event`,
-        event,
-        createHeaders()
-      );
-      return res;
+      `${serverUrl}/delete-event`,
+      event,
+      createHeaders()
+    );
+    return res;
   },
   getUser: async () => {
     return await axios.get(`${serverUrl}/get-the-user`, createHeaders());
@@ -79,8 +76,8 @@ const actions = {
       `${serverUrl}/join-event`,
       event,
       createHeaders()
-      );
-      console.log(res)
+    );
+    console.log(res);
     return res;
   },
   addEvent: async (event) => {
@@ -94,6 +91,9 @@ const actions = {
   addPost: async (post) => {
     let res = await axios.post(`${serverUrl}/add-post`, post, createHeaders());
     return res;
+  },
+  getAllPosts: async (post) => {
+    return await axios.get(`${serverUrl}/all-the-posts`, createHeaders());
   },
   getEvents: async (post) => {
     return await axios.get(`${serverUrl}/all-the-events`, createHeaders());
