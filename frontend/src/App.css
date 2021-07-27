@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .App {
   text-align: center;
 }
@@ -6,6 +8,11 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -54,3 +61,55 @@
 .MuiToolbar-root {
   background-color: rgb(0, 123, 145);
 }
+.home-events-ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 1%;
+  /* font-family: 'Roboto', sans-serif; */
+}
+
+.home-event-info-row {
+  display: flex;
+  /* justify-content: space-around; */
+  flex-direction: column;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.home-event-info {
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+}
+
+.editevent-edit-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.edit-buttons {
+  margin: 20px;
+}
+
+.home-event-info span {
+  padding-bottom: 20%;
+}
+
+.editevent-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.UserInfo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
