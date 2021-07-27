@@ -142,19 +142,22 @@ function EventDetails(props) {
 
   function AddPost(props) {
     let [post, setPost] = useState("");
+    let [eventId, setEventId] = useState("");
     let history = useHistory();
 
     const handleChange = (e) => {
       setPost(e.target.value);
+      setEventId(details?._id)
+      
     };
-
+    
     const handleSubmit = async (e) => {
       e.preventDefault();
-
-      console.log(post)
-      let res = await actions.addPost({ post });
-      // history.push(`/eventDetails/${props.match.param.dynamicId}`) //props.history.push is also an option
-      history.push(`/home`) //props.history.push is also an option
+      
+      console.log(post);
+      let res = await actions.addPost({ post, eventId });
+      setPost("");
+      history.push(`/eventDetails/${details?._id}`); //props.history.push is also an option
     };
 
     return (
@@ -165,8 +168,10 @@ function EventDetails(props) {
             type="text"
             onChange={handleChange}
             placeholder="Enter a post"
+            value={post}
           />
           <button>Submit</button>
+          
         </form>
       </div>
     );
@@ -192,14 +197,25 @@ function EventDetails(props) {
   };
 
   const ShowPosts = () => {
+    
     return allPosts.map((eachPost) => {
-      // if () {
-        return (
-          <li key={eachPost._id}>
-            {eachPost.post} <i>created by ...{eachPost.userId?.name}</i>
-          </li>
-        );
-      // }
+      const deletePost = async () => {
+        actions.deletePost(eachPost);
+        // eslint-disable-next-line no-restricted-globals
+        props.history.push(`/eventDetails/${details?._id}`);
+
+        // let res = await actions.getAllPosts();
+        // setAllPosts(res.data);
+      }
+      if (eachPost.eventId === details?._id) {
+        console.log(eachPost.userId._id)
+        console.log(user._id)
+      return (
+        <li key={eachPost._id}>
+          <i>{eachPost.userId?.name}: </i> {eachPost.post} {eachPost.userId._id === user?._id ? <button onClick={deletePost}>Delete</button> : null}
+        </li>
+      );
+      }
     });
   };
 

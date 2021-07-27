@@ -44,7 +44,7 @@ router.post("/edit-event", authorize, async (req, res) => {
   )
     .populate("memberIds")
     .then((event) => {
-      console.log('joined', User);
+      console.log("joined", User);
       res.json(event);
     });
 });
@@ -56,14 +56,12 @@ router.post("/leave-event", authorize, async (req, res) => {
   // console.log(leftEvent.userId);
   Event.findOneAndUpdate(
     { _id: updatedEvent._id },
-    { members: updatedEvent.members,
-      memberIds: updatedEvent.memberIds
-    },
+    { members: updatedEvent.members, memberIds: updatedEvent.memberIds },
     { new: true }
   )
     .populate("memberIds")
     .then((user) => {
-      console.log('left', Event.members);
+      console.log("left", Event.members);
       res.json(user);
     });
 });
@@ -82,19 +80,35 @@ router.post("/delete-event", authorize, async (req, res) => {
 
 router.post("/add-post", authorize, async (req, res) => {
   let newPost = req.body;
-  console.log(res.locals.user)
+  console.log(req.body);
+  // console.log(res.locals);
   newPost.userId = res.locals.user._id;
   newPost.userInfo = res.locals.user;
+
   Post.create(newPost).then((post) => {
     res.json(post);
   });
 });
+router.post("/delete-post", authorize, async (req, res) => {
+  let deletedPost = req.body;
+  // console.log(deletedEvent);
+  console.log(deletedPost._id);
+  // console.log(deletedEvent.members);
 
-router.get('/all-the-posts', (req, res) => {
-  Post.find().populate('userId').then(posts => {
-      res.json(posts)
-  })
-})
+  Post.deleteOne({ _id: deletedPost._id }, function (err) {
+    if (err) console.log(err);
+    console.log("Successful deletion");
+  });
+
+});
+
+router.get("/all-the-posts", (req, res) => {
+  Post.find()
+    .populate("userId")
+    .then((posts) => {
+      res.json(posts);
+    });
+});
 
 router.post("/add-details", authorize, async (req, res) => {
   let updatedUser = req.body;
@@ -103,7 +117,10 @@ router.post("/add-details", authorize, async (req, res) => {
   // console.log(updatedUser.userId);
   User.findOneAndUpdate(
     { _id: updatedUser.userId },
-    { country: updatedUser.currentUser.country, sports: updatedUser.currentUser.sports },
+    {
+      country: updatedUser.currentUser.country,
+      sports: updatedUser.currentUser.sports,
+    },
     { new: true }
   )
     .populate("memberIds")
@@ -127,17 +144,17 @@ router.post("/join-event", authorize, async (req, res) => {
   // console.log(updatedEvent._id);
   // console.log(updatedEvent.members);
 
-  Event.updateOne({ _id: updatedEvent._id }, 
-    {members: updatedEvent.members}, function (err, docs) {
-    if (err){
-        console.log(err)
-    }
-    else{
+  Event.updateOne(
+    { _id: updatedEvent._id },
+    { members: updatedEvent.members },
+    function (err, docs) {
+      if (err) {
+        console.log(err);
+      } else {
         console.log("Updated MEMBERS : ", docs);
+      }
     }
-}).populate("memberIds");
-
-
+  ).populate("memberIds");
 });
 
 router.get("/all-the-events", (req, res) => {

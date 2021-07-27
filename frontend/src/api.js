@@ -92,6 +92,10 @@ const actions = {
     let res = await axios.post(`${serverUrl}/add-post`, post, createHeaders());
     return res;
   },
+  deletePost: async (post) => {
+    let res = await axios.post(`${serverUrl}/delete-post`, post, createHeaders());
+    return res;
+  },
   getAllPosts: async (post) => {
     return await axios.get(`${serverUrl}/all-the-posts`, createHeaders());
   },

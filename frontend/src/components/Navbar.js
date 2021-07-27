@@ -124,6 +124,7 @@ export default function Navbar() {
         classes={{
           paper: classes.drawerPaper,
         }}
+        
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
@@ -131,8 +132,8 @@ export default function Navbar() {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          {[<Link to="/home">Home</Link>, <Link to="/CreateEvent">Create Event</Link>, <Link to="/Profile">Profile</Link>].map((text, index) => (
+        <List onClick={() => {handleDrawerClose()}}>
+          {[<Link to="/home" >Home</Link>, <Link to="/CreateEvent">Create Event</Link>, <Link to="/Profile">Profile</Link>].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
