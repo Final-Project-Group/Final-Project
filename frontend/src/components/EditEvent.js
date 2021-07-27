@@ -89,7 +89,6 @@ function EditEvent(props) {
           InputLabelProps={{
             shrink: true,
           }}
-          // onChange={handleChange}
           required={true}
         />
 

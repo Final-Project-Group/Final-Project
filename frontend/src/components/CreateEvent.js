@@ -7,6 +7,8 @@ import actions from "../api";
 import TheContext from "../TheContext";
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
 
 const JOSE_API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -104,9 +106,7 @@ function CreateEvent(props) {
   return (
     <div>
       <h1>Create Event</h1>
-      <br />
       <form className="UserInfo" onSubmit={handleSubmit}>
-        Location:
         <TextField
           label="location"
           name="location"
@@ -117,13 +117,13 @@ function CreateEvent(props) {
           required={true}
         />
         <br />
-        Date & time:
         <TextField
           name="date"
           id="datetime-local"
+          label="Date & time"
           type="datetime-local"
           InputLabelProps={{
-            shrink: false,
+            shrink: true,
           }}
           onChange={handleChange}
           required={true}
@@ -143,7 +143,6 @@ function CreateEvent(props) {
           <MenuItem value="basketball">basketball</MenuItem>
           <MenuItem value="tennis">tennis</MenuItem>
         </Select>
-        <br />
         Level:
         <Select
           labelId="demo-simple-select-label"
@@ -157,7 +156,6 @@ function CreateEvent(props) {
           <MenuItem value="intermediate">intermediate</MenuItem>
           <MenuItem value="advanced">advanced</MenuItem>
         </Select>
-        <br />
         Age:
         <Select
           labelId="demo-simple-select-label"
@@ -173,7 +171,6 @@ function CreateEvent(props) {
           <MenuItem value="adults">adults</MenuItem>
         </Select>
         <br />
-        Image:
         <TextField
           label="image url"
           name="image"
@@ -184,7 +181,6 @@ function CreateEvent(props) {
           required={false}
         />
         <br />
-        Event name:
         <TextField
           label="Event Name:"
           name="eventName"
@@ -195,7 +191,6 @@ function CreateEvent(props) {
           required={true}
         />
         <br />
-        Description:
         <TextField
           label="Description:"
           name="description"
@@ -205,7 +200,6 @@ function CreateEvent(props) {
           onChange={handleChange}
           required={true}
         />
-        <br />
         <br />
         Spots:
         <Slider
@@ -220,8 +214,16 @@ function CreateEvent(props) {
           min={2}
         />
         <br />
-        <br />
-        <input type="submit" value="Submit" />
+        <Button
+          variant="contained"
+          color="default"
+          type="submit"
+          value="Save" 
+          // className={classes.button}
+          startIcon={<AddIcon />}
+        >
+          Save
+        </Button>
       </form>
     </div>
   );

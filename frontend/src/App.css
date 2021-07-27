@@ -115,5 +115,81 @@ html {
 }
 
 .home-event-typography {
-  max-height: 100px;
+  max-height: 100px; 
+	/* display: inline-block; */
+  overflow: hidden;
+}
+.home-event-typography h4 {
+  font-weight: 200;
+}
+
+.home-container {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-container-dropdown {
+  margin-top: 2%;
+}
+
+.home-container-create-button {
+  margin: 2%;
+}
+
+.profile-container {
+  margin: 50px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.profile-container-image {
+  height: 20vh;
+  border-radius: 50%;
+}
+
+.profile-container-name {
+  margin: 0;
+  margin-top: 20px;
+  font-size: 5vh;
+}
+
+.profile-container-country {
+  margin: 0;
+  font-size: 2vh;
+}
+
+.profile-container-ul {
+  font-size: 2vh;
+}
+
+.profile-container-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.profile-container-edit-button {
+  margin-right: 5%;
+}
+
+.profile-ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.profile-li {
+  display: flex;
+  /* width: 20vw; */
+  margin: 10px;
+}
+
+.profile-container-activities {
+  margin: 40px;
+  font-size: 3vh;
 }
