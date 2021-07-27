@@ -46,3 +46,11 @@
   justify-content: space-evenly;
 } */
 
+.navbarParent {
+  height: 64px;
+}
+
+/* not the best way to customize. please read documentation later and change */
+.MuiToolbar-root {
+  background-color: rgb(0, 123, 145);
+}

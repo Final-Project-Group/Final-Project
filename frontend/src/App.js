@@ -52,7 +52,8 @@ function App() {
     <TheContext.Provider value={{ user, setUser, getTheUser }}>
       <div className="App">
       {/* {Navbar()} */}
-      {user?.name ? <Navbar/> : null}
+
+      {user?.name ? <nav className="navbarParent" ><Navbar /></nav> : null}
       
         
         {/* <i>{user?.name}</i> */}
