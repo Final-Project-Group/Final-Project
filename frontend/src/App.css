@@ -84,6 +84,7 @@ html {
   justify-content: space-around;
   display: flex;
   flex-direction: row;
+  max-height: 100px;
 }
 
 .editevent-edit-buttons {
@@ -113,3 +114,6 @@ html {
   align-items: center;
 }
 
+.home-event-typography {
+  max-height: 100px;
+}

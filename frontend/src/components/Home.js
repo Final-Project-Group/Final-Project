@@ -108,7 +108,9 @@ function Home(props) {
                             <br/>
                             <i>{event.userId}</i>
                         </li> */}
-                        <Card className={classes.root}>
+                        <Card 
+                            className={classes.root}
+                        >
                             <CardActionArea>
                                 <CardMedia
                                 component="img"
@@ -118,14 +120,17 @@ function Home(props) {
                                 title="Sport Image"
                                 />
                                 <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto'}}>  {event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}
-                                </Typography>
+                                    <Typography gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto'}}>
+                                        <div className="home-event-typography">
+                                            {event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'baxsketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}
+                                        </div>
+                                    </Typography>
                                 </CardContent>
                             </CardActionArea>
                             <div className="home-event-info">
                                 <div className="home-event-info-row">
                                     <span>date: {event.date.split('T', 1)}</span>
-                                    <span>{event.location}</span>
+                                    <span>{event.level}</span>
                                 </div>
                                 <div className="home-event-info-row">
                                     <span>creator: {event.creator.name}</span>

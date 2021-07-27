@@ -11,7 +11,7 @@ import axios from 'axios';
 const JOSE_API_KEY = process.env.REACT_APP_API_KEY;
 
 function CreateEvent(props) {
-  let [event, setEvent] = useState({});
+  const [event, setEvent] = useState({});
 
   const [eventPosition, setEventPosition] = useState("");
   const [sport, setSport] = useState("");
@@ -62,8 +62,16 @@ function CreateEvent(props) {
     let ras = await axios.get(
       // `https://maps.googleapis.com/maps/api/geocode/json?address=29+champs+elys%C3%A9e+paris&key=AIzaSyAf6-uRnVV8NM67T9FobkbcynWfDGe-0oY`
       `https://maps.googleapis.com/maps/api/geocode/json?address=${convert}&key=${JOSE_API_KEY}`
-    );
+    )
     console.log(ras);
+
+    // ADD THE LOCATION REQ TO THE EVENTS
+    // let copy = { ...event };
+    // copy.locationRequest = ras.data;
+    // console.log(copy)
+    // setEvent(copy);
+    // console.log(event)
+
     if (ras.data.results.length === 0 ) {
       alert('Can not read address. Change and do not forget the state and country')
       return 0;
@@ -81,6 +89,7 @@ function CreateEvent(props) {
     if(await getGeocode(event)) {
       await actions.addEvent(event).then((res) => {
         console.log(res.data);
+        console.log(event);
         props.match.params.dynamicId = res.data._id;
         console.log(props.match.params.dynamicId);
       });

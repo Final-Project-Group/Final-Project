@@ -209,7 +209,7 @@ function EditEvent(props) {
             </Link>
           </div>
           <div className="edit-buttons">
-            <Button
+              <Button
                 variant="contained"
                 color="default"
                 type="submit"
