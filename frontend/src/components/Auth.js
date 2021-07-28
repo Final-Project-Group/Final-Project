@@ -20,7 +20,7 @@ import Container from '@material-ui/core/Container';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="textPrimary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Jogo Inc
@@ -32,6 +32,7 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
+
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -49,11 +50,16 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  input: {
+    // color:"white",
+    background: "white",
+    color:"black",
+  }
 }));
 
 function Auth(props) {
   const classes = useStyles();
-  
+
   let { getTheUser } = useContext(TheContext);
   let { user } = useContext(TheContext);
 
@@ -102,7 +108,7 @@ function Auth(props) {
           Sign up with email:
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} >
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"
@@ -113,6 +119,10 @@ function Auth(props) {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                InputProps={{
+                  className: classes.input
+                }}
+                
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -124,6 +134,9 @@ function Auth(props) {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                InputProps={{
+                  className: classes.input
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -135,6 +148,9 @@ function Auth(props) {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                InputProps={{
+                  className: classes.input
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -147,12 +163,16 @@ function Auth(props) {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                InputProps={{
+                  className: classes.input
+                }}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
+                labelStyle="primary"
               />
             </Grid>
           </Grid>

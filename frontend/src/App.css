@@ -222,7 +222,7 @@ html {
 .profile-container {
   margin: 50px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   flex-wrap: wrap;
 }

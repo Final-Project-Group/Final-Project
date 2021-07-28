@@ -103,7 +103,7 @@ function Home(props) {
                             style={{ textDecoration: 'none' }}                            
                         >
                             <Card 
-                                className={classes.root}
+                                className={classes.root} 
                             >
                                 <CardActionArea>
                                     <CardMedia
@@ -114,14 +114,14 @@ function Home(props) {
                                     title="Sport Image"
                                     />
                                     <CardContent>
-                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto'}}>
+                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="textSecondary" style={{fontFamily: 'Roboto'}}>
                                             <div className="home-event-typography">
                                                 <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'baxsketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
                                             </div>
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
-                                <div className="home-event-info">
+                                <Typography className="home-event-info" color="textSecondary">
                                     <div className="home-event-info-row">
                                         <span>date: {event.date.split('T', 1)}</span>
                                         <span>{event.level}</span>
@@ -130,7 +130,7 @@ function Home(props) {
                                         <span>creator: {event.creator.name}</span>
                                         <span>spots: {event.spots - event.members.length}/{event.spots}</span>
                                     </div>
-                                </div>
+                                </Typography>
                             </Card>
                             <br/>
                         </Link>

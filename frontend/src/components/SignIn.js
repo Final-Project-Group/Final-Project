@@ -108,6 +108,9 @@ export default function SignIn(props) {
             name="email"
             autoComplete="email"
             autoFocus
+            InputProps={{
+                  className: classes.input
+                }}
           />
           <TextField
             variant="outlined"
@@ -119,6 +122,9 @@ export default function SignIn(props) {
             type="password"
             id="password"
             autoComplete="current-password"
+            InputProps={{
+                  className: classes.input
+                }}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

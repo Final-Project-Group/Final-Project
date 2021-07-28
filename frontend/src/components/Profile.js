@@ -40,12 +40,12 @@ function Profile(props) {
         if (eachMember._id === user._id) {
           return (
             <li className="profile-li">
-              <Card>
+              <Card style={{backgroundColor: ""}}>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
                     {eachEvent.eventName}
                   </Typography>
-                  <Typography variant="body2" component="p">
+                  <Typography variant="body2" component="p" color="textSecondary">
                     {eachEvent.description}
                     <br />
                   </Typography>
@@ -82,8 +82,7 @@ function Profile(props) {
     <div className="profile-container">
 
       <div className="profile-container-user-info">
-        <Card>
-          <CardContent>
+       
             <img className="profile-container-image" src={userUpdated.imageUrl} />
             <div className="profile-container-name-and-country">
               <h2 className="profile-container-name">{userUpdated.name}</h2>
@@ -117,18 +116,14 @@ function Profile(props) {
                 </Button>
               </div>
             </div>
-          </CardContent>
-        </Card>
+        
       </div>
       <div>
-        <Card>
-          <CardContent>
-            <h2 className="profile-container-activities">Activities:</h2>
+                    <h2 className="profile-container-activities">Activities:</h2>
             <ul className="profile-ul">
               {showActivities()}
             </ul>
-            </CardContent>
-        </Card>
+          
       </div>
     </div>
   );
