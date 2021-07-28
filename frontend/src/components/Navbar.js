@@ -20,8 +20,8 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import "../App.css";
 
-
 import { useHistory ,useLocation } from 'react-router-dom';
+
 // const location = useLocation()
 // location.pathname
 
@@ -107,8 +107,16 @@ export default function Navbar(props) {
   const [open, setOpen] = React.useState(false);
 
 
-//   const history = useHistory()
-// history.location.pathname
+  
+  const history = useHistory()
+  const returnPathname = () => {
+    console.log(history.location.pathname)
+    
+  }
+
+
+  console.log(props)
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
