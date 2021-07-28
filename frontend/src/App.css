@@ -2,6 +2,8 @@
 
 .App {
   text-align: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 .App-logo {
@@ -11,6 +13,8 @@
 
 html {
   font-family: 'Roboto', sans-serif;
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -46,29 +50,69 @@ html {
 
 /* Custom CSS */
 
-/* .splash {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-} */
+.splash {
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://asics-corporate-production-draft.s3.amazonaws.com/qor_media_library/qor/widget/view_setting/5327/180605_Asics_K25_Track_Hero_2666%20FINAL_original.jpg?1528469986");
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  font-family: 'Ultra', serif;
+  font-size: 10vh;
+}
+
+.splash h1 {
+  padding-top: 8%;
+  padding-left: 65%;
+  color: white; 
+  -webkit-text-fill-color: transparent;
+  fill: none;
+  -webkit-text-stroke: 1px;
+  -webkit-text-stroke-color: white;
+  letter-spacing: 3px;
+} 
+
+.splash button {
+  outline:none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius:40px;
+  background: transparent;
+  fill: none;
+  border: 2px solid white;
+  color: white;
+  letter-spacing:1px;
+}
 
 .navbarParent {
   height: 64px;
 }
 
 /* not the best way to customize. please read documentation later and change */
-/* .MuiToolbar-root {
-  background-color: rgb(0, 123, 145);
-} */
+.MuiToolbar-root {
+  background-color: black;
+}
+
+.home-event-link {
+  margin: 10px;
+  flex: 20%;
+  height: 100%;
+  margin-bottom: 2%; /* (100-32*3)/2 */
+}
+
+
 .home-events-ul {
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
-  margin: 1%;
   /* font-family: 'Roboto', sans-serif; */
 }
 
@@ -76,8 +120,6 @@ html {
   display: flex;
   /* justify-content: space-around; */
   flex-direction: column;
-  margin-right: 20px;
-  margin-left: 20px;
 }
 
 .home-event-info {
@@ -113,6 +155,7 @@ html {
   align-items: center;
 }
 
+/* EventDetails.js*/
 .detailsText {
   display: flex;
   flex-direction:column;
@@ -136,4 +179,90 @@ html {
 .materialList {
   display: flex;
   flex-direction: row;
+}
+
+
+/* Home grid */
+.home-event-typography {
+  height: 55px;
+  overflow: hidden;
+}
+
+.home-event-typography h4 {
+  margin: 5px;
+  font-weight: 200;
+  font-size: 2.5vh;
+}
+
+.home-container {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-container-dropdown {
+  margin-top: 2%;
+}
+
+.home-container-create-button {
+  margin: 2%;
+}
+
+/* Profile */
+.profile-container {
+  margin: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.profile-container-image {
+  height: 20vh;
+  border-radius: 50%;
+}
+
+.profile-container-name {
+  margin: 0;
+  margin-top: 20px;
+  font-size: 5vh;
+}
+
+.profile-container-country {
+  margin: 0;
+  font-size: 2vh;
+}
+
+.profile-container-ul {
+  font-size: 2vh;
+}
+
+.profile-container-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.profile-container-edit-button {
+  margin-right: 5%;
+}
+
+.profile-ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.profile-li {
+  display: flex;
+  /* width: 20vw; */
+  margin: 10px;
+}
+
+.profile-container-activities {
+  margin: 40px;
+  font-size: 3vh;
 }

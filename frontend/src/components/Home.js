@@ -56,85 +56,85 @@ function Home(props) {
         if (currSport) {
             if(event.sport === currSport) {
                 return (
-                    <Link 
-                        to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}
-                        style={{ textDecoration: 'none' }}
-                    >
-                        <Card className={classes.root}>
-                            <CardActionArea>
-                                <CardMedia
-                                component="img"
-                                alt="Image is not working"
-                                height="140"
-                                image={event.image}
-                                title="Sport Image"
-                                />
-                                <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto'}}>
-                                    {event.eventName} 
-                                    {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}
-                                </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            <div className="home-event-info">
-                                <div className="home-event-info-row">
-                                    <span>{event.date.split('T', 1)}</span>
-                                    <span>{event.sport}</span>
+                    <li className="home-event-link">
+                        <Link 
+                            to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}
+                            style={{ textDecoration: 'none' }}
+                        >
+                            <Card
+                                className={classes.root}
+                            >
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    alt="Image is not working"
+                                    height="140"
+                                    image={event.image}
+                                    title="Sport Image"
+                                    />
+                                    <CardContent>
+                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto'}}>
+                                            <div className="home-event-typography">
+                                                <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'baxsketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
+                                            </div>
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                <div className="home-event-info">
+                                    <div className="home-event-info-row">
+                                        <span>{event.date.split('T', 1)}</span>
+                                        <span>{event.sport}</span>
+                                    </div>
+                                    <div className="home-event-info-row">
+                                        <span>{event.creator.name}</span>
+                                        <span>spots: {event.spots - event.members.length}/{event.spots}</span>
+                                    </div>
                                 </div>
-                                <div className="home-event-info-row">
-                                    <span>{event.creator.name}</span>
-                                    <span>spots: {event.spots - event.members.length}/{event.spots}</span>
-                                </div>
-                            </div>
-                        </Card>
-                        <br/>
-                    </Link>
+                            </Card>
+                            <br/>
+                        </Link>
+                    </li>
                 )
             } else if (currSport === 'all') {
                 return (
-                    <Link 
-                        to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}
-                        style={{ textDecoration: 'none' }}
-                    >
-                        {/* <li className='home-events' key={`${event.userId}+${event._id}`}>
-                            <br/>
-                            {event.eventName} 
-                            <br/>
-                            {event.location}
-                            <br/>
-                            {event.date.split('T', 1)}
-                            <br/>
-                            {event.creator.name}
-                            <br/>
-                            <i>{event.userId}</i>
-                        </li> */}
-                        <Card className={classes.root}>
-                            <CardActionArea>
-                                <CardMedia
-                                component="img"
-                                alt="Image is not working"
-                                height="140"
-                                image={event.image}
-                                title="Sport Image"
-                                />
-                                <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto'}}>  {event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}
-                                </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            <div className="home-event-info">
-                                <div className="home-event-info-row">
-                                    <span>date: {event.date.split('T', 1)}</span>
-                                    <span>{event.location}</span>
+                    <li className="home-event-link">
+                        <Link 
+                            to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}
+                            style={{ textDecoration: 'none' }}                            
+                        >
+                            <Card 
+                                className={classes.root}
+                            >
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    alt="Image is not working"
+                                    height="140"
+                                    image={event.image}
+                                    title="Sport Image"
+                                    />
+                                    <CardContent>
+                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto'}}>
+                                            <div className="home-event-typography">
+                                                <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'baxsketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
+                                            </div>
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                <div className="home-event-info">
+                                    <div className="home-event-info-row">
+                                        <span>date: {event.date.split('T', 1)}</span>
+                                        <span>{event.level}</span>
+                                    </div>
+                                    <div className="home-event-info-row">
+                                        <span>creator: {event.creator.name}</span>
+                                        <span>spots: {event.spots - event.members.length}/{event.spots}</span>
+                                    </div>
                                 </div>
-                                <div className="home-event-info-row">
-                                    <span>creator: {event.creator.name}</span>
-                                    <span>spots: {event.spots - event.members.length}/{event.spots}</span>
-                                </div>
-                            </div>
-                        </Card>
-                        <br/>
-                    </Link>
+                            </Card>
+                            <br/>
+                        </Link>
+                    </li>
                 )
             }
         } 
@@ -142,24 +142,30 @@ function Home(props) {
     
 
     return (
-        <div>
-            <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                name="soccer"
-                value={currSport}
-                onChange={handleChange}
-            >
-                <MenuItem value="soccer">soccer</MenuItem>
-                <MenuItem value="basketball">basketball</MenuItem>
-                <MenuItem value="tennis">tennis</MenuItem>
-                <MenuItem value="all">all</MenuItem>
-            </Select>
-            <br/>
-            <Link to="/createEvent"><button>Create event</button></Link>
-            <ul className="home-events-ul">
-                {showEvents()}
-            </ul>
+        <div className="home-container">
+            <div className="home-container-dropdown">
+                <>Sport: </>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    name="soccer"
+                    value={currSport}
+                    onChange={handleChange}
+                >
+                    <MenuItem value="soccer">Soccer</MenuItem>
+                    <MenuItem value="basketball">Basketball</MenuItem>
+                    <MenuItem value="tennis">Tennis</MenuItem>
+                    <MenuItem value="all">All</MenuItem>
+                </Select>
+            </div>
+            <div className="home-container-create-button">
+                <Link to="/createEvent" style={{ textDecoration: 'none' }}><Button variant="outlined">Create Event</Button></Link>
+            </div>
+            <div className="home-container-event-list">
+                <ul className="home-events-ul">
+                    {showEvents()}
+                </ul>
+            </div>
         </div>
     );
 }

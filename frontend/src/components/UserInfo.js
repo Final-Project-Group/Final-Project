@@ -137,7 +137,7 @@ function UserInfo(props) {
   return (
     <div>
       <h2>Please set up your profile</h2>
-      <form className="UserInfo" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <br />
         <TextField
           label="country"
@@ -150,7 +150,7 @@ function UserInfo(props) {
           required={true}
         />
         <br />
-        Soccer
+        Soccer:
         <Checkbox
           name="0"
           id="soccer"
@@ -171,7 +171,7 @@ function UserInfo(props) {
           <MenuItem value="advanced">advanced</MenuItem>
         </Select>
         <br />
-        Basketball
+        Basketball:
         <Checkbox
           name="1"
           id="basketball"
@@ -191,7 +191,7 @@ function UserInfo(props) {
           <MenuItem value="advanced">advanced</MenuItem>
         </Select>
         <br />
-        Tennis
+        Tennis:
         <Checkbox
           name="2"
           id="tennis"

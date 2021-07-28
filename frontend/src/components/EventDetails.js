@@ -336,7 +336,7 @@ function EventDetails(props) {
   };
 
   return (
-    <div>
+    <div className="eventdetails-container">
       {/* <h1>EVENT DETAILS</h1> */}
       {showEvent()}
       {AddPost()}

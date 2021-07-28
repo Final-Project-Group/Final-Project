@@ -17,6 +17,7 @@ const eventSchema = new Schema({
   },
   eventName: String,
   description: String,
+  locationRequest: Object,
 });
 
 module.exports = model("Event", eventSchema);
