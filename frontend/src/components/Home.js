@@ -60,7 +60,6 @@ function Home(props) {
                         <Link 
                             to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}
                             style={{ textDecoration: 'none' }}
-                            // className="home-event-link"
                         >
                             <Card
                                 className={classes.root}

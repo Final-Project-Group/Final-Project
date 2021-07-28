@@ -99,19 +99,20 @@ html {
 }
 
 .home-event-link {
-  flex: 0 32%;
+  margin: 10px;
+  flex: 20%;
   height: 100%;
   margin-bottom: 2%; /* (100-32*3)/2 */
 }
+
 
 .home-events-ul {
   padding: 0;
   list-style: none;
   display: flex;
-  /* flex-direction: row; */
+  flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 1%;
   /* font-family: 'Roboto', sans-serif; */
 }
 
@@ -119,8 +120,6 @@ html {
   display: flex;
   /* justify-content: space-around; */
   flex-direction: column;
-  margin-right: 20px;
-  margin-left: 20px;
 }
 
 .home-event-info {
