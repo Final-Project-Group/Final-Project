@@ -15,9 +15,34 @@ import CreateEvent from "./components/CreateEvent";
 import EventDetails from "./components/EventDetails";
 import EditEvent from "./components/EditEvent";
 import Navbar from "./components/Navbar";
+import { ThemeProvider, makeStyles, createTheme } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Button from "@material-ui/core/Button";
+
+
+
+const themeLight = createTheme({
+  palette: {
+    background: {
+      default: "#e4f0e2"
+    }
+  },
+});
+
+const themeDark = createTheme({
+  palette: {
+    background: {
+      default: "#222222"
+    },
+    text: {
+      // primary: "#ffffff"
+    }
+  }
+});
 
 function App() {
   let [user, setUser] = useState({});
+  const [light, setLight] = useState(true)
 
   const getTheUser = async () => {
     let res = await actions.getUser();
@@ -50,68 +75,72 @@ function App() {
   }
 
   return (
-    <TheContext.Provider value={{ user, setUser, getTheUser }}>
-      <div className="App">
-      {/* {Navbar()} */}
+    <ThemeProvider theme={light ? themeLight : themeDark}>
+    <CssBaseline />
+      <TheContext.Provider value={{ user, setUser, getTheUser }}>
+        <div className="App">
+          {/* {Navbar()} */}
+          {user?.name ? <Navbar /> : null}
+          <Button onClick={() => setLight((prev) => !prev)}>Toggle Theme</Button>
 
-      {user?.name ? <Navbar />: null}
-      
-        
-        {/* <i>{user?.name}</i> */}
-        {/* Development navbar, comment when done! */}
-        {/* <nav>
-          <Link to='/home'>Home</Link>
-          <Link to='/'>Splash</Link>
-          <Link to='/CreateEvent'>Create Event</Link>
-          <Link to='/UserInfo'>User info</Link>
-
-          {user?.name ?
-            <>
-              <Link to='/Profile'>Profile</Link>
-              <Link to='/AddPost'>AddPost</Link>
-            </>
-            : <Link to='/Auth'>Login/Signup</Link>}
-        </nav> */}
-        {/* {user?.name ? debugNavbar() : null} */}
-
-        <Switch>
-          <Route
-            exact
-            path="/editEvent/:dynamicId"
-            render={(props) => <EditEvent {...props} />}
-          />
-          <Route
-            exact
-            path="/eventDetails/:dynamicId"
-            render={(props) => <EventDetails {...props} />}
-          />
-          <Route
-            exact
-            path="/createEvent"
-            render={(props) => <CreateEvent {...props} />}
-          />
-          <Route exact path="/" render={(props) => <Splash {...props} />} />
-          <Route
-            exact
-            path="/UserInfo"
-            render={(props) => <UserInfo {...props} />}
-          />
-          <Route exact path="/home" render={(props) => <Home {...props} />} />
-          <Route
-            exact
-            path="/AddPost"
-            render={(props) => <AddPost {...props} />}
-          />
-          <Route exact path="/Auth" render={(props) => <Auth {...props} />} />
-          <Route exact path="/signin" render={(props) => <SignIn {...props} />} />
-          <Route
-            exact
-            path="/Profile"
-            render={(props) => <Profile {...props} user={user} />}
-          />
-        </Switch>
-      </div>
-    </TheContext.Provider>
+          {/* <i>{user?.name}</i> */}
+          {/* Development navbar, comment when done! */}
+          {/* <nav>
+            <Link to='/home'>Home</Link>
+            <Link to='/'>Splash</Link>
+            <Link to='/CreateEvent'>Create Event</Link>
+            <Link to='/UserInfo'>User info</Link>
+            {user?.name ?
+              <>
+                <Link to='/Profile'>Profile</Link>
+                <Link to='/AddPost'>AddPost</Link>
+              </>
+              : <Link to='/Auth'>Login/Signup</Link>}
+          </nav> */}
+          {/* {user?.name ? debugNavbar() : null} */}
+          <Switch>
+            <Route
+              exact
+              path="/editEvent/:dynamicId"
+              render={(props) => <EditEvent {...props} />}
+            />
+            <Route
+              exact
+              path="/eventDetails/:dynamicId"
+              render={(props) => <EventDetails {...props} />}
+            />
+            <Route
+              exact
+              path="/createEvent"
+              render={(props) => <CreateEvent {...props} />}
+            />
+            <Route exact path="/" render={(props) => <Splash {...props} />} />
+            <Route
+              exact
+              path="/UserInfo"
+              render={(props) => <UserInfo {...props} />}
+            />
+            <Route exact path="/home" render={(props) => <Home {...props} />} />
+            <Route
+              exact
+              path="/AddPost"
+              render={(props) => <AddPost {...props} />}
+            />
+            <Route exact path="/Auth" render={(props) => <Auth {...props} />} />
+            <Route
+              exact
+              path="/signin"
+              render={(props) => <SignIn {...props} />}
+            />
+            <Route
+              exact
+              path="/Profile"
+              render={(props) => <Profile {...props} user={user} />}
+            />
+          </Switch>
+        </div>
+      </TheContext.Provider>
+    </ThemeProvider>
   );
 }
 

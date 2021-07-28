@@ -52,13 +52,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Auth(props) {
+  const classes = useStyles();
+  
   let { getTheUser } = useContext(TheContext);
   let { user } = useContext(TheContext);
 
   const [country, setCountry] = useState("");
 
   //console.log(user.country);
-  const classes = useStyles();
 
 
   useEffect(() => {
