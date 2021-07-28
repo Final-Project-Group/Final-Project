@@ -7,7 +7,7 @@ function Splash(props) {
   return (
     <div className="splash">
       <h1>Jogo</h1>
-      {/* <p>asdasdasdsa  asdas</p> */}
+      <p>For the players, by the players.</p>
       <Link to="/signin" style={{ textDecoration: "none" }}>
         <button>GET STARTED</button>
       </Link>

@@ -162,6 +162,10 @@ function Home(props) {
                 <Link to="/createEvent" style={{ textDecoration: 'none' }}><Button variant="outlined">Create Event</Button></Link>
             </div>
             <div className="home-container-event-list">
+                - OR -
+                <br/>
+                <br/>
+                JOIN EVENT
                 <ul className="home-events-ul">
                     {showEvents()}
                 </ul>
