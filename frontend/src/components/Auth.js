@@ -39,9 +39,8 @@ function Auth(props) {
   // localStorage.clear() to be able to log in again.
 
   return (
-    <div>
+    <div className="splash">
       {sendRedirectUser()}
-      <h3>Auth</h3>
       <GoogleLogin
         clientId={process.env.REACT_APP_GOOGLEID}
         buttonText="Login"

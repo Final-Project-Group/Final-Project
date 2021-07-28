@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import '../App.css'
 
 function Splash(props) {
 
     return (
         <div className="splash">
             <h1>Jogo</h1>
-            <Link to="/auth"><button>Get Started</button></Link>
+            {/* <p>asdasdasdsa  asdas</p> */}
+            <Link 
+                to="/auth"
+                style={{ textDecoration: 'none' }}
+            >
+                <button>GET STARTED</button>
+            </Link>
         </div>
     );
 }

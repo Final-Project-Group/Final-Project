@@ -56,91 +56,86 @@ function Home(props) {
         if (currSport) {
             if(event.sport === currSport) {
                 return (
-                    <Link 
-                        to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}
-                        style={{ textDecoration: 'none' }}
-                    >
-                        <Card className={classes.root}>
-                            <CardActionArea>
-                                <CardMedia
-                                component="img"
-                                alt="Image is not working"
-                                height="140"
-                                image={event.image}
-                                title="Sport Image"
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto'}}>
-                                        <div className="home-event-typography">
-                                            <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'baxsketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
-                                        </div>
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            <div className="home-event-info">
-                                <div className="home-event-info-row">
-                                    <span>{event.date.split('T', 1)}</span>
-                                    <span>{event.sport}</span>
+                    <li className="home-event-link">
+                        <Link 
+                            to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}
+                            style={{ textDecoration: 'none' }}
+                            // className="home-event-link"
+                        >
+                            <Card
+                                className={classes.root}
+                            >
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    alt="Image is not working"
+                                    height="140"
+                                    image={event.image}
+                                    title="Sport Image"
+                                    />
+                                    <CardContent>
+                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto'}}>
+                                            <div className="home-event-typography">
+                                                <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'baxsketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
+                                            </div>
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                <div className="home-event-info">
+                                    <div className="home-event-info-row">
+                                        <span>{event.date.split('T', 1)}</span>
+                                        <span>{event.sport}</span>
+                                    </div>
+                                    <div className="home-event-info-row">
+                                        <span>{event.creator.name}</span>
+                                        <span>spots: {event.spots - event.members.length}/{event.spots}</span>
+                                    </div>
                                 </div>
-                                <div className="home-event-info-row">
-                                    <span>{event.creator.name}</span>
-                                    <span>spots: {event.spots - event.members.length}/{event.spots}</span>
-                                </div>
-                            </div>
-                        </Card>
-                        <br/>
-                    </Link>
+                            </Card>
+                            <br/>
+                        </Link>
+                    </li>
                 )
             } else if (currSport === 'all') {
                 return (
-                    <Link 
-                        to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}
-                        style={{ textDecoration: 'none' }}
-                    >
-                        {/* <li className='home-events' key={`${event.userId}+${event._id}`}>
-                            <br/>
-                            {event.eventName} 
-                            <br/>
-                            {event.location}
-                            <br/>
-                            {event.date.split('T', 1)}
-                            <br/>
-                            {event.creator.name}
-                            <br/>
-                            <i>{event.userId}</i>
-                        </li> */}
-                        <Card 
-                            className={classes.root}
+                    <li className="home-event-link">
+                        <Link 
+                            to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}
+                            style={{ textDecoration: 'none' }}                            
                         >
-                            <CardActionArea>
-                                <CardMedia
-                                component="img"
-                                alt="Image is not working"
-                                height="140"
-                                image={event.image}
-                                title="Sport Image"
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto'}}>
-                                        <div className="home-event-typography">
-                                            <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'baxsketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
-                                        </div>
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            <div className="home-event-info">
-                                <div className="home-event-info-row">
-                                    <span>date: {event.date.split('T', 1)}</span>
-                                    <span>{event.level}</span>
+                            <Card 
+                                className={classes.root}
+                            >
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    alt="Image is not working"
+                                    height="140"
+                                    image={event.image}
+                                    title="Sport Image"
+                                    />
+                                    <CardContent>
+                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto'}}>
+                                            <div className="home-event-typography">
+                                                <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'baxsketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
+                                            </div>
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                <div className="home-event-info">
+                                    <div className="home-event-info-row">
+                                        <span>date: {event.date.split('T', 1)}</span>
+                                        <span>{event.level}</span>
+                                    </div>
+                                    <div className="home-event-info-row">
+                                        <span>creator: {event.creator.name}</span>
+                                        <span>spots: {event.spots - event.members.length}/{event.spots}</span>
+                                    </div>
                                 </div>
-                                <div className="home-event-info-row">
-                                    <span>creator: {event.creator.name}</span>
-                                    <span>spots: {event.spots - event.members.length}/{event.spots}</span>
-                                </div>
-                            </div>
-                        </Card>
-                        <br/>
-                    </Link>
+                            </Card>
+                            <br/>
+                        </Link>
+                    </li>
                 )
             }
         } 
