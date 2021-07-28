@@ -6,7 +6,7 @@ function Splash(props) {
     return (
         <div className="splash">
             <h1>Jogo</h1>
-            <Link to="/auth"><button>Get Started</button></Link>
+            <Link to="/signin"><button>Get Started</button></Link>
         </div>
     );
 }

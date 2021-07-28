@@ -6,10 +6,32 @@ import { Link } from "react-router-dom";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import NodeGeocoder from "node-geocoder";
 import { useHistory } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import Icon from "@material-ui/core/Icon";
+import { AccessAlarm, ThreeDRotation } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Divider from "@material-ui/core/Divider";
 
 const JOSE_API_KEY = process.env.REACT_APP_API_KEY;
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+    display: "flex",
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 function EventDetails(props) {
+  const classes = useStyles();
+
   // const defaultLocation = {  lat: 25.7617, lng: 80.1918  };
   const [userPosition, setUserPosition] = useState(""); // user coordinates (from browser location)
   const [eventPosition, setEventPosition] = useState(""); // event coordinates (from geocode API call)
@@ -70,7 +92,7 @@ function EventDetails(props) {
       // `https://maps.googleapis.com/maps/api/geocode/json?address=29+champs+elys%C3%A9e+paris&key=AIzaSyAf6-uRnVV8NM67T9FobkbcynWfDGe-0oY`
       `https://maps.googleapis.com/maps/api/geocode/json?address=${convert}&key=${JOSE_API_KEY}`
     );
-    console.log(ras);
+    console.log(ras.data);
     setEventPosition(
       ras.data.results.length === 0
         ? alert(
@@ -147,13 +169,12 @@ function EventDetails(props) {
 
     const handleChange = (e) => {
       setPost(e.target.value);
-      setEventId(details?._id)
-      
+      setEventId(details?._id);
     };
-    
+
     const handleSubmit = async (e) => {
       e.preventDefault();
-      
+
       console.log(post);
       let res = await actions.addPost({ post, eventId });
       setPost("");
@@ -164,15 +185,26 @@ function EventDetails(props) {
       <div>
         <h3>Add Comment</h3>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            onChange={handleChange}
-            placeholder="Enter a post"
-            value={post}
-          />
-          <button>Submit</button>
-          
+          <div className="commentBox">
+            <TextField
+              onChange={handleChange}
+              value={post}
+              placeholder="Enter a post"
+              id="filled-basic"
+              label="Filled"
+              variant="filled"
+            />
+            <Button
+              // size="small"
+              variant="contained"
+              color="primary"
+              type="submit"
+            >
+              Send
+            </Button>
+          </div>
         </form>
+        <br />
       </div>
     );
   }
@@ -197,7 +229,6 @@ function EventDetails(props) {
   };
 
   const ShowPosts = () => {
-    
     return allPosts.map((eachPost) => {
       const deletePost = async () => {
         actions.deletePost(eachPost);
@@ -206,15 +237,25 @@ function EventDetails(props) {
 
         // let res = await actions.getAllPosts();
         // setAllPosts(res.data);
-      }
+      };
       if (eachPost.eventId === details?._id) {
-        console.log(eachPost.userId._id)
-        console.log(user._id)
-      return (
-        <li key={eachPost._id}>
-          <i>{eachPost.userId?.name}: </i> {eachPost.post} {eachPost.userId._id === user?._id ? <button onClick={deletePost}>Delete</button> : null}
-        </li>
-      );
+        console.log(eachPost.userId._id);
+        console.log(user._id);
+        return (
+          <li key={eachPost._id}>
+            <i>{eachPost.userId?.name}: </i> {eachPost.post}{" "}
+            {eachPost.userId._id === user?._id ? (
+              <Button
+                size="small"
+                variant="outlined"
+                color="primary"
+                onClick={deletePost}
+              >
+                Delete
+              </Button>
+            ) : null}
+          </li>
+        );
       }
     });
   };
@@ -223,8 +264,32 @@ function EventDetails(props) {
     return (
       <div>
         <img src={details?.image}></img>
-        <div>
-          <h3>{details?.eventName}</h3>
+        {/* <div className="materialList">
+          
+          <List
+            component="nav"
+            className={classes.root}
+            aria-label="mailbox folders"
+          >
+            <ListItem button>
+              <ListItemText primary="Inbox" />
+            </ListItem>
+            <Divider />
+            <ListItem button divider>
+              <ListItemText primary="Drafts" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Trash" />
+            </ListItem>
+            <Divider light />
+            <ListItem button>
+              <ListItemText primary="Spam" />
+            </ListItem>
+          </List>
+        </div> */}
+
+        <h3>{details?.eventName}</h3>
+        <div className="detailsText">
           <p>Sport: {details?.sport}</p>
           <p>Address: {details?.location}</p>
           {console.log(details?.location)}
@@ -247,28 +312,32 @@ function EventDetails(props) {
             })}
           </ul>
           <p>Description: {details?.description}</p>
-          {user._id === details?.creator?._id ? (
-            <Link to={`/editEvent/${details?._id}`}>
-              {" "}
-              <button> Edit </button>{" "}
-            </Link>
-          ) : details?.members
-              ?.map((each) => each._id === user._id)
-              .includes(true) ? (
-            <button onClick={leave}>Leave Event</button>
-          ) : (
-            <button onClick={memberJoin}>Join Event</button>
-          )}
-          <br />
-          <br />
         </div>
+        {user._id === details?.creator?._id ? (
+          <Link to={`/editEvent/${details?._id}`}>
+            {" "}
+            <button> Edit </button>{" "}
+          </Link>
+        ) : details?.members
+            ?.map((each) => each._id === user._id)
+            .includes(true) ? (
+          <Button variant="contained" color="primary" onClick={leave}>
+            Leave Event
+          </Button>
+        ) : (
+          <Button variant="contained" color="primary" onClick={memberJoin}>
+            Join Event
+          </Button>
+        )}
+        <br />
+        <br />
       </div>
     );
   };
 
   return (
     <div>
-      <h1>EVENT DETAILS</h1>
+      {/* <h1>EVENT DETAILS</h1> */}
       {showEvent()}
       {AddPost()}
       {/* <div>{showCommentSection()}</div> */}

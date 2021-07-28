@@ -20,6 +20,26 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import "../App.css";
 
+
+import { useHistory ,useLocation } from 'react-router-dom';
+// const location = useLocation()
+// location.pathname
+
+
+// import { createTheme } from '@material-ui/core/styles';
+// import purple from '@material-ui/core/colors/purple';
+
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: purple[500],
+//     },
+//     secondary: {
+//       main: '#f44336',
+//     },
+//   },
+// });
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -77,12 +97,18 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  
+  // offset: theme.mixins.toolbar,
 }));
 
-export default function Navbar() {
+export default function Navbar(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+
+//   const history = useHistory()
+// history.location.pathname
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -99,7 +125,9 @@ export default function Navbar() {
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
+          
         })}
+        // style={{background: 'transparent', boxShadow: 'none'}}
       >
         <Toolbar>
           <IconButton
@@ -112,10 +140,11 @@ export default function Navbar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Home
+          home
           </Typography>
         </Toolbar>
       </AppBar>
+      
       <Drawer
         className={classes.drawer}
         variant="persistent"

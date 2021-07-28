@@ -6,6 +6,7 @@ import { Switch, Link, Route } from "react-router-dom";
 import TheContext from "./TheContext";
 import Home from "./components/Home";
 import Auth from "./components/Auth";
+import SignIn from "./components/SignIn";
 import AddPost from "./components/AddPost";
 import Profile from "./components/Profile";
 import Splash from "./components/Splash";
@@ -53,7 +54,7 @@ function App() {
       <div className="App">
       {/* {Navbar()} */}
 
-      {user?.name ? <nav className="navbarParent" ><Navbar /></nav> : null}
+      {user?.name ? <Navbar />: null}
       
         
         {/* <i>{user?.name}</i> */}
@@ -102,6 +103,7 @@ function App() {
             render={(props) => <AddPost {...props} />}
           />
           <Route exact path="/Auth" render={(props) => <Auth {...props} />} />
+          <Route exact path="/signin" render={(props) => <SignIn {...props} />} />
           <Route
             exact
             path="/Profile"
