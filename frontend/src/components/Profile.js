@@ -82,7 +82,6 @@ function Profile(props) {
     <div className="profile-container">
 
       <div className="profile-container-user-info">
-       
             <img className="profile-container-image" src={userUpdated.imageUrl} />
             <div className="profile-container-name-and-country">
               <h2 className="profile-container-name">{userUpdated.name}</h2>
@@ -115,15 +114,13 @@ function Profile(props) {
                   Log out
                 </Button>
               </div>
-            </div>
-        
+          </div>
       </div>
       <div>
-                    <h2 className="profile-container-activities">Activities:</h2>
-            <ul className="profile-ul">
-              {showActivities()}
-            </ul>
-          
+          <h2 className="profile-container-activities">Activities:</h2>
+          <ul className="profile-ul">
+            {showActivities()}
+          </ul>
       </div>
     </div>
   );
