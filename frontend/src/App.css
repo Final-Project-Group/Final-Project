@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 .App {
+  /* temporary fixes the space of the navbar */
+  padding-top: 5%;
   text-align: center;
   width: 100vw;
   height: 100vh;
@@ -65,14 +67,21 @@ html {
   font-size: 10vh;
 }
 
+
 .splash h1 {
-  padding-top: 8%;
-  padding-left: 65%;
+  margin: 0;
+  padding-top: 10%;
   color: white; 
   -webkit-text-fill-color: transparent;
   fill: none;
   -webkit-text-stroke: 1px;
   -webkit-text-stroke-color: white;
+  letter-spacing: 3px;
+} 
+
+.splash p {
+  color: white;
+  font-size: 2vh;
   letter-spacing: 3px;
 } 
 

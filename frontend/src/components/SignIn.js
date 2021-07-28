@@ -50,7 +50,7 @@ export default function SignIn() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className="signin-container">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
