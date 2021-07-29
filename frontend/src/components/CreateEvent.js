@@ -345,7 +345,7 @@ function CreateEvent(props) {
             />
             <br />
             <TextField
-              label="Description:"
+              label="Description"
               name="description"
               id="filled-size-small"
               variant="filled"

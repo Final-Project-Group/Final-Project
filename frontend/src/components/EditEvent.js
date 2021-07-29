@@ -11,11 +11,39 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import axios from 'axios';
+import { makeStyles } from "@material-ui/core/styles";
 import '../App.css';
 
 const JOSE_API_KEY = process.env.REACT_APP_API_KEY;
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  input: {
+    // color:"white",
+    background: "white",
+    color: "black",
+    borderRadius: "40px",
+  },
+}));
+
 function EditEvent(props) {
+  const classes = useStyles();
   let [event, setEvent] = useState({});
   const [spots, setSpots] = useState(2);
 
@@ -105,14 +133,22 @@ function EditEvent(props) {
       <form className="UserInfo" onSubmit={handleSubmit}>
         {console.log(details)}
         <TextField
-          value={`${details?.location}`}
+          value={`${details?.eventName}`}
           onChange={handleChange}
-          label="location"
-          name="location"
+          label="Event Name:"
+          name="eventName"
           id="filled-size-small"
           variant="filled"
           size="small"
+          // onChange={handleChange}
           required={true}
+          style={{
+                borderRadius: "40px",
+                backgroundColor: "white",
+              }}
+          InputProps={{
+            className: classes.input,
+          }}
         />
         <br/>
         <TextField
@@ -124,8 +160,17 @@ function EditEvent(props) {
           type="datetime-local"
           InputLabelProps={{
             shrink: true,
+            style: { color: "#fff" },
           }}
           required={true}
+          style={{
+              color: "white",
+              borderRadius: "40px",
+              // backgroundColor: 'white'
+            }}
+          InputProps={{
+            className: classes.input,
+          }}
         />
 
         <br/>
@@ -137,10 +182,37 @@ function EditEvent(props) {
           id="demo-simple-select"
           name="sport"
           required={true}
+          style={{
+                width: "200px",
+                color: "black",
+                borderRadius: "40px",
+                backgroundColor: "white",
+          }}
         >
-          <MenuItem value="soccer">soccer</MenuItem>
-          <MenuItem value="basketball">basketball</MenuItem>
-          <MenuItem value="tennis">tennis</MenuItem>
+          <MenuItem 
+            value="soccer"
+            style={{
+              color: "black",
+            }}
+          >
+            soccer
+          </MenuItem>
+          <MenuItem 
+            value="basketball"
+            style={{
+              color: "black",
+            }}
+          >
+            basketball
+          </MenuItem>
+          <MenuItem
+            value="tennis"
+            style={{
+              color: "black",
+            }}
+          >
+            tennis
+          </MenuItem>
         </Select>
 
         Level:
@@ -150,10 +222,36 @@ function EditEvent(props) {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           name="level"
+          style={{
+                width: "200px",
+                color: "black",
+                borderRadius: "40px",
+                backgroundColor: "white",
+          }}
         >
-          <MenuItem value="beginner">beginner</MenuItem>
-          <MenuItem value="intermediate">intermediate</MenuItem>
-          <MenuItem value="advanced">advanced</MenuItem>
+          <MenuItem 
+            value="beginner"
+            style={{
+              color: "black",
+            }}>
+            beginner
+          </MenuItem>
+          <MenuItem
+            value="intermediate"
+            style={{
+              color: "black",
+            }}  
+          >
+            intermediate
+          </MenuItem>
+          <MenuItem
+            value="advanced"
+            style={{
+              color: "black",
+            }}
+          >
+            advanced
+          </MenuItem>
         </Select>
 
         Age:
@@ -164,10 +262,37 @@ function EditEvent(props) {
           id="demo-simple-select"
           name="age"
           required={true}
+          style={{
+            width: "200px",
+            color: "black",
+            borderRadius: "40px",
+            backgroundColor: "white",
+          }}
         >
-          <MenuItem value="kids">kids</MenuItem>
-          <MenuItem value="teens">teens</MenuItem>
-          <MenuItem value="adults">adults</MenuItem>
+          <MenuItem 
+            value="kids"
+            style={{
+              color: "black",
+            }}
+          >
+            kids
+          </MenuItem>
+          <MenuItem
+            value="teens"
+            style={{
+              color: "black",
+            }}            
+          >
+            teens
+          </MenuItem>
+          <MenuItem
+            value="adults"
+            style={{
+              color: "black",
+            }}
+          >
+            adults
+          </MenuItem>
         </Select>
         <br/>
         <TextField
@@ -180,19 +305,32 @@ function EditEvent(props) {
           size="small"
           // onChange={handleChange}
           required={false}
+          style={{
+            borderRadius: "40px",
+            backgroundColor: "white",
+          }}
+          InputProps={{
+            className: classes.input,
+          }}
         />
 
         <br/>
         <TextField
-          value={`${details?.eventName}`}
+          value={`${details?.location}`}
           onChange={handleChange}
-          label="Event Name:"
-          name="eventName"
+          label="location"
+          name="location"
           id="filled-size-small"
           variant="filled"
           size="small"
-          // onChange={handleChange}
           required={true}
+          style={{
+            backgroundColor: "white",
+            borderRadius: "40px",
+          }}
+          InputProps={{
+            className: classes.input,
+          }}
         />
 
         <br/>
@@ -206,6 +344,13 @@ function EditEvent(props) {
           size="small"
           // onChange={handleChange}
           required={true}
+          style={{
+            borderRadius: "40px",
+            backgroundColor: "white",
+          }}
+          InputProps={{
+            className: classes.input,
+          }}
         />
 
         <br/>

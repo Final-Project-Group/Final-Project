@@ -27,6 +27,12 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
+  input: {
+    // color:"white",
+    background: "white",
+    color: "black",
+    borderRadius: "40px",
+  },
 }));
 
 function EventDetails(props) {
@@ -186,13 +192,22 @@ function EventDetails(props) {
         <h3>Add Comment</h3>
         <form onSubmit={handleSubmit}>
           <div className="commentBox">
-            <TextField
+
+              <TextField
+              label="Comment"
+              name="comment"
+              id="filled-size-small"
+              variant="filled"
+              size="small"
               onChange={handleChange}
               value={post}
-              placeholder="Enter a post"
-              id="filled-basic"
-              label="Filled"
-              variant="filled"
+              style={{
+                borderRadius: "40px",
+                backgroundColor: "white",
+              }}
+              InputProps={{
+                className: classes.input,
+              }}
             />
             <br/>
             <Button
@@ -323,9 +338,19 @@ function EventDetails(props) {
               <p className="detailsText-description">Description <br/> {details?.description}</p>
             </div>
             {user._id === details?.creator?._id ? (
-              <Link to={`/editEvent/${details?._id}`}>
+              <Link 
+                to={`/editEvent/${details?._id}`}
+                style={{ textDecoration: 'none'}}
+              >
                 {" "}
-                <button> Edit </button>{" "}
+                <Button variant="contained" 
+                style={{
+                  backgroundColor: 'rgb(75,105,40)',
+                  color: 'white',
+                  borderRadius: '40px',
+                }}>
+                  Edit
+              </Button>
               </Link>
             ) : details?.members
                 ?.map((each) => each._id === user._id)
