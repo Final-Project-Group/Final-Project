@@ -194,11 +194,16 @@ function EventDetails(props) {
               label="Filled"
               variant="filled"
             />
+            <br/>
             <Button
               // size="small"
               variant="contained"
-              color="primary"
               type="submit"
+              style={{
+                  backgroundColor: 'rgb(75,105,40)',
+                  color: 'white',
+                  borderRadius: '40px'
+                }}
             >
               Send
             </Button>
@@ -242,13 +247,18 @@ function EventDetails(props) {
         console.log(eachPost.userId._id);
         console.log(user._id);
         return (
-          <li key={eachPost._id}>
+          <li key={eachPost._id} className="eventDetails-comments">
             <i>{eachPost.userId?.name}: </i> {eachPost.post}{" "}
             {eachPost.userId._id === user?._id ? (
               <Button
                 size="small"
                 variant="outlined"
-                color="primary"
+                style={{
+                  // backgroundColor: 'white',
+                  border: '1px solid white',
+                  color: 'white',
+                  borderRadius: '40px'
+                }}
                 onClick={deletePost}
               >
                 Delete
@@ -266,7 +276,8 @@ function EventDetails(props) {
         <Card
           style={{
             borderRadius: '5%',
-            border: '6px solid rgb(75,105,40)'
+            border: '6px solid rgb(75,105,40)',
+            backgroundImage: 'linear-gradient(0deg, #cfd6e6 1%, #e7eff9  60%)'
           }}
         >
           <CardContent>
@@ -319,11 +330,20 @@ function EventDetails(props) {
             ) : details?.members
                 ?.map((each) => each._id === user._id)
                 .includes(true) ? (
-              <Button variant="contained" color="primary" onClick={leave}>
+              <Button variant="contained" 
+                style={{
+                  backgroundColor: 'rgb(75,105,40)',
+                  color: 'white',
+                  borderRadius: '40px'
+                }} onClick={leave}>
                 Leave Event
               </Button>
             ) : (
-              <Button variant="contained" color="primary" onClick={memberJoin}>
+              <Button variant="contained" style={{
+                backgroundColor: 'rgb(75,105,40)',
+                color: 'white',
+                borderRadius: '40px'
+              }} onClick={memberJoin}>
                 Join Event
               </Button>
             )}
@@ -339,40 +359,48 @@ function EventDetails(props) {
       {/* <h1>EVENT DETAILS</h1> */}
       {showEvent()}
       {AddPost()}
-      {/* <div>{showCommentSection()}</div> */}
       <ShowPosts />
 
       <br />
-
-      <Map
-        google={props.google}
-        zoom={13}
-        zoomControl={true}
-        center={eventPosition}
-        scrollwheel={false}
-      >
-        <Marker
-          onClick={onMarkerClick}
-          name={"User location"}
-          position={userPosition}
-          streetViewControl={true}
-        />
-        <Marker
-          onClick={onMarkerClick}
-          name={"Event location"}
-          position={eventPosition}
-          streetViewControl={true}
-        />
-        <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
-          <div>
-            <h3>
-              {activeMarker.name === "Event location"
-                ? details?.location
-                : "Your location"}
-            </h3>
-          </div>
-        </InfoWindow>
-      </Map>
+      <section className="eventdetails-container-map">
+        <Map
+          google={props.google}
+          zoom={13}
+          zoomControl={true}
+          center={eventPosition}
+          scrollwheel={false}
+          style={{
+            width: '70%',
+            height: '70%',
+            marginLeft: '15%',
+            marginRight: '15%',
+            borderRadius: '40px',
+            border: '10px solid white'
+          }}
+        >
+          <Marker
+            onClick={onMarkerClick}
+            name={"User location"}
+            position={userPosition}
+            streetViewControl={true}
+          />
+          <Marker
+            onClick={onMarkerClick}
+            name={"Event location"}
+            position={eventPosition}
+            streetViewControl={true}
+          />
+          <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
+            <div>
+              <h3>
+                {activeMarker.name === "Event location"
+                  ? details?.location
+                  : "Your location"}
+              </h3>
+            </div>
+          </InfoWindow>
+        </Map>
+      </section>
     </div>
   );
 }

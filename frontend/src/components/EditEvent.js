@@ -10,8 +10,10 @@ import { Link, useHistory } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
+import axios from 'axios';
 import '../App.css';
 
+const JOSE_API_KEY = process.env.REACT_APP_API_KEY;
 
 function EditEvent(props) {
   let [event, setEvent] = useState({});
@@ -34,15 +36,49 @@ function EditEvent(props) {
   const [level, setLevel] = useState(details?.level);
   const [age, setAge] = useState(details?.age);
 
-  const handleSubmit = (e) => {
+  const getGeocode = async (event) => {
+    let convert = event?.location;
+    // console.log(details?.location);
+    // console.log(typeof details?.location);
+    // console.log(convert);
+    convert = convert
+      ?.split("")
+      ?.map((char) => (char === " " ? "+" : char))
+      .join("");
+    console.log(convert);
+    // setAddress(convert)
+    let ras = await axios.get(
+      // `https://maps.googleapis.com/maps/api/geocode/json?address=29+champs+elys%C3%A9e+paris&key=AIzaSyAf6-uRnVV8NM67T9FobkbcynWfDGe-0oY`
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${convert}&key=${JOSE_API_KEY}`
+    )
+    console.log(ras);
+
+    // ADD THE LOCATION REQ TO THE EVENTS
+    // let copy = { ...event };
+    // copy.locationRequest = ras.data;
+    // console.log(copy)
+    // setEvent(copy);
+    // console.log(event)
+
+    if (ras.data.results.length === 0 ) {
+      alert('Can not read address. Change and do not forget the state and country')
+      return 0;
+    } else {
+      return 1;
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(details);
-    actions.editEvent(details);
-
-    actions.getDetail(props).then((res) => {
-      history.push(`/eventDetails/${props.match.params.dynamicId}`);
-    });
-  };
+    
+    if(await getGeocode(event)) {
+      await actions.editEvent(details);
+      await actions.getDetail(props).then((res) => {
+        history.push(`/eventDetails/${props.match.params.dynamicId}`);
+      });
+    };
+  }
 
   const handleChange = (e) => {
     let newDetails = { ...details };
