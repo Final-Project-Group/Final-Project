@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 
 .App {
   /* temporary fixes the space of the navbar */
@@ -6,6 +7,7 @@
   text-align: center;
   width: 100%;
   height: 100%;
+  font-family: 'Secular One', sans-serif;
 }
 
 .App-logo {
@@ -14,7 +16,7 @@
 }
 
 html {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Secular One', sans-serif;
   width: 100%;
   height: 100%;
 }
@@ -109,6 +111,15 @@ html {
   flex: 20%;
   height: 100%;
   margin-bottom: 2%; /* (100-32*3)/2 */
+  transition: transform .5s ease-in;
+}
+
+/* #card {
+  width: 20vw;
+} */
+
+.home-event-link:hover{
+  transform: translate3d(0px, -50px, 0px);
 }
 
 .home-events-ul {
@@ -119,6 +130,12 @@ html {
   justify-content: space-between;
   flex-wrap: wrap;
   /* font-family: 'Roboto', sans-serif; */
+}
+
+.home-event-location-text {
+  margin: 0;
+  font-size: 75%;
+  overflow: hidden;
 }
 
 .home-event-info-row {
@@ -194,12 +211,23 @@ html {
 
 .home-event-typography h4 {
   margin: 5px;
-  font-weight: 200;
+  font-weight: bold;
   font-size: 1.2rem;
 }
 
+.home-container-first {
+  width: 100%;
+  height: 60vh;
+  background-image: url("https://images.squarespace-cdn.com/content/v1/5b46c74312b13f1c549339d0/1531794639136-WPV66CSSBMIPM2QPYEFP/Soccer-Field-Night.jpg?format=2500w");
+  background-size: 100% 100%;
+}
+
+section {
+  margin: 0;
+}
+
 .home-container {
-  margin: 10px;
+  margin-left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -210,7 +238,14 @@ html {
 }
 
 .home-container-create-button {
+  padding-top: 5%;
   margin: 2%;
+}
+
+/* .home-container-create-button { */
+
+.home-container-event-list {
+  margin-left: 3%;
 }
 
 /* Profile */

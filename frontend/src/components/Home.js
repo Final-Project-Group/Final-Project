@@ -8,6 +8,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Navbar from "./Navbar"
 import '../App.css';
 import Card from '@material-ui/core/Card';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -43,9 +46,9 @@ function Home(props) {
         }) ()
     }, [])
 
-    const handleChange = (e) => {
-        console.log(e.target.value);
-        setCurrSport(e.target.value);
+    const handleChange = (e, value) => {
+        console.log(value);
+        setCurrSport(value);
 
     }
 
@@ -103,7 +106,12 @@ function Home(props) {
                             style={{ textDecoration: 'none' }}                            
                         >
                             <Card 
-                                className={classes.root} 
+                                className={classes.root}
+                                id="card" 
+                                style={{
+                                    borderRadius: '5%',
+                                    // border: '6px solid rgb(13,92,30)'
+                                }}
                             >
                                 <CardActionArea>
                                     <CardMedia
@@ -113,18 +121,18 @@ function Home(props) {
                                     image={event.image}
                                     title="Sport Image"
                                     />
-                                    <CardContent>
-                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="textSecondary" style={{fontFamily: 'Roboto'}}>
+                                    <CardContent style={{backgroundColor: 'rgb(75,105,40)'}}>
+                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="textPrimary" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)'}}>
                                             <div className="home-event-typography">
-                                                <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'baxsketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
+                                                <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
                                             </div>
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
-                                <Typography className="home-event-info" color="textSecondary">
+                                <Typography className="home-event-info" color="textPrimary" style={{ backgroundImage: 'linear-gradient(rgb(75,105,40), black)'}}>
                                     <div className="home-event-info-row">
-                                        <span>date: {event.date.split('T', 1)}</span>
-                                        <span>{event.level}</span>
+                                        <span> {event.date.split('T', 1)}</span>
+                                        <h5 className="home-event-location-text">{event.location}</h5>
                                     </div>
                                     <div className="home-event-info-row">
                                         <span>creator: {event.creator.name}</span>
@@ -143,29 +151,43 @@ function Home(props) {
 
     return (
         <div className="home-container">
-            <div className="home-container-dropdown">
-                <>Sport: </>
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    name="soccer"
-                    value={currSport}
-                    onChange={handleChange}
-                >
-                    <MenuItem value="soccer">Soccer</MenuItem>
-                    <MenuItem value="basketball">Basketball</MenuItem>
-                    <MenuItem value="tennis">Tennis</MenuItem>
-                    <MenuItem value="all">All</MenuItem>
-                </Select>
-            </div>
-            <div className="home-container-create-button">
-                <Link to="/createEvent" style={{ textDecoration: 'none' }}><Button variant="outlined">Create Event</Button></Link>
+            <div className="home-container-first">
+                <div className="home-container-dropdown">
+                {/* <img className="home-image" src="https://images.squarespace-cdn.com/content/v1/5b46c74312b13f1c549339d0/1531794639136-WPV66CSSBMIPM2QPYEFP/Soccer-Field-Night.jpg?format=2500w" /> */}
+                    {/* <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        name="soccer"
+                        value={currSport}
+                        onChange={handleChange}
+                    >
+                        <MenuItem value="soccer">Soccer</MenuItem>
+                        <MenuItem value="basketball">Basketball</MenuItem>
+                        <MenuItem value="tennis">Tennis</MenuItem>
+                        <MenuItem value="all">All</MenuItem>
+                    </Select> */}
+                    <Tabs
+                        value={currSport}
+                        onChange={handleChange}
+                        // indicatorColor="primary"
+                        // textColor="primary"
+                        variant="fullWidth"
+                        aria-label="full width tabs example"
+                        >
+                        <Tab label="All" value="all" />
+                        <Tab label="Soccer" value="soccer" />
+                        <Tab label="Basketball" value="basketball" />
+                        <Tab label="Tennis" value="tennis" />
+                    </Tabs>
+                </div>
+                <div className="home-container-create-button">
+                    <Link to="/createEvent" style={{ textDecoration: 'none' }}><Button variant="outlined" style={{border: '4px solid white', borderRadius: '40px', width: '15vw', height: '8vh', fontSize: '3vh'}}>Create Event</Button></Link>
+                    <br/>
+                    <h2>- OR -</h2>
+                    <h2>JOIN EVENT</h2>
+                </div>
             </div>
             <div className="home-container-event-list">
-                - OR -
-                <br/>
-                <br/>
-                JOIN EVENT
                 <ul className="home-events-ul">
                     {showEvents()}
                 </ul>
