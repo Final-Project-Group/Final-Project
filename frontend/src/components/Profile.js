@@ -61,7 +61,7 @@ function Profile(props) {
   const logOut = () => {
     localStorage.removeItem("token");
     setUser(null);
-    history.push("/Auth");
+    history.push("/signin");
   };
 
   const showSports = () => {

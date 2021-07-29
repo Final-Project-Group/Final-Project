@@ -17,38 +17,56 @@ router.get("/", (req, res) => {
 //     })
 // });
 
-
-router.get("/get-the-user",  async (req, res) => {
+router.get("/get-the-user", authorize, async (req, res) => {
   let user = await User.findById(res.locals.user._id);
   res.json(user);
 });
 
 // These two are broken / incomplete ATM
-router.get("/get-all-users",  async (req, res) => {
+// GETALLUSERS MIGHT BE USELESS, PLEASE CONFIRM AND DELETE IF NECESSARY
+router.get("/get-all-users", async (req, res) => {
   let users = await User.find();
   res.json(users);
 });
-router.get("/signup-user",  async (req, res) => {
-console.log(req.body)
-  User.find({email: req.body.email})
-    
-    .then((posts) => {
-      res.json(posts);
-    });
-
-  // let users = await User.find({ email: req.body.email });
-  // console.log(req);
-  // res.json(users);
-});
-
 // Create user with email
 router.post("/create-user", async (req, res) => {
-  let newUser = req.body;
-  
-  User.create(req.body).then((event) => {
-    res.json(event);
-    // console.log(event);
-  });
+  let user = await User.findOne({ email: req.body.email });
+
+  if (!user) {
+    user = await User.create(req.body);
+  } else {
+    res.json({ err: "User already exists." });
+  }
+
+  jwt.sign(
+    { user },
+    "secret key",
+    { expiresIn: "3000000min" },
+    (err, token) => {
+      res.json({ user, token });
+    }
+  );
+});
+
+router.post("/sign-in-user", async (req, res) => {
+  console.log(req.body);
+  let user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    res.json({ err: "No user with that email exists." });
+  }
+  if (user.password !== req.body.password) {
+    res.json({ err: "Wrong password." });
+  }
+
+  jwt.sign(
+    { user },
+    "secret key",
+    { expiresIn: "3000000min" },
+    (err, token) => {
+      res.json({ user, token });
+    }
+  );
+  // res.json(user)
 });
 
 router.post("/edit-event", authorize, async (req, res) => {
@@ -128,7 +146,6 @@ router.post("/delete-post", authorize, async (req, res) => {
     if (err) console.log(err);
     console.log("Successful deletion");
   });
-
 });
 
 router.get("/all-the-posts", (req, res) => {

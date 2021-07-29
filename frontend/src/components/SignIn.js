@@ -20,7 +20,11 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://github.com/Final-project-group/Jogo" target="_blank">
+      <Link
+        color="inherit"
+        href="https://github.com/Final-project-group/Jogo"
+        target="_blank"
+      >
         Jogo Inc.
       </Link>{" "}
       {new Date().getFullYear()}
@@ -60,6 +64,8 @@ export default function SignIn(props) {
   let { user } = useContext(TheContext);
 
   const [country, setCountry] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   //console.log(user.country);
 
@@ -67,8 +73,22 @@ export default function SignIn(props) {
     setCountry(user?.country);
 
     console.log(country);
-  }, []);
+  }, [props]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(email, password);
+    let ras = await actions.signInUser({ email, password });
+    console.log(ras.data.err);
+
+    if (ras.data.err) {
+      alert(ras.data.err);
+    }
+    await getTheUser();
+  };
+
+  // Authenticate-with-Google API call
   const responseGoogle = async (response) => {
     console.log(response);
     await actions.authenticate(response.profileObj);
@@ -78,6 +98,7 @@ export default function SignIn(props) {
 
   // (user?.country && user?.token) ? props.history.push("/") : props.history.push("/UserInfo");
 
+  // Redirect user if country not set, other wise go to home
   const sendRedirectUser = () => {
     if (user?.country && localStorage?.token) {
       props.history.push("/home");
@@ -101,7 +122,7 @@ export default function SignIn(props) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -113,8 +134,9 @@ export default function SignIn(props) {
             autoComplete="email"
             autoFocus
             InputProps={{
-                  className: classes.input
-                }}
+              className: classes.input,
+            }}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -127,8 +149,9 @@ export default function SignIn(props) {
             id="password"
             autoComplete="current-password"
             InputProps={{
-                  className: classes.input
-                }}
+              className: classes.input,
+            }}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

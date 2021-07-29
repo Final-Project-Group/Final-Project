@@ -66,9 +66,12 @@ function App() {
 
   const getTheUser = async () => {
     let res = await actions.getUser();
+    console.log(res);
     setUser(res.data);
     // console.log(res.data)
   };
+
+  console.log(user);
 
   useEffect(() => {
     getTheUser();
@@ -155,7 +158,11 @@ function App() {
               path="/AddPost"
               render={(props) => <AddPost {...props} />}
             />
-            <Route exact path="/Auth" render={(props) => <Auth setToken={setToken} {...props} />} />
+            <Route
+              exact
+              path="/Auth"
+              render={(props) => <Auth setToken={setToken} {...props} />}
+            />
             <Route
               exact
               path="/signin"

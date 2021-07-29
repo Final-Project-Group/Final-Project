@@ -62,8 +62,31 @@ const actions = {
   },
   // Create user with email
   createUser: async (user) => {
-    return await axios.post(`${serverUrl}/create-user`, user, createHeaders());
+    let res = await axios.post(
+      `${serverUrl}/create-user`,
+      user,
+      createHeaders()
+    );
+    console.log(res);
+
+    if (!res.data.err) {
+      localStorage.setItem("token", res.data.token);
+    }
+    return res;
   },
+  signInUser: async (user) => {
+    let res = await axios.post(
+      `${serverUrl}/sign-in-user`,
+      user,
+      createHeaders()
+    );
+
+    if (!res.data.err) {
+      localStorage.setItem("token", res.data.token);
+    }
+    return res;
+  },
+
   getUser: async () => {
     return await axios.get(`${serverUrl}/get-the-user`, createHeaders());
   },
@@ -72,19 +95,6 @@ const actions = {
   getAllUsers: async () => {
     return await axios.get(`${serverUrl}/get-all-users`, createHeaders());
   },
-  signupUser: async (email) => {
-    return await axios.get(`${serverUrl}/signup-user`, createHeaders());
-  },
-  // loginUser: async (credentials) => {
-  //   return fetch(`${serverUrl}/signup`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(credentials)
-  //   })
-  //     .then(data => data.json())
-  //  },
 
   // Add details to event
   addDetails: async (user) => {
@@ -117,7 +127,11 @@ const actions = {
     return res;
   },
   deletePost: async (post) => {
-    let res = await axios.post(`${serverUrl}/delete-post`, post, createHeaders());
+    let res = await axios.post(
+      `${serverUrl}/delete-post`,
+      post,
+      createHeaders()
+    );
     return res;
   },
   getAllPosts: async (post) => {
@@ -126,7 +140,6 @@ const actions = {
   getEvents: async (post) => {
     return await axios.get(`${serverUrl}/all-the-events`, createHeaders());
   },
-  
 
   authenticate: async (profileObj) => {
     console.log(profileObj, "profileObj");

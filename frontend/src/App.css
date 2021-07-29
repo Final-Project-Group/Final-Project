@@ -130,9 +130,10 @@ html {
   letter-spacing: 1px;
 }
 
-.navbarParent {
+/* following code is nnecessary, official Material UI way to fix is adding a second invisible toolbar after navbar*/
+/* .navbarParent {
   height: 64px;
-}
+} */
 
 /* not the best way to customize. please read documentation later and change */
 .MuiToolbar-root {
