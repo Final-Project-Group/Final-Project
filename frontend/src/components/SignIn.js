@@ -46,6 +46,11 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  input: {
+    // color:"white",
+    background: "white",
+    color: "black",
+  },
 }));
 
 export default function SignIn(props) {
