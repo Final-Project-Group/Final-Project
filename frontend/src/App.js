@@ -15,40 +15,41 @@ import CreateEvent from "./components/CreateEvent";
 import EventDetails from "./components/EventDetails";
 import EditEvent from "./components/EditEvent";
 import Navbar from "./components/Navbar";
-import { ThemeProvider, makeStyles, createTheme } from "@material-ui/core/styles";
+import {
+  ThemeProvider,
+  makeStyles,
+  createTheme,
+} from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Button from "@material-ui/core/Button";
-
 
 const themeLight = createTheme({
   palette: {
     background: {
-      default: "#e4f0e2"
+      default: "#e4f0e2",
     },
     text: {
       // primary: "#000000",
-      secondary:"#000000"
+      secondary: "#000000",
     },
   },
-  
 });
 
 const themeDark = createTheme({
   palette: {
     background: {
-      default: "#000000"
+      default: "#000000",
     },
     text: {
       primary: "#ffffff",
-      secondary:"#000000"
+      secondary: "#000000",
     },
-  }
+  },
 });
-
 
 function App() {
   let [user, setUser] = useState({});
-  const [light, setLight] = useState(false)
+  const [light, setLight] = useState(false);
 
   const getTheUser = async () => {
     let res = await actions.getUser();
@@ -87,11 +88,11 @@ function App() {
 
   return (
     <ThemeProvider theme={light ? themeLight : themeDark}>
-    <CssBaseline />
+      <CssBaseline />
       <TheContext.Provider value={{ user, setUser, getTheUser }}>
         <div className="App">
           {/* {Navbar()} */}
-          {user?.name ? <Navbar handler={updateState}/> : null}
+          {user?.name ? <Navbar handler={updateState} /> : null}
           {/* <Button onClick={() => setLight((prev) => !prev)}>Toggle Theme</Button> */}
 
           {/* <i>{user?.name}</i> */}
