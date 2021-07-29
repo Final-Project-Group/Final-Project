@@ -22,6 +22,7 @@ import "../App.css";
 import TheContext from "../TheContext";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
+import Button from "@material-ui/core/Button";
 
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -47,6 +48,8 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    flexGrow: 1,
+    textAlign: "left",
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -74,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    background: "#161616",
+    background: "#202020",
   },
   drawerHeader: {
     display: "flex",
@@ -101,6 +104,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
 
+  title: {
+    flexGrow: 1,
+  },
   // offset: theme.mixins.toolbar,
 }));
 
@@ -163,9 +169,12 @@ export default function Navbar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" className={classes.title}>
             {returnPathname()}
           </Typography>
+          <Button onClick={props.handler} variant="outlined"  style={{color: "white"}}>
+            Dark mode
+          </Button>
         </Toolbar>
       </AppBar>
 

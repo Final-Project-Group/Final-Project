@@ -81,14 +81,19 @@ function App() {
     );
   }
 
+  // handler for dark theme toggle button
+  const updateState = () => {
+    setLight((prev) => !prev);
+  };
+
   return (
     <ThemeProvider theme={light ? themeLight : themeDark}>
     <CssBaseline />
       <TheContext.Provider value={{ user, setUser, getTheUser }}>
         <div className="App">
           {/* {Navbar()} */}
-          {user?.name ? <Navbar /> : null}
-          <Button onClick={() => setLight((prev) => !prev)}>Toggle Theme</Button>
+          {user?.name ? <Navbar handler={updateState}/> : null}
+          {/* <Button onClick={() => setLight((prev) => !prev)}>Toggle Theme</Button> */}
 
           {/* <i>{user?.name}</i> */}
           {/* Development navbar, comment when done! */}
