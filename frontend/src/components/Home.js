@@ -62,10 +62,14 @@ function Home(props) {
                     <li className="home-event-link">
                         <Link 
                             to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}
-                            style={{ textDecoration: 'none' }}
+                            style={{ textDecoration: 'none' }}                            
                         >
-                            <Card
+                            <Card 
                                 className={classes.root}
+                                id="card" 
+                                style={{
+                                    borderRadius: '5%',
+                                }}
                             >
                                 <CardActionArea>
                                     <CardMedia
@@ -75,24 +79,26 @@ function Home(props) {
                                     image={event.image}
                                     title="Sport Image"
                                     />
-                                    <CardContent>
-                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto'}}>
+                                    <CardContent style={{backgroundColor: 'rgb(75,105,40)'}}>
+                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="textPrimary" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)'}}>
                                             <div className="home-event-typography">
-                                                <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'baxsketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
+                                                <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
                                             </div>
+                                        </Typography>
+                                        <Typography className="home-event-info-1" color="textPrimary" style={{ background: 'rgb(75,105,40)'}}>
+                                            <div><span>{event.location}</span></div>
+                                            <span className="home-event-span"> {event.date.split('T', 1)}</span>
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
-                                <div className="home-event-info">
+                                <Typography className="home-event-info" color="textPrimary" style={{ backgroundImage: 'linear-gradient(rgb(75,105,40), black)'}}>
                                     <div className="home-event-info-row">
-                                        <span>{event.date.split('T', 1)}</span>
-                                        <span>{event.sport}</span>
+                                        <span lassName="home-event-span">Creator  <br/>  {event.creator.name}</span>
+                                        <span>Spots   <br/> {event.spots - event.members.length}/{event.spots}</span>
                                     </div>
-                                    <div className="home-event-info-row">
-                                        <span>{event.creator.name}</span>
-                                        <span>spots: {event.spots - event.members.length}/{event.spots}</span>
+                                    <div className="home-event-info-middle">                                    
                                     </div>
-                                </div>
+                                </Typography>
                             </Card>
                             <br/>
                         </Link>
@@ -127,16 +133,18 @@ function Home(props) {
                                                 <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
                                             </div>
                                         </Typography>
+                                        <Typography className="home-event-info-1" color="textPrimary" style={{ background: 'rgb(75,105,40)'}}>
+                                            <div><span>{event.location}</span></div>
+                                            <span className="home-event-span"> {event.date.split('T', 1)}</span>
+                                        </Typography>
                                     </CardContent>
                                 </CardActionArea>
                                 <Typography className="home-event-info" color="textPrimary" style={{ backgroundImage: 'linear-gradient(rgb(75,105,40), black)'}}>
                                     <div className="home-event-info-row">
-                                        <span> {event.date.split('T', 1)}</span>
-                                        <h5 className="home-event-location-text">{event.location}</h5>
+                                        <span lassName="home-event-span">Creator  <br/>  {event.creator.name}</span>
+                                        <span>Spots   <br/> {event.spots - event.members.length}/{event.spots}</span>
                                     </div>
-                                    <div className="home-event-info-row">
-                                        <span>creator: {event.creator.name}</span>
-                                        <span>spots: {event.spots - event.members.length}/{event.spots}</span>
+                                    <div className="home-event-info-middle">                                    
                                     </div>
                                 </Typography>
                             </Card>
@@ -181,7 +189,21 @@ function Home(props) {
                     </Tabs>
                 </div>
                 <div className="home-container-create-button">
-                    <Link to="/createEvent" style={{ textDecoration: 'none' }}><Button variant="outlined" style={{border: '4px solid white', borderRadius: '40px', width: '15vw', height: '8vh', fontSize: '3vh'}}>Create Event</Button></Link>
+                    <Link to="/createEvent" style={{ textDecoration: 'none' }}><Button variant="outlined" style={{
+                        fontSize: '200%',
+                        display:'inline-block',
+                        padding:'0.35em 1.2em',
+                        border:'0.1em solid #FFFFFF',
+                        margin:'0 0.3em 0.3em 0',
+                        borderRadius:'40px',
+                        boxSizing: 'border-box',
+                        textDecoration:'none',
+                        fontFamily:'Roboto,sans-serif',
+                        fontWeight:'300',
+                        color:'#FFFFFF',
+                        textAlign:'center',
+                        transition: 'all 0.2s',
+                        }}>Create Event</Button></Link>
                     <br/>
                     <h2>- OR -</h2>
                     <h2>JOIN EVENT</h2>

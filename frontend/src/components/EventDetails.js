@@ -8,13 +8,13 @@ import NodeGeocoder from "node-geocoder";
 import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-import { AccessAlarm, ThreeDRotation } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import Typography from '@material-ui/core/Typography';
 
 const JOSE_API_KEY = process.env.REACT_APP_API_KEY;
 const useStyles = makeStyles((theme) => ({
@@ -262,75 +262,74 @@ function EventDetails(props) {
 
   const showEvent = (props) => {
     return (
-      <div>
-        <img src={details?.image}></img>
-        {/* <div className="materialList">
-          
-          <List
-            component="nav"
-            className={classes.root}
-            aria-label="mailbox folders"
-          >
-            <ListItem button>
-              <ListItemText primary="Inbox" />
-            </ListItem>
-            <Divider />
-            <ListItem button divider>
-              <ListItemText primary="Drafts" />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Trash" />
-            </ListItem>
-            <Divider light />
-            <ListItem button>
-              <ListItemText primary="Spam" />
-            </ListItem>
-          </List>
-        </div> */}
-
-        <h3>{details?.eventName}</h3>
-        <div className="detailsText">
-          <p>Sport: {details?.sport}</p>
-          <p>Address: {details?.location}</p>
-          {console.log(details?.location)}
-          <p>Date & time: {details?.date}</p>
-          <p>Ages: {details?.age}</p>
-          <p>Level: {details?.level}</p>
-          <p>
-            {`Total: ${details?.spots} / Available: ${
-              details?.spots - details?.members?.length
-            }`}
-          </p>
-          <ul>
-            Members:
-            {details?.members?.map((member) => {
-              return (
-                <li key={member._id}>
-                  <h5>{member.name}</h5>
-                </li>
-              );
-            })}
-          </ul>
-          <p>Description: {details?.description}</p>
-        </div>
-        {user._id === details?.creator?._id ? (
-          <Link to={`/editEvent/${details?._id}`}>
-            {" "}
-            <button> Edit </button>{" "}
-          </Link>
-        ) : details?.members
-            ?.map((each) => each._id === user._id)
-            .includes(true) ? (
-          <Button variant="contained" color="primary" onClick={leave}>
-            Leave Event
-          </Button>
-        ) : (
-          <Button variant="contained" color="primary" onClick={memberJoin}>
-            Join Event
-          </Button>
-        )}
-        <br />
-        <br />
+      <div className="event-details-card">
+        <Card
+          style={{
+            borderRadius: '5%',
+            border: '6px solid rgb(75,105,40)'
+          }}
+        >
+          <CardContent>
+          <CardMedia
+            component="img"
+            alt="Image is not working"
+            height="550"
+            image={details?.image}
+            style={{
+              borderRadius: '5%',
+            }}
+            title="Sport Image"
+            />
+            <br/>
+            <br/>
+            <br/>
+            <Typography clsasName="text" color="textSecondary" gutterBottom>
+              <p className="detailsText-sport">{details?.sport ? details?.sport[0].toUpperCase() + details?.sport.slice(1) : details?.sport}</p>
+            <h1 className="event-details-card-h1">{details?.eventName}</h1>
+            <div className="detailsText">
+              <p className="detailsText-address">{details?.location}</p>
+              {console.log(details?.location)}
+              <p className="detailsText-date">{details?.date ? details?.date.split('T', 1) : details?.date} {details?.date ? details?.date.split("T").pop() : details?.date}</p>
+              <div className="detailsText-row">
+                <p className="detailsText-ages">Ages <br/> { details?.age ? details?.age[0].toUpperCase() + details?.age.slice(1) : details?.age}</p>
+                <p className="detailsText-ages">Level <br/> { details?.level ? details?.level[0].toUpperCase() + details?.level.slice(1) : details?.level} </p>
+              </div>
+              <p className="detailsText-spots">
+                {`Total: ${details?.spots} / Available: ${
+                  details?.spots - details?.members?.length
+                }`}
+              </p>
+              <ul className="detailsText-ul">
+                Members:
+                {details?.members?.map((member) => {
+                  return (
+                    <li key={member._id}>
+                      {member.name}
+                    </li>
+                  );
+                })}
+              </ul>
+              <p className="detailsText-description">Description <br/> {details?.description}</p>
+            </div>
+            {user._id === details?.creator?._id ? (
+              <Link to={`/editEvent/${details?._id}`}>
+                {" "}
+                <button> Edit </button>{" "}
+              </Link>
+            ) : details?.members
+                ?.map((each) => each._id === user._id)
+                .includes(true) ? (
+              <Button variant="contained" color="primary" onClick={leave}>
+                Leave Event
+              </Button>
+            ) : (
+              <Button variant="contained" color="primary" onClick={memberJoin}>
+                Join Event
+              </Button>
+            )}
+            </Typography>
+          </CardContent>
+        </Card>
       </div>
     );
   };
