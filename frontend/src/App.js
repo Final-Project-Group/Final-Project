@@ -25,6 +25,10 @@ import Button from "@material-ui/core/Button";
 
 const themeLight = createTheme({
   palette: {
+    primary: {
+      dark: "rgb(75,105,40)",
+      main: "rgb(75,105,40)",
+    },
     background: {
       default: "#e4f0e2",
     },
@@ -37,6 +41,14 @@ const themeLight = createTheme({
 
 const themeDark = createTheme({
   palette: {
+    primary: {
+      // dark: "rgb(75,105,40)",
+      main: "rgb(75,105,40)",
+    },
+    secondary: {
+      // dark: "rgb(75,105,40)",
+      main: "rgb(75,105,40)",
+    },
     background: {
       default: "#000000",
     },
