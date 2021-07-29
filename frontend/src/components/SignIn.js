@@ -20,11 +20,10 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Jogo Inc
+      <Link color="inherit" href="https://github.com/Final-project-group/Jogo" target="_blank">
+        Jogo Inc.
       </Link>{" "}
       {new Date().getFullYear()}
-      {"."}
     </Typography>
   );
 }
@@ -165,7 +164,7 @@ export default function SignIn(props) {
           />
         </form>
       </div>
-      <Box mt={8}>
+      <Box mt={5}>
         <Copyright />
       </Box>
     </Container>

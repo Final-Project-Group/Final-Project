@@ -3,48 +3,46 @@ import { GoogleLogin } from "react-google-login";
 import actions from "../api";
 import TheContext from "../TheContext";
 
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textPrimary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Jogo Inc
-      </Link>{' '}
+      {"Copyright © "}
+      <Link color="inherit" href="https://github.com/Final-project-group/Jogo" target="_blank">
+        Jogo Inc.
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
-
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -53,8 +51,8 @@ const useStyles = makeStyles((theme) => ({
   input: {
     // color:"white",
     background: "white",
-    color:"black",
-  }
+    color: "black",
+  },
 }));
 
 function Auth(props) {
@@ -66,7 +64,6 @@ function Auth(props) {
   const [country, setCountry] = useState("");
 
   //console.log(user.country);
-
 
   useEffect(() => {
     setCountry(user?.country);
@@ -97,18 +94,18 @@ function Auth(props) {
 
   return (
     <Container component="main" maxWidth="xs">
-    {sendRedirectUser()}
+      {sendRedirectUser()}
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        
+
         <Typography component="h1" variant="h5">
           Sign up with email:
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container spacing={2} >
+          <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"
@@ -120,9 +117,8 @@ function Auth(props) {
                 label="First Name"
                 autoFocus
                 InputProps={{
-                  className: classes.input
+                  className: classes.input,
                 }}
-                
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -135,7 +131,7 @@ function Auth(props) {
                 name="lastName"
                 autoComplete="lname"
                 InputProps={{
-                  className: classes.input
+                  className: classes.input,
                 }}
               />
             </Grid>
@@ -149,7 +145,7 @@ function Auth(props) {
                 name="email"
                 autoComplete="email"
                 InputProps={{
-                  className: classes.input
+                  className: classes.input,
                 }}
               />
             </Grid>
@@ -164,7 +160,7 @@ function Auth(props) {
                 id="password"
                 autoComplete="current-password"
                 InputProps={{
-                  className: classes.input
+                  className: classes.input,
                 }}
               />
             </Grid>
@@ -186,25 +182,24 @@ function Auth(props) {
             Sign Up
           </Button>
           <Grid container justifyContent="flex-end">
-          
             <Grid item>
               <Link href="/signin" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>
-          <br/>
+          <br />
           <Typography component="h1" variant="h5">
-          Or sign in with Google:
-        </Typography>
-        <br/>
-        <GoogleLogin
-        clientId={process.env.REACT_APP_GOOGLEID}
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={"single_host_origin"}
-      />
+            Or sign in with Google:
+          </Typography>
+          <br />
+          <GoogleLogin
+            clientId={process.env.REACT_APP_GOOGLEID}
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={"single_host_origin"}
+          />
         </form>
       </div>
       <Box mt={5}>
