@@ -9,6 +9,8 @@ import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 const JOSE_API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -104,17 +106,29 @@ function CreateEvent(props) {
   };
 
   return (
-    <div>
+    <div className="create-details">
       <h1>Create Event</h1>
-      <form className="UserInfo" onSubmit={handleSubmit}>
+      <Card
+          style={{
+            borderRadius: '5%',
+            width:'80vw',
+            border: '2px solid white',
+            backgroundColor: 'black'
+          }}>
+          <CardContent>
+          <form className="UserInfo" onSubmit={handleSubmit}>
         <TextField
-          label="location"
-          name="location"
+          label="Event Name:"
+          name="eventName"
           id="filled-size-small"
           variant="filled"
           size="small"
           onChange={handleChange}
           required={true}
+          style={{
+            borderRadius: '40px',
+            backgroundColor: 'white'
+          }}
         />
         <br />
         <TextField
@@ -127,6 +141,11 @@ function CreateEvent(props) {
           }}
           onChange={handleChange}
           required={true}
+          style={{
+            color: 'white',
+            borderRadius: '40px',
+            // backgroundColor: 'white'
+          }}
         />
         <br />
         Sport:
@@ -138,10 +157,25 @@ function CreateEvent(props) {
           // renderValue={() => (event.sport ? event.sport : "")}
           onChange={handleChange}
           required={true}
+          style={{
+              width: '200px',
+              color: 'black',
+              borderRadius: '40px',
+              backgroundColor: 'white'
+            }}
         >
-          <MenuItem value="soccer">soccer</MenuItem>
-          <MenuItem value="basketball">basketball</MenuItem>
-          <MenuItem value="tennis">tennis</MenuItem>
+          <MenuItem value="soccer"
+            style={{
+              color: 'black',
+            }}>soccer</MenuItem>
+          <MenuItem value="basketball"
+            style={{
+              color: 'black',
+            }}>basketball</MenuItem>
+          <MenuItem value="tennis"
+            style={{
+              color: 'black',
+            }}>tennis</MenuItem>
         </Select>
         Level:
         <Select
@@ -150,11 +184,28 @@ function CreateEvent(props) {
           name="level"
           value={level}
           onChange={handleChange}
+          style={{
+              width: '200px',
+              color: 'black',
+              borderRadius: '40px',
+              backgroundColor: 'white'
+            }}
           // renderValue={() => (level ? level : "beginner")}
         >
-          <MenuItem value="beginner">beginner</MenuItem>
-          <MenuItem value="intermediate">intermediate</MenuItem>
-          <MenuItem value="advanced">advanced</MenuItem>
+          <MenuItem 
+            value="beginner"
+            style={{
+              color: 'black',
+            }}
+          >beginner</MenuItem>
+          <MenuItem value="intermediate"
+            style={{
+              color: 'black',
+            }}>intermediate</MenuItem>
+          <MenuItem value="advanced"
+            style={{
+              color: 'black',
+            }}>advanced</MenuItem>
         </Select>
         Age:
         <Select
@@ -165,10 +216,28 @@ function CreateEvent(props) {
           onChange={handleChange}
           // renderValue={() => (level3 ? level3 : "beginner")}
           required={true}
+          style={{
+              width: '200px',
+              color: 'black',
+              borderRadius: '40px',
+              backgroundColor: 'white'
+            }}
         >
-          <MenuItem value="kids">kids</MenuItem>
-          <MenuItem value="teens">teens</MenuItem>
-          <MenuItem value="adults">adults</MenuItem>
+          <MenuItem value="kids"
+            style={{
+              color: 'black',
+            }}>kids</MenuItem>
+          <MenuItem 
+            style={{
+              color: 'black',
+            }}
+            value="teens">teens</MenuItem>
+          <MenuItem
+            value="adults"
+            style={{
+              color: 'black',
+            }}
+          >adults</MenuItem>
         </Select>
         <br />
         <TextField
@@ -179,16 +248,24 @@ function CreateEvent(props) {
           size="small"
           onChange={handleChange}
           required={false}
+          style={{
+            borderRadius: '40px',
+            backgroundColor: 'white'
+          }}
         />
         <br />
         <TextField
-          label="Event Name:"
-          name="eventName"
+          label="location"
+          name="location"
           id="filled-size-small"
           variant="filled"
           size="small"
           onChange={handleChange}
           required={true}
+          style={{ 
+            backgroundColor: "white", 
+            borderRadius: '40px', 
+          }}
         />
         <br />
         <TextField
@@ -199,6 +276,10 @@ function CreateEvent(props) {
           size="small"
           onChange={handleChange}
           required={true}
+          style={{
+            borderRadius: '40px',
+            backgroundColor: 'white'
+          }}
         />
         <br />
         Spots:
@@ -225,6 +306,8 @@ function CreateEvent(props) {
           Save
         </Button>
       </form>
+      </CardContent>
+      </Card>
     </div>
   );
 }

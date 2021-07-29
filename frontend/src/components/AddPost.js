@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import actions from '../api'
+import Button from "@material-ui/core/Button";
 
 function AddPost(props) {
 
@@ -22,10 +23,17 @@ function AddPost(props) {
     return (
         <div>
             <h3>Add Comment</h3>
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
                 <input type="text" onChange={handleChange} placeholder="Enter a post" />
-                <button>Submit</button>
-            </form>
+                <Button variant="contained" 
+                style={{
+                  backgroundColor: 'rgb(75,105,40)',
+                  color: 'white',
+                  borderRadius: '40px'
+                }} >
+                Leave Event
+              </Button>
+            </form> */}
         </div>
     );
 }
