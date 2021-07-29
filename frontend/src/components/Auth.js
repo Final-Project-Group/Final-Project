@@ -31,23 +31,25 @@ function Copyright() {
         Jogo Inc.
       </Link>{" "}
       {new Date().getFullYear()}
+      {'.'}
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
+
   paper: {
     marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -56,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
   input: {
     // color:"white",
     background: "white",
-    color: "black",
-  },
+    color:"black",
+  }
 }));
 
 export default function Auth(props, { setToken }) {
@@ -127,13 +129,13 @@ export default function Auth(props, { setToken }) {
 
   return (
     <Container component="main" maxWidth="xs">
-      {sendRedirectUser()}
+    {sendRedirectUser()}
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <LockOutlinedIcon/>
         </Avatar>
-
+        
         <Typography component="h1" variant="h5">
           Sign up with email:
         </Typography>
@@ -165,7 +167,7 @@ export default function Auth(props, { setToken }) {
                 name="lastName"
                 autoComplete="lname"
                 InputProps={{
-                  className: classes.input,
+                  className: classes.input
                 }}
               />
             </Grid> */}
@@ -179,7 +181,7 @@ export default function Auth(props, { setToken }) {
                 name="email"
                 autoComplete="email"
                 InputProps={{
-                  className: classes.input,
+                  className: classes.input
                 }}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -195,7 +197,7 @@ export default function Auth(props, { setToken }) {
                 id="password"
                 autoComplete="current-password"
                 InputProps={{
-                  className: classes.input,
+                  className: classes.input
                 }}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -218,24 +220,25 @@ export default function Auth(props, { setToken }) {
             Sign Up
           </Button>
           <Grid container justifyContent="flex-end">
+          
             <Grid item>
               <Link href="/signin" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>
-          <br />
+          <br/>
           <Typography component="h1" variant="h5">
-            Or sign in with Google:
-          </Typography>
-          <br />
-          <GoogleLogin
-            clientId={process.env.REACT_APP_GOOGLEID}
-            buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={"single_host_origin"}
-          />
+          Or sign in with Google:
+        </Typography>
+        <br/>
+        <GoogleLogin
+        clientId={process.env.REACT_APP_GOOGLEID}
+        buttonText="Login"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={"single_host_origin"}
+      />
         </form>
       </div>
       <Box mt={5}>
