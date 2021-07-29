@@ -172,7 +172,11 @@ export default function Navbar(props) {
           <Typography variant="h6" className={classes.title}>
             {returnPathname()}
           </Typography>
-          <Button onClick={props.handler} variant="outlined"  style={{color: "white"}}>
+          <Button
+            onClick={props.handler}
+            variant="outlined"
+            style={{ color: "white" }}
+          >
             Dark mode
           </Button>
         </Toolbar>
