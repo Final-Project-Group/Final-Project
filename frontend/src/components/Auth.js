@@ -17,12 +17,17 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import PropTypes from "prop-types";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textPrimary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://github.com/Final-project-group/Jogo" target="_blank">
+      <Link
+        color="inherit"
+        href="https://github.com/Final-project-group/Jogo"
+        target="_blank"
+      >
         Jogo Inc.
       </Link>{" "}
       {new Date().getFullYear()}
@@ -55,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Auth(props) {
+export default function Auth(props, { setToken }) {
   const classes = useStyles();
 
   let { getTheUser } = useContext(TheContext);
@@ -63,14 +68,42 @@ function Auth(props) {
 
   const [country, setCountry] = useState("");
 
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [name, setName] = useState();
+  const [allUsers, setAllUsers] = useState();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let res = await actions.signupUser( email );
+    console.log(res);
+    console.log(email);
+
+    let ras = await actions.createUser({email,password,name})
+    console.log(ras)
+
+    // const token = await actions.loginUser({
+    //   email,
+    //   password,
+    //   name
+    // });
+    // setToken(token);
+    // console.log(token)
+  };
+
   //console.log(user.country);
 
-  useEffect(() => {
+  useEffect(async () => {
+    let res = await actions.getAllUsers();
+    setAllUsers(res?.data);
+    console.log(res?.data);
+
     setCountry(user?.country);
 
     console.log(country);
-  }, []);
+  }, [props]);
 
+  console.log(allUsers);
   const responseGoogle = async (response) => {
     console.log(response);
     await actions.authenticate(response.profileObj);
@@ -104,24 +137,25 @@ function Auth(props) {
         <Typography component="h1" variant="h5">
           Sign up with email:
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={12}>
               <TextField
                 autoComplete="fname"
-                name="firstName"
+                name="name"
                 variant="outlined"
-                required
+                required={true}
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="name"
+                label="Full Name"
                 autoFocus
                 InputProps={{
                   className: classes.input,
                 }}
+                onChange={(e) => setName(e.target.value)}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            {/* <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
@@ -134,11 +168,11 @@ function Auth(props) {
                   className: classes.input,
                 }}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                required
+                required={true}
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -147,12 +181,13 @@ function Auth(props) {
                 InputProps={{
                   className: classes.input,
                 }}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                required
+                required={true}
                 fullWidth
                 name="password"
                 label="Password"
@@ -162,6 +197,7 @@ function Auth(props) {
                 InputProps={{
                   className: classes.input,
                 }}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -223,4 +259,6 @@ function Auth(props) {
   // );
 }
 
-export default Auth;
+Auth.propTypes = {
+  setToken: PropTypes.func.isRequired,
+};

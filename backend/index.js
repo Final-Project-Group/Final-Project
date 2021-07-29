@@ -19,6 +19,12 @@ app.use(cors({
     origin: ['http://localhost:3000', process.env.clientURL] //Add client urls to allow CORS
 }))
 
+app.use('/api/login', (req, res) => {
+    res.send({
+      token: 'test123'
+    });
+  });
+  
 
 app.use('/api', require('./routes.js'))
 

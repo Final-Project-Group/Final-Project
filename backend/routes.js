@@ -17,9 +17,38 @@ router.get("/", (req, res) => {
 //     })
 // });
 
-router.get("/get-the-user", authorize, async (req, res) => {
+
+router.get("/get-the-user",  async (req, res) => {
   let user = await User.findById(res.locals.user._id);
   res.json(user);
+});
+
+// These two are broken / incomplete ATM
+router.get("/get-all-users",  async (req, res) => {
+  let users = await User.find();
+  res.json(users);
+});
+router.get("/signup-user",  async (req, res) => {
+console.log(req.body)
+  User.find({email: req.body.email})
+    
+    .then((posts) => {
+      res.json(posts);
+    });
+
+  // let users = await User.find({ email: req.body.email });
+  // console.log(req);
+  // res.json(users);
+});
+
+// Create user with email
+router.post("/create-user", async (req, res) => {
+  let newUser = req.body;
+  
+  User.create(req.body).then((event) => {
+    res.json(event);
+    // console.log(event);
+  });
 });
 
 router.post("/edit-event", authorize, async (req, res) => {

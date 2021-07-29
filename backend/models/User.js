@@ -6,7 +6,8 @@ const userSchema = new Schema({
     imageUrl: String,
     googleId: String,
     country: String,
-    sports: Array
+    sports: Array,
+    password: String
 })
 
 module.exports = model('User', userSchema);

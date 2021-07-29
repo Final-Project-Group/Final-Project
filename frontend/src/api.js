@@ -60,9 +60,33 @@ const actions = {
     );
     return res;
   },
+  // Create user with email
+  createUser: async (user) => {
+    return await axios.post(`${serverUrl}/create-user`, user, createHeaders());
+  },
   getUser: async () => {
     return await axios.get(`${serverUrl}/get-the-user`, createHeaders());
   },
+
+  // These two are broken / incomplete ATM
+  getAllUsers: async () => {
+    return await axios.get(`${serverUrl}/get-all-users`, createHeaders());
+  },
+  signupUser: async (email) => {
+    return await axios.get(`${serverUrl}/signup-user`, createHeaders());
+  },
+  // loginUser: async (credentials) => {
+  //   return fetch(`${serverUrl}/signup`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(credentials)
+  //   })
+  //     .then(data => data.json())
+  //  },
+
+  // Add details to event
   addDetails: async (user) => {
     let res = await axios.post(
       `${serverUrl}/add-details`,
@@ -102,6 +126,7 @@ const actions = {
   getEvents: async (post) => {
     return await axios.get(`${serverUrl}/all-the-events`, createHeaders());
   },
+  
 
   authenticate: async (profileObj) => {
     console.log(profileObj, "profileObj");

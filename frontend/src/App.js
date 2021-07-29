@@ -62,6 +62,7 @@ const themeDark = createTheme({
 function App() {
   let [user, setUser] = useState({});
   const [light, setLight] = useState(false);
+  const [token, setToken] = useState();
 
   const getTheUser = async () => {
     let res = await actions.getUser();
@@ -97,6 +98,10 @@ function App() {
   const updateState = () => {
     setLight((prev) => !prev);
   };
+
+  // if(!token) {
+  //   return <SignIn setToken={setToken} />
+  // }
 
   return (
     <ThemeProvider theme={light ? themeLight : themeDark}>
@@ -150,7 +155,7 @@ function App() {
               path="/AddPost"
               render={(props) => <AddPost {...props} />}
             />
-            <Route exact path="/Auth" render={(props) => <Auth {...props} />} />
+            <Route exact path="/Auth" render={(props) => <Auth setToken={setToken} {...props} />} />
             <Route
               exact
               path="/signin"
