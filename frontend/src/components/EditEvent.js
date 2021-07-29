@@ -11,6 +11,8 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import axios from 'axios';
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import '../App.css';
 
@@ -130,6 +132,15 @@ function EditEvent(props) {
   return (
     <div className='editevent-container'>
       <h1>Edit Event</h1>
+      <Card
+        style={{
+          borderRadius: "5%",
+          width: "80vw",
+          border: "2px solid white",
+          backgroundColor: "black",
+        }}
+      >
+        <CardContent>
       <form className="UserInfo" onSubmit={handleSubmit}>
         {console.log(details)}
         <TextField
@@ -402,6 +413,8 @@ function EditEvent(props) {
           </div>
         </div>
       </form>
+      </CardContent>
+      </Card>
     </div>
   );
 }
