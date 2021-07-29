@@ -73,25 +73,25 @@ function App() {
     getTheUser();
   }, []);
 
-  function debugNavbar() {
-    return (
-      <div>
-        {/* <nav>
-          <Link to="/home">Home</Link>
-          <Link to='/'>Splash</Link>
-          <Link to="/CreateEvent">Create Event</Link>
-          <Link to="/UserInfo">User info</Link>
+  // function debugNavbar() {
+  //   return (
+  //     <div>
+  //       <nav>
+  //         <Link to="/home">Home</Link>
+  //         <Link to='/'>Splash</Link>
+  //         <Link to="/CreateEvent">Create Event</Link>
+  //         <Link to="/UserInfo">User info</Link>
 
-          {user?.name ?
-          <>
-            <Link to="/Profile">Profile</Link>
-            <Link to="/AddPost">AddPost</Link>
-          </>
-          : <Link to='/Auth'>Login/Signup</Link>}
-        </nav> */}
-      </div>
-    );
-  }
+  //         {user?.name ?
+  //         <>
+  //           <Link to="/Profile">Profile</Link>
+  //           <Link to="/AddPost">AddPost</Link>
+  //         </>
+  //         : <Link to='/Auth'>Login/Signup</Link>}
+  //       </nav>
+  //     </div>
+  //   );
+  // }
 
   // handler for dark theme toggle button
   const updateState = () => {
