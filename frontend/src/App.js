@@ -49,7 +49,7 @@ const themeDark = createTheme({
 
 function App() {
   let [user, setUser] = useState({});
-  const [light, setLight] = useState(true)
+  const [light, setLight] = useState(false)
 
   const getTheUser = async () => {
     let res = await actions.getUser();
