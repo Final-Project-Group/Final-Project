@@ -151,113 +151,115 @@ export default function Navbar(props) {
   };
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-        // style={{background: 'transparent', boxShadow: 'none'}}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            {returnPathname()}
-          </Typography>
-          <Button
-            onClick={props.handler}
-            variant="outlined"
-            style={{ color: "white" }}
-          >
-            Dark mode
-          </Button>
-        </Toolbar>
-      </AppBar>
-      {/* <Toolbar /> */}
-      <div className={classes.offset}/>
 
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton 
-            onClick={handleDrawerClose}
-            style={{
-              color: 'white'
-            }}
-          >
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </div>
-        <Divider />
-        <List
-          onClick={() => {
-            handleDrawerClose();
+    <div className="navbarParent">
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+          // style={{background: 'transparent', boxShadow: 'none'}}
+        >
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" className={classes.title}>
+              {returnPathname()}
+            </Typography>
+            <Button
+              onClick={props.handler}
+              variant="outlined"
+              style={{ color: "white" }}
+            >
+              Dark mode
+            </Button>
+          </Toolbar>
+        </AppBar>
+        {/* <Toolbar /> */}
+        {/* <div className={classes.offset}/> */}
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
           }}
         >
-          {[
-            <Link
-              to="/Profile"
-              style={{ textDecoration: "none", color: "lightgray" }}
+          <div className={classes.drawerHeader}>
+            <IconButton
+              onClick={handleDrawerClose}
+              style={{
+                color: 'white'
+              }}
             >
-              Profile
-            </Link>,
-            <Link
-              to="/home"
-              style={{ textDecoration: "none", color: "lightgray" }}
-            >
-              Home
-            </Link>,
-            <Link
-              to="/CreateEvent"
-              style={{ textDecoration: "none", color: "lightgray" }}
-            >
-              Create Event
-            </Link>,
-          ].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index === 0 ? (
-                  <img src={user.imageUrl} className="navProfileImg" />
-                ) : index === 1 ? (
-                  <HomeRoundedIcon style={{ fill: "lightgray" }} />
-                ) : (
-                  <AddRoundedIcon style={{ fill: "lightgray" }} />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        {/* <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
-      </Drawer>
+              {theme.direction === "ltr" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </div>
+          <Divider />
+          <List
+            onClick={() => {
+              handleDrawerClose();
+            }}
+          >
+            {[
+              <Link
+                to="/Profile"
+                style={{ textDecoration: "none", color: "lightgray" }}
+              >
+                Profile
+              </Link>,
+              <Link
+                to="/home"
+                style={{ textDecoration: "none", color: "lightgray" }}
+              >
+                Home
+              </Link>,
+              <Link
+                to="/CreateEvent"
+                style={{ textDecoration: "none", color: "lightgray" }}
+              >
+                Create Event
+              </Link>,
+            ].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index === 0 ? (
+                    <img src={user.imageUrl} className="navProfileImg" />
+                  ) : index === 1 ? (
+                    <HomeRoundedIcon style={{ fill: "lightgray" }} />
+                  ) : (
+                    <AddRoundedIcon style={{ fill: "lightgray" }} />
+                  )}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          {/* <List>
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List> */}
+        </Drawer>
+      </div>
     </div>
   );
 }

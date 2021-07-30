@@ -172,7 +172,7 @@ function UserInfo(props) {
 
   return (
     <div className="userinfo-container">
-      <h1 className="please-set-up">.</h1>
+      <section className="please-set-up">‎ </section>
       <form className="userinfo-form" onSubmit={handleSubmit}>
         <h1 className="please-set-up">Please set up your profile</h1>
         <br />

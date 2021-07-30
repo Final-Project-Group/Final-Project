@@ -135,9 +135,9 @@ html {
 }
 
 /* following code is nnecessary, official Material UI way to fix is adding a second invisible toolbar after navbar*/
-/* .navbarParent {
-  height: 64px;
-} */
+.navbarParent {
+  height: 15px;
+}
 
 /* not the best way to customize. please read documentation later and change */
 .MuiToolbar-root {
@@ -495,7 +495,7 @@ section {
 footer{
   /* position: fixed; */
   background: #000;
-  width: 100vw;
+  width: 100%;
   bottom: 0;
   left: 0;
 }

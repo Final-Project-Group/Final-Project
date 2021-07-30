@@ -68,8 +68,8 @@ function Footer(props) {
                         <ul class="box">
                             <li class="link_name">Contact</li>
                             <li><a href="#">+91 8879887262</a></li>
-                            <li><a href="#">+91 8879887262</a></li>
-                            <li><a href="#">contact@sitesoch.com</a></li>
+                            <li><a href="#">+325 3133740318</a></li>
+                            <li><a href="#">contact@jogo.com</a></li>
                             
                         
                         </ul>
@@ -81,7 +81,7 @@ function Footer(props) {
                 </div>
                     <div class="bottom-details">
                 <div class="bottom_text">
-                    <span class="copyright_text">Copyright © 2021 <a href="#">Sitesoch.</a></span>
+                    <span class="copyright_text">Copyright © 2021 <a href="#">Jogo Inc.</a></span>
                     <span class="policy_terms">
                     <a href="#">Privacy policy</a>
                     

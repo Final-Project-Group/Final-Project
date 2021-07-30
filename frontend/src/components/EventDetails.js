@@ -269,8 +269,8 @@ function EventDetails(props) {
                 variant="outlined"
                 style={{
                   // backgroundColor: 'white',
-                  border: '1px solid white',
-                  color: 'white',
+                  border: '1px solid rgb(75,105,40)',
+                  color: 'rgb(75,105,40)',
                   borderRadius: '40px'
                 }}
                 onClick={deletePost}

@@ -112,7 +112,8 @@ function App() {
       <TheContext.Provider value={{ user, setUser, getTheUser }}>
         <div className="App">
           {/* {Navbar()} */}
-          {user?.name ? <Navbar handler={updateState} /> : null}
+          {/* {user?.name ? <Navbar handler={updateState} /> : null} */}
+          {user?._id ? <Navbar handler={updateState} /> : null}
           {/* <Button onClick={() => setLight((prev) => !prev)}>Toggle Theme</Button> */}
 
           {/* <i>{user?.name}</i> */}
