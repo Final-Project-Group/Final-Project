@@ -6,6 +6,36 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import actions from "../api";
 import { useHistory } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import '../App.css';
+
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  input: {
+    // color:"white",
+    background: "white",
+    color: "black",
+    borderRadius: "40px",
+  },
+}));
 
 function UserInfo(props) {
   const [level, setLevel] = useState("");
@@ -13,24 +43,24 @@ function UserInfo(props) {
   const [level3, setLevel3] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const history = useHistory();
-
+  const classes = useStyles();
   const [user, setUser] = useState({
     country: "",
     sports: [
       {
-        name: "soccer",
+        name: "Soccer",
         favorite: false,
-        level: "beginner",
+        level: "Beginner",
       },
       {
-        name: "basketball",
+        name: "Basketball",
         favorite: false,
-        level: "beginner",
+        level: "Beginner",
       },
       {
-        name: "tennis",
+        name: "Tennis",
         favorite: false,
-        level: "beginner",
+        level: "Beginner",
       },
     ],
   });
@@ -50,7 +80,7 @@ function UserInfo(props) {
   }, [props]);
 
   const handleChange = (e) => {
-    if (e.target.name === "country") {
+    if (e.target.name === "Country") {
       let newUser = { ...user };
       newUser.country = e.target.value;
       setCurrentUser(newUser);
@@ -72,14 +102,14 @@ function UserInfo(props) {
     // newUser.sports[Number(e.target.name)].level = e.target.value;
     // setUser(newUser);
 
-    if (e.target.name === "soccer" && newUser.sports[0].favorite === true) {
+    if (e.target.name === "Soccer" && newUser.sports[0].favorite === true) {
       newUser.sports[0].level = e.target.value;
       setUser(newUser);
       newUser.country = currentUser.country;
       setCurrentUser(newUser);
       setLevel(e.target.value);
     } else if (
-      e.target.name === "basketball" &&
+      e.target.name === "Basketball" &&
       newUser.sports[1].favorite === true
     ) {
       setLevel2(e.target.value);
@@ -88,7 +118,7 @@ function UserInfo(props) {
       newUser.country = currentUser.country;
       setCurrentUser(newUser);
     } else if (
-      e.target.name === "tennis" &&
+      e.target.name === "Tennis" &&
       newUser.sports[2].favorite === true
     ) {
       setLevel3(e.target.value);
@@ -104,6 +134,12 @@ function UserInfo(props) {
     if (user.country === "") {
      
 
+      if(!user.imageUrl) {
+        let copyOfUser = { ...user };
+        copyOfUser.imageUrl = 'https://image.shutterstock.com/image-vector/default-avatar-profile-icon-social-260nw-1677509740.jpg'
+        setUser(copyOfUser);
+      }
+      
       let copyOfUser = { ...user };
       console.log(currentUser);
       console.log(user);
@@ -135,84 +171,175 @@ function UserInfo(props) {
   };
 
   return (
-    <div>
-      <h2>Please set up your profile</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="userinfo-container">
+      <h1 className="please-set-up">.</h1>
+      <form className="userinfo-form" onSubmit={handleSubmit}>
+        <h1 className="please-set-up">Please set up your profile</h1>
         <br />
         <TextField
-          label="country"
-          name="country"
+          label="Country"
+          name="Country"
           id="filled-size-small"
           variant="filled"
           size="small"
-          value={`${currentUser?.country ? currentUser?.country : ""}`}
+          value={`${currentUser?.country ? currentUser?.country[0].toUpperCase() +  currentUser?.country.slice(1) : ""}`}
           onChange={handleChange}
           required={true}
+          style={{
+            borderRadius: "40px",
+            backgroundColor: "white",
+            border: '4px solid rgb(75,105,40)',
+          }}
+          InputProps={{
+            className: classes.input,
+          }}
         />
         <br />
-        Soccer:
+        <h2>Soccer:</h2>
         <Checkbox
           name="0"
-          id="soccer"
+          id="Soccer"
           onChange={handleChange}
           inputProps={{ "aria-label": "primary checkbox" }}
+          style={{
+            color: 'white',
+          }}
           // checked={currentUser?.sports?.map((sport, i) => sport.favorite ? true : false) }
         />
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          name="soccer"
-          value={level ? level : "beginner"}
+          name="Soccer"
+          value={level ? level : "Beginner"}
           onChange={handleChange2}
-          renderValue={() => (level ? level : "beginner")}
+          renderValue={() => (level ? level : "Beginner")}
+          style={{
+            fontSize: '2vh',
+            backgroundColor: 'white',
+            color: 'black'
+          }}
         >
-          <MenuItem value="beginner">beginner</MenuItem>
-          <MenuItem value="intermediate">intermediate</MenuItem>
-          <MenuItem value="advanced">advanced</MenuItem>
+          <MenuItem 
+            value="Beginner"
+            style={{
+              color: 'black',
+            }}
+          >Beginner</MenuItem>
+          <MenuItem 
+            value="Intermediate"
+            style={{
+              color: 'black',
+            }}
+          >Intermediate</MenuItem>
+          <MenuItem
+            value="Advanced"
+            style={{
+              color: 'black',
+            }}
+          >Advanced</MenuItem>
         </Select>
         <br />
-        Basketball:
+        <h2>Basketball:</h2>
         <Checkbox
           name="1"
-          id="basketball"
+          id="Basketball"
           onChange={handleChange}
           inputProps={{ "aria-label": "primary checkbox" }}
+          style={{
+            color: 'white',
+          }}
         />
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          name="basketball"
-          value={level2 ? level2 : "beginner"}
+          name="Basketball"
+          value={level2 ? level2 : "Beginner"}
           onChange={handleChange2}
-          renderValue={() => (level2 ? level2 : "beginner")}
+          renderValue={() => (level2 ? level2 : "Beginner")}
+          style={{
+            fontSize: '2vh',
+            backgroundColor: 'white',
+            color: 'black'
+          }}
         >
-          <MenuItem value="beginner">beginner</MenuItem>
-          <MenuItem value="intermediate">intermediate</MenuItem>
-          <MenuItem value="advanced">advanced</MenuItem>
+          <MenuItem 
+            value="Beginner"
+            style={{
+              color: 'black',
+            }}>Beginner</MenuItem>
+          <MenuItem 
+            value="Intermediate"
+            style={{
+              color: 'black',
+            }}>Intermediate</MenuItem>
+          <MenuItem 
+            value="Advanced"
+            style={{
+              color: 'black',
+            }}>Advanced</MenuItem>
         </Select>
         <br />
-        Tennis:
+        <h2>Tennis:</h2>
         <Checkbox
           name="2"
-          id="tennis"
+          id="Tennis"
           onChange={handleChange}
           inputProps={{ "aria-label": "primary checkbox" }}
+          style={{
+            color: 'white',
+          }}
         />
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          name="tennis"
-          value={level3 ? level3 : "beginner"}
+          name="Tennis"
+          value={level3 ? level3 : "Beginner"}
           onChange={handleChange2}
-          renderValue={() => (level3 ? level3 : "beginner")}
+          renderValue={() => (level3 ? level3 : "Beginner")}
+          style={{
+            fontSize: '2vh',
+            backgroundColor: 'white',
+            color: 'black'
+          }}
         >
-          <MenuItem value="beginner">beginner</MenuItem>
-          <MenuItem value="intermediate">intermediate</MenuItem>
-          <MenuItem value="advanced">advanced</MenuItem>
+          <MenuItem 
+            value="Beginner"
+            style={{
+              color: 'black',
+            }}>Beginner</MenuItem>
+          <MenuItem 
+            value="Intermediate"
+            style={{
+              color: 'black',
+            }}>Intermediate</MenuItem>
+          <MenuItem 
+            value="Advanced"
+            style={{
+              color: 'black',
+            }}>Advanced</MenuItem>
         </Select>
         <br />
-        {/* { user._id === details?.creator?._id ? <Link to={`/editEvent/${details?._id}`}> <button> Edit </button> </Link> : <button onClick={memberJoin}>Join Event</button>} */}
-        <input type="submit" value="Submit" />
+        <br/>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          style={{
+            backgroundColor: 'white',
+            color: 'black',
+            border: '4px solid rgb(75,105,40)',
+            borderRadius: '40px',
+            width: '8%',
+          }}
+        >    Save
+        </Button>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </form>
     </div>
   );

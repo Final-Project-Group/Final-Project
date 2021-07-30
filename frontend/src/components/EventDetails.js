@@ -260,7 +260,6 @@ function EventDetails(props) {
       };
       if (eachPost.eventId === details?._id) {
         console.log(eachPost.userId._id);
-        console.log(user._id);
         return (
           <li key={eachPost._id} className="eventDetails-comments">
             <i>{eachPost.userId?.name}: </i> {eachPost.post}{" "}
@@ -290,7 +289,7 @@ function EventDetails(props) {
       <div className="event-details-card">
         <Card
           style={{
-            borderRadius: '5%',
+            borderRadius: '40px',
             border: '6px solid rgb(75,105,40)',
             backgroundImage: 'linear-gradient(0deg, #cfd6e6 1%, #e7eff9  60%)'
           }}
@@ -302,7 +301,7 @@ function EventDetails(props) {
             height="550"
             image={details?.image}
             style={{
-              borderRadius: '5%',
+              borderRadius: '40px',
             }}
             title="Sport Image"
             />
@@ -400,7 +399,8 @@ function EventDetails(props) {
             marginLeft: '15%',
             marginRight: '15%',
             borderRadius: '40px',
-            border: '10px solid white'
+            border: '10px solid white',
+            color: 'black'
           }}
         >
           <Marker
@@ -415,9 +415,14 @@ function EventDetails(props) {
             position={eventPosition}
             streetViewControl={true}
           />
-          <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
+          <InfoWindow 
+            marker={activeMarker}
+            visible={showingInfoWindow}
+            style={{
+              color: 'black',
+            }}>
             <div>
-              <h3>
+              <h3 className="location-marker">
                 {activeMarker.name === "Event location"
                   ? details?.location
                   : "Your location"}

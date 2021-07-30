@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
+  offset: theme.mixins.toolbar,
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
@@ -77,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    background: "#202020",
+    backgroundColor: 'black',
   },
   drawerHeader: {
     display: "flex",
@@ -181,7 +182,8 @@ export default function Navbar(props) {
           </Button>
         </Toolbar>
       </AppBar>
-      <Toolbar />
+      {/* <Toolbar /> */}
+      <div className={classes.offset}/>
 
       <Drawer
         className={classes.drawer}
@@ -193,7 +195,12 @@ export default function Navbar(props) {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton 
+            onClick={handleDrawerClose}
+            style={{
+              color: 'white'
+            }}
+          >
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
             ) : (

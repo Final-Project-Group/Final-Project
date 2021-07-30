@@ -41,7 +41,8 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: 'white',
+    border: '5px solid rgb(75,105,40)',
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -157,31 +158,55 @@ export default function SignIn(props) {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
+          <br/>
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
+            // color="primary"
             className={classes.submit}
+            style={{
+              backgroundColor: 'white',
+              color: 'black',
+              border: '4px solid rgb(75,105,40)',
+              borderRadius: '40px',
+              width: '40%',
+            }}
           >
             Sign In
           </Button>
+          <br/>
+          <br/>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link 
+                href="#"
+                variant="body2"
+                style={{
+                  color: 'white'
+                }}
+              >
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/Auth" variant="body2">
+              <Link 
+                href="/Auth"
+                variant="body2"
+                style={{
+                  color: 'white'
+                }}
+              >
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
           <br />
+          <br/>
           <Typography component="h1" variant="h5">
             Or sign in with Google:
           </Typography>
+          <br />
           <br />
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLEID}

@@ -12,6 +12,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
+import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
+import SportsTennisIcon from '@material-ui/icons/SportsTennis';
+import { makeStyles } from '@material-ui/core/styles';
+import Footer from './Footer';
 import '../App.css';
 
 function Profile(props) {
@@ -22,6 +27,14 @@ function Profile(props) {
 
   const history = useHistory();
 
+  const useStyles = makeStyles({
+    root: {
+      maxWidth: 345,
+    },
+  });
+
+const classes = useStyles();
+
   useEffect(() => {
     (async () => {
       console.log("anything");
@@ -30,6 +43,12 @@ function Profile(props) {
       let ras = await actions.getEvents()
       console.log(ras.data)
       setAllEvents(ras.data);
+      console.log(user.imageUrl)
+      if(!user.imageUrl) {
+        let copyOfUser = { ...user };
+        copyOfUser.imageUrl = 'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'
+        setUser(copyOfUser);
+      }
     })();
   }, [props]);
 
@@ -40,7 +59,49 @@ function Profile(props) {
         if (eachMember._id === user._id) {
           return (
             <li className="profile-li">
-              <Card style={{backgroundColor: ""}}>
+                <Link 
+                    to={`/eventDetails/${eachEvent._id}`} key={`${eachEvent.userId}+${eachEvent._id}`}
+                    style={{ textDecoration: 'none' }}                            
+                >
+              <Card 
+                className={classes.root}
+                id="card" 
+                style={{
+                    borderRadius: '5%',
+                    // border: '6px solid rgb(13,92,30)'
+                }}
+            >
+                <CardActionArea>
+                    <CardMedia
+                    component="img"
+                    alt="Image is not working"
+                    height="140"
+                    image={eachEvent.image}
+                    title="Sport Image"
+                    />
+                    <CardContent style={{backgroundColor: 'rgb(75,105,40)'}}>
+                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="textPrimary" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)'}}>
+                            <div className="home-event-typography">
+                                <h4>{eachEvent.eventName} {eachEvent.sport === 'soccer' ? <SportsSoccerIcon/> : eachEvent.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
+                            </div>
+                        </Typography>
+                        <Typography className="home-event-info-1" color="textPrimary" style={{ background: 'rgb(75,105,40)'}}>
+                            <div><span>{eachEvent.location}</span></div>
+                            <span className="home-event-span"> {eachEvent.date.split('T', 1)}</span>
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <Typography className="home-event-info" color="textPrimary" style={{ backgroundImage: 'linear-gradient(rgb(75,105,40), black)'}}>
+                    <div className="home-event-info-row">
+                        <span lassName="home-event-span">Creator  <br/>  {eachEvent.creator.name}</span>
+                        <span>Spots   <br/> {eachEvent.spots - eachEvent.members.length}/{eachEvent.spots}</span>
+                    </div>
+                    <div className="home-event-info-middle">                                    
+                    </div>
+                </Typography>
+              </Card>
+              </Link>
+              {/* <Card style={{backgroundColor: ""}}>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
                     {eachEvent.eventName}
@@ -50,7 +111,7 @@ function Profile(props) {
                     <br />
                   </Typography>
                 </CardContent>
-              </Card>
+              </Card> */}
             </li>
           )
         }
@@ -80,12 +141,19 @@ function Profile(props) {
 
   return (
     <div className="profile-container">
-
       <div className="profile-container-user-info">
-            <img className="profile-container-image" src={userUpdated.imageUrl} />
+          <div className="profile-border">
+            <img className="profile-container-image"
+              src={userUpdated.imageUrl ? userUpdated.imageUrl : user.imageUrl} 
+              border="5px solid"  
+            />
             <div className="profile-container-name-and-country">
-              <h2 className="profile-container-name">{userUpdated.name}</h2>
-              <h2 className="profile-container-country">country: {userUpdated.country}</h2>
+              <h2 className="profile-container-name">{ userUpdated?.name ? userUpdated?.name[0].toUpperCase() + userUpdated?.name.slice(1) : userUpdated.name }</h2>
+              <div 
+                className="profile-container-country"
+              > 
+                {userUpdated.country ? userUpdated?.country[0].toUpperCase() + userUpdated?.country.slice(1) : userUpdated?.country}
+              </div>
             </div>
 
             <ul className="profile-container-ul">
@@ -97,8 +165,14 @@ function Profile(props) {
                 <Link to="/UserInfo" style={{ textDecoration: 'none' }}>
                   <Button
                     variant="contained"
-                    color="default"
+                    color="primary"
                     startIcon={<EditIcon />}
+                    style={{
+                      backgroundColor: 'white',
+                      color: 'black',
+                      border: '4px solid rgb(75,105,40)',
+                      borderRadius: '40px',
+                    }}
                   >
                   Edit
                   </Button>
@@ -110,19 +184,28 @@ function Profile(props) {
                     color="default"
                     onClick={logOut}
                     startIcon={<ExitToAppIcon />}
+                    style={{
+                      backgroundColor: 'white',
+                      color: 'black',
+                      border: '4px solid rgb(75,105,40)',
+                      borderRadius: '40px',
+                    }}
                   >
                   Log out
                 </Button>
               </div>
-          </div>
-      </div>
-      <div>
+          </div>      
+      <div className="activities">
           <h2 className="profile-container-activities">Activities:</h2>
           <ul className="profile-ul">
             {showActivities()}
           </ul>
+          <Footer/>
+      </div>
+      </div>
       </div>
     </div>
+
   );
 }
 

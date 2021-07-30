@@ -21,6 +21,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
 import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
 import SportsTennisIcon from '@material-ui/icons/SportsTennis';
+import Footer from './Footer';
 
 function Home(props) {
 
@@ -193,13 +194,13 @@ function Home(props) {
                         fontSize: '200%',
                         display:'inline-block',
                         padding:'0.35em 1.2em',
-                        border:'0.1em solid #FFFFFF',
+                        border:'0.2em solid #FFFFFF',
                         margin:'0 0.3em 0.3em 0',
                         borderRadius:'40px',
                         boxSizing: 'border-box',
                         textDecoration:'none',
-                        fontFamily:'Roboto,sans-serif',
-                        fontWeight:'300',
+                        fontFamily: 'Oswald',
+                        fontWeight:'500',
                         color:'#FFFFFF',
                         textAlign:'center',
                         transition: 'all 0.2s',
@@ -214,6 +215,7 @@ function Home(props) {
                     {showEvents()}
                 </ul>
             </div>
+            <Footer/>
         </div>
     );
 }

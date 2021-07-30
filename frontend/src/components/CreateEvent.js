@@ -141,7 +141,7 @@ function CreateEvent(props) {
       <h1>Create Event</h1>
       <Card
         style={{
-          borderRadius: "5%",
+          borderRadius: "40px",
           width: "80vw",
           border: "2px solid white",
           backgroundColor: "black",

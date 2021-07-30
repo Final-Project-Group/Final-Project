@@ -45,7 +45,8 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: 'white',
+    border: '5px solid rgb(75,105,40)',
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -210,20 +211,37 @@ export default function Auth(props, { setToken }) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            style={{
+              backgroundColor: 'white',
+              color: 'black',
+              border: '4px solid rgb(75,105,40)',
+              borderRadius: '40px',
+              width: '40%',
+            }}
           >
             Sign Up
           </Button>
+          <br />
+          <br />
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/signin" variant="body2">
+              <Link
+                href="/signin"
+                variant="body2"
+                style={{
+                  color: 'white'
+                }}
+              >
                 Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>
           <br />
+          <br />
           <Typography component="h1" variant="h5">
             Or sign in with Google:
           </Typography>
+          <br />
           <br />
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLEID}
