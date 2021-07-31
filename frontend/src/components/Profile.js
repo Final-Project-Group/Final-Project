@@ -200,7 +200,6 @@ const classes = useStyles();
           <ul className="profile-ul">
             {showActivities()}
           </ul>
-          <Footer/>
       </div>
       </div>
       </div>

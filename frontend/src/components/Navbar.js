@@ -26,23 +26,6 @@ import Button from "@material-ui/core/Button";
 
 import { useHistory, useLocation } from "react-router-dom";
 
-// const location = useLocation()
-// location.pathname
-
-// import { createTheme } from '@material-ui/core/styles';
-// import purple from '@material-ui/core/colors/purple';
-
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: purple[500],
-//     },
-//     secondary: {
-//       main: '#f44336',
-//     },
-//   },
-// });
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -180,7 +163,7 @@ export default function Navbar(props) {
               variant="outlined"
               style={{ color: "white" }}
             >
-              Dark mode
+              {props.light ? 'Dark mode' : 'Light mode' }
             </Button>
           </Toolbar>
         </AppBar>

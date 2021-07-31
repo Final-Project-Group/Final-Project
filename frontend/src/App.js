@@ -22,11 +22,16 @@ import {
 } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Button from "@material-ui/core/Button";
+import Footer from "./components/Footer";
 
 const themeLight = createTheme({
   palette: {
     primary: {
       dark: "rgb(75,105,40)",
+      main: "rgb(75,105,40)",
+    },
+    secondary: {
+      // dark: "rgb(75,105,40)",
       main: "rgb(75,105,40)",
     },
     background: {
@@ -113,7 +118,7 @@ function App() {
         <div className="App">
           {/* {Navbar()} */}
           {/* {user?.name ? <Navbar handler={updateState} /> : null} */}
-          {user?._id ? <Navbar handler={updateState} /> : null}
+          {user?._id ? <Navbar handler={updateState} light={light} /> : null}
           {/* <Button onClick={() => setLight((prev) => !prev)}>Toggle Theme</Button> */}
 
           {/* <i>{user?.name}</i> */}
@@ -176,6 +181,7 @@ function App() {
             />
           </Switch>
         </div>
+        <Footer/>
       </TheContext.Provider>
     </ThemeProvider>
   );

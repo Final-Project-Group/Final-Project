@@ -386,7 +386,7 @@ function EventDetails(props) {
       <ShowPosts />
 
       <br />
-      <section className="eventdetails-container-map">
+      <div className="eventdetails-container-map">
         <Map
           google={props.google}
           zoom={13}
@@ -430,7 +430,7 @@ function EventDetails(props) {
             </div>
           </InfoWindow>
         </Map>
-      </section>
+      </div>
     </div>
   );
 }

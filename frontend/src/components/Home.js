@@ -182,6 +182,9 @@ function Home(props) {
                         // textColor="primary"
                         variant="fullWidth"
                         aria-label="full width tabs example"
+                        style={{
+                            color: 'white',
+                        }}
                         >
                         <Tab label="All" value="all" />
                         <Tab label="Soccer" value="soccer" />
@@ -215,7 +218,6 @@ function Home(props) {
                     {showEvents()}
                 </ul>
             </div>
-            <Footer/>
         </div>
     );
 }
