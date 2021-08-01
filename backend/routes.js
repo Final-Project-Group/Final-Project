@@ -10,12 +10,6 @@ const Event = require("./models/Event");
 router.get("/", (req, res) => {
   res.json({ serverWorking: true });
 });
-// router.get("/", (req, res) => {
-//     Event.find().then(events => {
-//         res.json(events)
-//         console.log(events)
-//     })
-// });
 
 router.get("/get-the-user", authorize, async (req, res) => {
   let user = await User.findById(res.locals.user._id);
@@ -23,11 +17,11 @@ router.get("/get-the-user", authorize, async (req, res) => {
 });
 
 // These two are broken / incomplete ATM
-// GETALLUSERS MIGHT BE USELESS, PLEASE CONFIRM AND DELETE IF NECESSARY
 router.get("/get-all-users", async (req, res) => {
   let users = await User.find();
   res.json(users);
 });
+
 // Create user with email
 router.post("/create-user", async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
@@ -98,9 +92,7 @@ router.post("/edit-event", authorize, async (req, res) => {
 
 router.post("/leave-event", authorize, async (req, res) => {
   let updatedEvent = req.body;
-  // console.log(leftEvent);
-  // leftEvent.userId = res.locals.user._id;
-  // console.log(leftEvent.userId);
+
   Event.findOneAndUpdate(
     { _id: updatedEvent._id },
     { members: updatedEvent.members, memberIds: updatedEvent.memberIds },
@@ -115,9 +107,6 @@ router.post("/leave-event", authorize, async (req, res) => {
 
 router.post("/delete-event", authorize, async (req, res) => {
   let deletedEvent = req.body;
-  // console.log(deletedEvent);
-  // console.log(deletedEvent._id);
-  // console.log(deletedEvent.members);
 
   Event.deleteOne({ _id: deletedEvent._id }, function (err) {
     if (err) console.log(err);
@@ -128,7 +117,6 @@ router.post("/delete-event", authorize, async (req, res) => {
 router.post("/add-post", authorize, async (req, res) => {
   let newPost = req.body;
   console.log(req.body);
-  // console.log(res.locals);
   newPost.userId = res.locals.user._id;
   newPost.userInfo = res.locals.user;
 
@@ -138,9 +126,7 @@ router.post("/add-post", authorize, async (req, res) => {
 });
 router.post("/delete-post", authorize, async (req, res) => {
   let deletedPost = req.body;
-  // console.log(deletedEvent);
   console.log(deletedPost._id);
-  // console.log(deletedEvent.members);
 
   Post.deleteOne({ _id: deletedPost._id }, function (err) {
     if (err) console.log(err);
@@ -158,9 +144,7 @@ router.get("/all-the-posts", (req, res) => {
 
 router.post("/add-details", authorize, async (req, res) => {
   let updatedUser = req.body;
-  // console.log(updatedUser);
   updatedUser.userId = res.locals.user._id;
-  // console.log(updatedUser.userId);
   User.findOneAndUpdate(
     { _id: updatedUser.userId },
     {
@@ -180,16 +164,11 @@ router.post("/add-event", authorize, async (req, res) => {
   newEvent.creator = res.locals.user;
   Event.create(req.body).then((event) => {
     res.json(event);
-    // console.log(event);
   });
 });
 
 router.post("/join-event", authorize, async (req, res) => {
   let updatedEvent = req.body;
-  // console.log(updatedEvent);
-  // console.log(updatedEvent._id);
-  // console.log(updatedEvent.members);
-
   Event.updateOne(
     { _id: updatedEvent._id },
     { members: updatedEvent.members },
@@ -212,12 +191,11 @@ router.get("/all-the-events", (req, res) => {
 });
 
 router.get("/get-event-details/:dynamicId", (req, res) => {
-  // console.log("anythnig");
+
   Event.findOne({ _id: req.params.dynamicId })
     .populate("memberIds")
     .then((event) => {
       res.json(event);
-      // console.log(event);
     });
 });
 

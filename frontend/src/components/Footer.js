@@ -74,9 +74,6 @@ function Footer(props) {
                         
                         </ul>
                         
-                
-                
-                
                     </div>
                 </div>
                     <div class="bottom-details">

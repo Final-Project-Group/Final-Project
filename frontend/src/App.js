@@ -59,7 +59,7 @@ const themeDark = createTheme({
     },
     text: {
       primary: "#ffffff",
-      secondary: "#000000",
+      // secondary: "#000000",
     },
   },
 });
@@ -180,8 +180,8 @@ function App() {
               render={(props) => <Profile {...props} user={user} />}
             />
           </Switch>
-        </div>
-        <Footer/>
+        </div>        
+        {user?._id ? <Footer/> : null}
       </TheContext.Provider>
     </ThemeProvider>
   );

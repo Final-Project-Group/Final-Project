@@ -251,6 +251,9 @@ html {
 .eventdetails-container-map {
   /* padding-top: 50vh; */
   height: 450px;
+  background-color: black;
+  padding-top: 10px;
+  /* padding-top: 1%; */
   /* width: 100vw; */
   /* display: flex;
   justify-content: center;
@@ -264,6 +267,7 @@ html {
 }
 
 .event-details-card {
+  padding-top: 30px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -508,15 +512,15 @@ footer{
   bottom: 0;
   left: 0;
 }
-footer::before{
+/* footer::before{
   content: '';
   position: absolute;
   left: 0;
   top: 100px;
   height: 1px;
   width: 100%;
-  background: #000;
-}
+  background: invisible;
+} */
 footer .content{
   max-width: 1250px;
   margin: auto;
