@@ -80,22 +80,22 @@ function Home(props) {
                                     image={event.image}
                                     title="Sport Image"
                                     />
-                                    <CardContent style={{backgroundColor: 'rgb(75,105,40)', color: 'white'}}>
-                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="white" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)'}}>
+                                    <CardContent style={{backgroundColor: 'rgb(75,105,40)'}}>
+                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)' }}>
                                             <div className="home-event-typography">
-                                                <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
+                                                <h4 style={{color: 'white'}} >{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
                                             </div>
                                         </Typography>
                                         <Typography className="home-event-info-1" color='white' style={{ background: 'rgb(75,105,40)'}}>
-                                            <div><span>{event.location}</span></div>
-                                            <span className="home-event-span"> {event.date.split('T', 1)}</span>
+                                            <div><span style={{color:'white'}} >{event.location}</span></div>
+                                            <span className="home-event-span" style={{color:'white'}} > {event.date.split('T', 1)}</span>
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
                                 <Typography className="home-event-info" color="textPrimary" style={{ backgroundImage: 'linear-gradient(rgb(75,105,40), black)'}}>
                                     <div className="home-event-info-row">
-                                        <span lassName="home-event-span">Creator  <br/>  {event.creator.name}</span>
-                                        <span>Spots   <br/> {event.spots - event.members.length}/{event.spots}</span>
+                                        <span lassName="home-event-span" style={{color:'white'}} >Creator  <br/>  {event.creator.name}</span>
+                                        <span style={{color:'white'}} >Spots   <br/> {event.spots - event.members.length}/{event.spots}</span>
                                     </div>
                                     <div className="home-event-info-middle">                                    
                                     </div>
@@ -131,19 +131,19 @@ function Home(props) {
                                     <CardContent style={{backgroundColor: 'rgb(75,105,40)', color: 'white'}}>
                                         <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="textPrimary" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)'}}>
                                             <div className="home-event-typography">
-                                                <h4>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
+                                                <h4 style={{color:'white'}} >{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
                                             </div>
                                         </Typography>
                                         <Typography className="home-event-info-1" color="textPrimary" style={{ background: 'rgb(75,105,40)'}}>
-                                            <div><span>{event.location}</span></div>
-                                            <span className="home-event-span"> {event.date.split('T', 1)}</span>
+                                            <div><span style={{color:'white'}} >{event.location}</span></div>
+                                            <span className="home-event-span" style={{color:'white'}} > {event.date.split('T', 1)}</span>
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
                                 <Typography className="home-event-info" color="white" style={{ backgroundImage: 'linear-gradient(rgb(75,105,40), black)'}}>
                                     <div className="home-event-info-row">
-                                        <span lassName="home-event-span">Creator  <br/>  {event.creator.name}</span>
-                                        <span>Spots   <br/> {event.spots - event.members.length}/{event.spots}</span>
+                                        <span lassName="home-event-span" style={{color:'white'}} >Creator  <br/>  {event.creator.name}</span>
+                                        <span style={{color:'white'}} >Spots  <br/> {event.spots - event.members.length}/{event.spots}</span>
                                     </div>
                                     <div className="home-event-info-middle">                                    
                                     </div>
