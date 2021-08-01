@@ -82,19 +82,19 @@ const classes = useStyles();
                     <CardContent style={{backgroundColor: 'rgb(75,105,40)'}}>
                         <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="textPrimary" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)'}}>
                             <div className="home-event-typography">
-                                <h4>{eachEvent.eventName} {eachEvent.sport === 'soccer' ? <SportsSoccerIcon/> : eachEvent.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
+                                <h4 style={{color:'white'}}>{eachEvent.eventName} {eachEvent.sport === 'soccer' ? <SportsSoccerIcon/> : eachEvent.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
                             </div>
                         </Typography>
                         <Typography className="home-event-info-1" color="textPrimary" style={{ background: 'rgb(75,105,40)'}}>
-                            <div><span>{eachEvent.location}</span></div>
-                            <span className="home-event-span"> {eachEvent.date.split('T', 1)}</span>
+                            <div><span style={{color:'white'}}>{eachEvent.location}</span></div>
+                            <span className="home-event-span" style={{color:'white'}}> {eachEvent.date.split('T', 1)}</span>
                         </Typography>
                     </CardContent>
                 </CardActionArea>
                 <Typography className="home-event-info" color="textPrimary" style={{ backgroundImage: 'linear-gradient(rgb(75,105,40), black)'}}>
                     <div className="home-event-info-row">
-                        <span lassName="home-event-span">Creator  <br/>  {eachEvent.creator.name}</span>
-                        <span>Spots   <br/> {eachEvent.spots - eachEvent.members.length}/{eachEvent.spots}</span>
+                        <span lassName="home-event-span" style={{color:'white'}} >Creator  <br/>  {eachEvent.creator.name}</span>
+                        <span style={{color:'white'}}>Spots   <br/> {eachEvent.spots - eachEvent.members.length}/{eachEvent.spots}</span>
                     </div>
                     <div className="home-event-info-middle">                                    
                     </div>
