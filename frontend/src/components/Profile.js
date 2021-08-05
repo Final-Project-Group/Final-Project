@@ -68,7 +68,7 @@ const classes = useStyles();
                 id="card" 
                 style={{
                     borderRadius: '5%',
-                    // border: '6px solid rgb(13,92,30)'
+                    minWidth: '300px',
                 }}
             >
                 <CardActionArea>
@@ -79,13 +79,13 @@ const classes = useStyles();
                     image={eachEvent.image}
                     title="Sport Image"
                     />
-                    <CardContent style={{backgroundColor: 'rgb(75,105,40)'}}>
+                    <CardContent style={{backgroundColor: 'rgb(75,105,40)', color: 'white', height: '16vh'}}>
                         <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="textPrimary" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)'}}>
                             <div className="home-event-typography">
                                 <h4 style={{color:'white'}}>{eachEvent.eventName} {eachEvent.sport === 'soccer' ? <SportsSoccerIcon/> : eachEvent.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
                             </div>
                         </Typography>
-                        <Typography className="home-event-info-1" color="textPrimary" style={{ background: 'rgb(75,105,40)'}}>
+                        <Typography className="home-event-info-1" color="textPrimary" style={{ background: 'none'}}>
                             <div><span style={{color:'white'}}>{eachEvent.location}</span></div>
                             <span className="home-event-span" style={{color:'white'}}> {eachEvent.date.split('T', 1)}</span>
                         </Typography>

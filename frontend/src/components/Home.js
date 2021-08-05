@@ -70,6 +70,7 @@ function Home(props) {
                                 id="card" 
                                 style={{
                                     borderRadius: '5%',
+                                    minWidth: '300px',
                                 }}
                             >
                                 <CardActionArea>
@@ -80,13 +81,13 @@ function Home(props) {
                                     image={event.image}
                                     title="Sport Image"
                                     />
-                                    <CardContent style={{backgroundColor: 'rgb(75,105,40)'}}>
+                                    <CardContent style={{backgroundColor: 'rgb(75,105,40)', color: 'white', height: '16vh'}}>
                                         <Typography className="home-event-card" gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)' }}>
                                             <div className="home-event-typography">
                                                 <h4 style={{color: 'white'}} >{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
                                             </div>
                                         </Typography>
-                                        <Typography className="home-event-info-1" color='white' style={{ background: 'rgb(75,105,40)'}}>
+                                        <Typography className="home-event-info-1" color='white' style={{ background: 'none'}}>
                                             <div><span style={{color:'white'}} >{event.location.substring(0,20)}</span></div>
                                             <span className="home-event-span" style={{color:'white'}} > {event.date.split('T', 1)}</span>
                                         </Typography>
@@ -117,6 +118,7 @@ function Home(props) {
                                 id="card" 
                                 style={{
                                     borderRadius: '5%',
+                                    minWidth: '300px',
                                 }}
                             >
                                 <CardActionArea>
@@ -127,13 +129,13 @@ function Home(props) {
                                     image={event.image}
                                     title="Sport Image"
                                     />
-                                    <CardContent style={{backgroundColor: 'rgb(75,105,40)', color: 'white', height: '20vh'}}>
+                                    <CardContent style={{backgroundColor: 'rgb(75,105,40)', color: 'white', height: '16vh'}}>
                                         <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="textPrimary" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)'}}>
                                             <div className="home-event-typography">
                                                 <h4 style={{color:'white'}} >{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
                                             </div>
                                         </Typography>
-                                        <Typography className="home-event-info-1" color="textPrimary" style={{ background: 'rgb(75,105,40)'}}>
+                                        <Typography className="home-event-info-1" color="textPrimary" style={{ background: 'none'}}>
                                             <div ><span style={{color:'white'}}>{event.location.substring(0,20)}</span></div>
                                             <span className="home-event-span" style={{color:'white'}} > {event.date.split('T', 1)}</span>
                                         </Typography>
@@ -217,6 +219,14 @@ function Home(props) {
                     {showEvents()}
                 </ul>
             </div>
+            {/* <div className="home-container-additional-content">
+                <div className="home-container-additional-first">
+                    <h1>Jogo is your app.
+                    Sports any day, any time.</h1>
+                    <p>At Jogo, we believe that playing sports should be accessible to anyone who wants to enjoy the beautiful game. Play at your time, when it’s convenient for you.</p>
+                </div>
+                <img src="https://rootedmamahealth.com/wp-content/uploads/2021/01/benefits-of-playing-basketball.jpeg"/>
+            </div> */}
         </div>
     );
 }

@@ -181,7 +181,7 @@ function App() {
             />
           </Switch>
         </div>        
-        {user?._id ? <Footer/> : null}
+        {user?.country ? <Footer/> : null}
       </TheContext.Provider>
     </ThemeProvider>
   );
