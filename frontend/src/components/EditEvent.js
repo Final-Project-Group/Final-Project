@@ -134,7 +134,7 @@ function EditEvent(props) {
       <h1>Edit Event</h1>
       <Card
         style={{
-          borderRadius: "5%",
+          borderRadius: "40px",
           width: "80vw",
           border: "2px solid white",
           backgroundColor: "black",
