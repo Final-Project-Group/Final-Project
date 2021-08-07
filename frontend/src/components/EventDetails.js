@@ -99,14 +99,16 @@ function EventDetails(props) {
       `https://maps.googleapis.com/maps/api/geocode/json?address=${convert}&key=${JOSE_API_KEY}`
     );
     console.log(ras.data);
-    setEventPosition(
-      ras.data.results.length === 0
-        ? alert(
-            "Can not read address. Change and do not forget the state and country"
-          )
-        : ras.data.results[0].geometry.location
-    );
-    console.log("Event coordinates: ", ras.data.results[0].geometry.location);
+
+    /* ACTIVATE THE MAP */
+    // setEventPosition(
+    //   ras.data.results.length === 0
+    //     ? alert(
+    //         "Can not read address. Change and do not forget the state and country"
+    //       )
+    //     : ras.data.results[0].geometry.location
+    // );
+    // console.log("Event coordinates: ", ras.data.results[0].geometry.location);
   };
 
   // console.log(process.env);
@@ -290,6 +292,7 @@ function EventDetails(props) {
         <Card
           style={{
             borderRadius: '40px',
+            width: '80vw',
             border: '6px solid rgb(75,105,40)',
             backgroundImage: 'linear-gradient(0deg, #cfd6e6 1%, #e7eff9  60%)'
           }}

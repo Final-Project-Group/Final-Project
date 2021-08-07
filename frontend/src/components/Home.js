@@ -81,7 +81,7 @@ function Home(props) {
                                     image={event.image}
                                     title="Sport Image"
                                     />
-                                    <CardContent style={{backgroundColor: 'rgb(75,105,40)', color: 'white', height: '16vh'}}>
+                                    <CardContent style={{backgroundColor: 'rgb(75,105,40)', color: 'white', height: '18vh'}}>
                                         <Typography className="home-event-card" gutterBottom variant="h5" component="h2" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)' }}>
                                             <div className="home-event-typography">
                                                 <h4 style={{color: 'white'}} >{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
@@ -108,51 +108,61 @@ function Home(props) {
                 )
             } else if (currSport === 'all') {
                 return (
-                    <li className="home-event-link">
-                        <Link 
-                            to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}
-                            style={{ textDecoration: 'none' }}                            
-                        >
-                            <Card 
-                                className={classes.root}
-                                id="card" 
-                                style={{
-                                    borderRadius: '5%',
-                                    minWidth: '300px',
-                                }}
-                            >
-                                <CardActionArea>
-                                    <CardMedia
-                                    component="img"
-                                    alt="Image is not working"
-                                    height="140"
-                                    image={event.image}
-                                    title="Sport Image"
-                                    />
-                                    <CardContent style={{backgroundColor: 'rgb(75,105,40)', color: 'white', height: '16vh'}}>
-                                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="textPrimary" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)'}}>
-                                            <div className="home-event-typography">
-                                                <h4 style={{color:'white'}} >{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
-                                            </div>
-                                        </Typography>
-                                        <Typography className="home-event-info-1" color="textPrimary" style={{ background: 'none'}}>
-                                            <div ><span style={{color:'white'}}>{event.location.substring(0,20)}</span></div>
-                                            <span className="home-event-span" style={{color:'white'}} > {event.date.split('T', 1)}</span>
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                <Typography className="home-event-info" color="white" style={{ backgroundImage: 'linear-gradient(rgb(75,105,40), black)'}}>
-                                    <div className="home-event-info-row">
-                                        <span lassName="home-event-span" style={{color:'white'}} >Creator  <br/>  {event.creator.name}</span>
-                                        <span style={{color:'white'}} >Spots  <br/> {event.spots - event.members.length}/{event.spots}</span>
-                                    </div>
-                                    <div className="home-event-info-middle">                                    
-                                    </div>
-                                </Typography>
-                            </Card>
-                            <br/>
-                        </Link>
-                    </li>
+                <li className="profile-li">
+                <Link 
+                    to={`/eventDetails/${event._id}`} key={`${event.userId}+${event._id}`}
+                    style={{ textDecoration: 'none' }}                            
+                >
+              <Card 
+                className={classes.root}
+                id="card" 
+                style={{
+                    borderRadius: '5%',
+                    width: '300px',
+                }}
+              >
+                <CardActionArea>
+                    <CardMedia
+                    component="img"
+                    alt="Image is not working"
+                    height="140"
+                    image={event.image}
+                    title="Sport Image"
+                    />
+                    <CardContent style={{backgroundColor: 'rgb(75,105,40)', color: 'white', height: '18vh'}}>
+                        <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="textPrimary" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)'}}>
+                            <div className="home-event-typography">
+                                <h4 style={{color:'white'}}>{event.eventName} {event.sport === 'soccer' ? <SportsSoccerIcon/> : event.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>
+                            </div>
+                        </Typography>
+                        <Typography className="home-event-info-1" color="textPrimary" style={{ background: 'none'}}>
+                            <div><span style={{color:'white'}}>{event.location}</span></div>
+                            <span className="home-event-span" style={{color:'white', }}> {event.date.split('T', 1)}</span>
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <Typography className="home-event-info" color="textPrimary" style={{ backgroundImage: 'linear-gradient(rgb(75,105,40), black)'}}>
+                    <div className="home-event-info-row">
+                        <span lassName="home-event-span" style={{color:'white'}} >Creator  <br/>  {event.creator.name}</span>
+                        <span style={{color:'white'}}>Spots   <br/> {event.spots - event.members.length}/{event.spots}</span>
+                    </div>
+                    <div className="home-event-info-middle">                                    
+                    </div>
+                </Typography>
+              </Card>
+              </Link>
+              {/* <Card style={{backgroundColor: ""}}>
+                <CardContent>
+                  <Typography color="textSecondary" gutterBottom>
+                    {eachEvent.eventName}
+                  </Typography>
+                  <Typography variant="body2" component="p" color="textSecondary">
+                    {eachEvent.description}
+                    <br />
+                  </Typography>
+                </CardContent>
+              </Card> */}
+            </li>
                 )
             }
         } 

@@ -79,7 +79,7 @@ const classes = useStyles();
                     image={eachEvent.image}
                     title="Sport Image"
                     />
-                    <CardContent style={{backgroundColor: 'rgb(75,105,40)', color: 'white', height: '16vh'}}>
+                    <CardContent style={{backgroundColor: 'rgb(75,105,40)', color: 'white', height: '18vh'}}>
                         <Typography className="home-event-card" gutterBottom variant="h5" component="h2" color="textPrimary" style={{fontFamily: 'Roboto', backgroundColor: 'rgb(75,105,40)'}}>
                             <div className="home-event-typography">
                                 <h4 style={{color:'white'}}>{eachEvent.eventName} {eachEvent.sport === 'soccer' ? <SportsSoccerIcon/> : eachEvent.sport === 'basketball' ? <SportsBasketballIcon/> :  <SportsTennisIcon/>}</h4>

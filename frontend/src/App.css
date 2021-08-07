@@ -145,7 +145,7 @@ html {
 }
 
 .home-event-link {
-  margin: 10px;
+  margin: 2px;
   flex: 20%;
   height: 110%;
   margin-bottom: 2%; /* (100-32*3)/2 */
@@ -165,7 +165,7 @@ html {
   list-style: none;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   /* font-family: 'Roboto', sans-serif; */
 }
@@ -371,6 +371,11 @@ html {
   height: 60vh;
   background-image: url("./assets/2135152.png");
   background-size: 100% 100%;
+}
+
+.home-container-event-list {
+  margin-left: 20px;
+  margin-right: 20px
 }
 
 .profile-container-user-info {
