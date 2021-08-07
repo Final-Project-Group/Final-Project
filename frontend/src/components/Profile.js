@@ -68,9 +68,9 @@ const classes = useStyles();
                 id="card" 
                 style={{
                     borderRadius: '5%',
-                    minWidth: '300px',
+                    width: '300px',
                 }}
-            >
+              >
                 <CardActionArea>
                     <CardMedia
                     component="img"
@@ -87,7 +87,7 @@ const classes = useStyles();
                         </Typography>
                         <Typography className="home-event-info-1" color="textPrimary" style={{ background: 'none'}}>
                             <div><span style={{color:'white'}}>{eachEvent.location}</span></div>
-                            <span className="home-event-span" style={{color:'white'}}> {eachEvent.date.split('T', 1)}</span>
+                            <span className="home-event-span" style={{color:'white', }}> {eachEvent.date.split('T', 1)}</span>
                         </Typography>
                     </CardContent>
                 </CardActionArea>

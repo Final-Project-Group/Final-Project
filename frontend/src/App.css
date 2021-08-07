@@ -489,11 +489,13 @@ section {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  margin-right: 13%;
 }
 
 .profile-li {
   display: flex;
-  /* width: 20vw; */
+  align-items: center;
+  justify-content: center;
   margin: 10px;
 }
 

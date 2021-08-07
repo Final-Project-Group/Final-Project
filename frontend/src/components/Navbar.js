@@ -194,7 +194,7 @@ export default function Navbar(props) {
           </div>
           <Divider />
           <List
-            onClick={() => {
+            onClick = {() => {
               handleDrawerClose();
             }}
           >
