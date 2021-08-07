@@ -35,7 +35,7 @@ router.post("/create-user", async (req, res) => {
   jwt.sign(
     { user },
     "secret key",
-    // { expiresIn: "3000000min" },
+    { expiresIn: "3000000min" },
     (err, token) => {
       res.json({ user, token });
     }
