@@ -177,6 +177,7 @@ export default function Auth(props, { setToken }) {
                 autoComplete="email"
                 InputProps={{
                   className: classes.input,
+                  pattern: "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
                 }}
                 onChange={(e) => setEmail(e.target.value)}
               />
