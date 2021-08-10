@@ -258,20 +258,6 @@ export default function Auth(props, { setToken }) {
       </Box>
     </Container>
   );
-
-  // return (
-  //   <div>
-  //     {sendRedirectUser()}
-  //     <h3>Auth</h3>
-  //     <GoogleLogin
-  //       clientId={process.env.REACT_APP_GOOGLEID}
-  //       buttonText="Login"
-  //       onSuccess={responseGoogle}
-  //       onFailure={responseGoogle}
-  //       cookiePolicy={"single_host_origin"}
-  //     />
-  //   </div>
-  // );
 }
 
 Auth.propTypes = {
