@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: 'black',
+    backgroundColor: "black",
   },
   drawerHeader: {
     display: "flex",
@@ -134,7 +134,6 @@ export default function Navbar(props) {
   };
 
   return (
-
     <div className="navbarParent">
       <div className={classes.root}>
         <CssBaseline />
@@ -163,7 +162,7 @@ export default function Navbar(props) {
               variant="outlined"
               style={{ color: "white" }}
             >
-              {props.light ? 'Dark mode' : 'Light mode' }
+              {props.light ? "Dark mode" : "Light mode"}
             </Button>
           </Toolbar>
         </AppBar>
@@ -182,7 +181,7 @@ export default function Navbar(props) {
             <IconButton
               onClick={handleDrawerClose}
               style={{
-                color: 'white'
+                color: "white",
               }}
             >
               {theme.direction === "ltr" ? (
@@ -193,54 +192,68 @@ export default function Navbar(props) {
             </IconButton>
           </div>
           <Divider />
+          {/* LOTS OF CODE REPETITION, DELETE IF NOT NEEDED */}
+          {/* <List
+            onClick={() => {
+              handleDrawerClose();
+            }}
+          >
+            <ListItem button component={Link} to="/Profile">
+              <ListItemIcon>
+                <img src={user.imageUrl} className="navProfileImg"></img>
+              </ListItemIcon>
+              <ListItemText primary="Dashboard"></ListItemText>
+            </ListItem>
+            <ListItem button component={Link} to="/home">
+              <ListItemIcon>
+                <HomeRoundedIcon style={{ fill: "lightgray" }} />
+              </ListItemIcon>
+              <ListItemText primary="Home"></ListItemText>
+            </ListItem>
+            <ListItem button component={Link} to="/CreateEvent">
+              <ListItemIcon>
+                <AddRoundedIcon style={{ fill: "lightgray" }} />
+              </ListItemIcon>
+              <ListItemText primary="New Event"></ListItemText>
+            </ListItem>
+            <Divider />
+            <ListItem button component={Link} to="/about">
+              <ListItemIcon>
+                <AddRoundedIcon style={{ fill: "lightgray" }} />
+              </ListItemIcon>
+              <ListItemText primary="About Us"></ListItemText>
+            </ListItem>
+          </List> */}
+          <Divider />
+          {/* ---DRAWER ITEM LIST--- */}
           <List
-            onClick = {() => {
+            onClick={() => {
               handleDrawerClose();
             }}
           >
             {[
-              <Link
-                to="/Profile"
-                style={{ textDecoration: "none", color: "lightgray" }}
-              >
-                Profile
-              </Link>,
-              <Link
-                to="/home"
-                style={{ textDecoration: "none", color: "lightgray" }}
-              >
-                Home
-              </Link>,
-              <Link
-                to="/CreateEvent"
-                style={{ textDecoration: "none", color: "lightgray" }}
-              >
-                Create Event
-              </Link>,
-            ].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index === 0 ? (
-                    <img src={user.imageUrl} className="navProfileImg" />
-                  ) : index === 1 ? (
-                    <HomeRoundedIcon style={{ fill: "lightgray" }} />
-                  ) : (
-                    <AddRoundedIcon style={{ fill: "lightgray" }} />
-                  )}
-                </ListItemIcon>
-                <ListItemText primary={text} />
+              {
+                name: "Dashboard",
+                url: "/Profile",
+                icon: <img src={user.imageUrl} className="navProfileImg"></img>,
+              },
+              {
+                name: "Home",
+                url: "/home",
+                icon: <HomeRoundedIcon style={{ fill: "lightgray" }} />,
+              },
+              {
+                name: "New Event",
+                url: "/CreateEvent",
+                icon: <AddRoundedIcon style={{ fill: "lightgray" }} />,
+              },
+            ].map((item, index) => (
+              <ListItem button key={item.name} component={Link} to={item.url}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.name} />
               </ListItem>
             ))}
           </List>
-          <Divider />
-          {/* <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List> */}
         </Drawer>
       </div>
     </div>
