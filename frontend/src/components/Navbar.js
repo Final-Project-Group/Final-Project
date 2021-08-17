@@ -192,39 +192,6 @@ export default function Navbar(props) {
             </IconButton>
           </div>
           <Divider />
-          {/* LOTS OF CODE REPETITION, DELETE IF NOT NEEDED */}
-          {/* <List
-            onClick={() => {
-              handleDrawerClose();
-            }}
-          >
-            <ListItem button component={Link} to="/Profile">
-              <ListItemIcon>
-                <img src={user.imageUrl} className="navProfileImg"></img>
-              </ListItemIcon>
-              <ListItemText primary="Dashboard"></ListItemText>
-            </ListItem>
-            <ListItem button component={Link} to="/home">
-              <ListItemIcon>
-                <HomeRoundedIcon style={{ fill: "lightgray" }} />
-              </ListItemIcon>
-              <ListItemText primary="Home"></ListItemText>
-            </ListItem>
-            <ListItem button component={Link} to="/CreateEvent">
-              <ListItemIcon>
-                <AddRoundedIcon style={{ fill: "lightgray" }} />
-              </ListItemIcon>
-              <ListItemText primary="New Event"></ListItemText>
-            </ListItem>
-            <Divider />
-            <ListItem button component={Link} to="/about">
-              <ListItemIcon>
-                <AddRoundedIcon style={{ fill: "lightgray" }} />
-              </ListItemIcon>
-              <ListItemText primary="About Us"></ListItemText>
-            </ListItem>
-          </List> */}
-          <Divider />
           {/* ---DRAWER ITEM LIST--- */}
           <List
             onClick={() => {
