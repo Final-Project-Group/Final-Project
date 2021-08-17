@@ -1,4 +1,7 @@
-# IronPlate with Hooks
+# Jogo App
+View our web app live! https://jogo-app.netlify.app/
+
+## IronPlate with Hooks
 ##### git fork and/or clone https://github.com/Tzikas/IronPlate.git 
 ## Start Server
 ##### cd backend/ 
