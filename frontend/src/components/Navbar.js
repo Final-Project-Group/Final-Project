@@ -168,11 +168,13 @@ export default function Navbar(props) {
         </AppBar>
         {/* <Toolbar /> */}
         {/* <div className={classes.offset}/> */}
+
         <Drawer
           className={classes.drawer}
-          variant="persistent"
+          variant="temporary"
           anchor="left"
           open={open}
+          onClose={(ev, reason) => setOpen(false)}
           classes={{
             paper: classes.drawerPaper,
           }}
