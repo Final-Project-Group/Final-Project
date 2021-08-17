@@ -774,3 +774,12 @@ footer .bottom-details .bottom_text{
   font-size: 2vh;
 }
 
+/* ABOUT US */
+.about-us {
+  display: flex;
+  justify-content:space-evenly;
+
+}
+.about-us p {
+max-width: 450px;
+}

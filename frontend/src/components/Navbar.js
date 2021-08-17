@@ -216,6 +216,10 @@ export default function Navbar(props) {
                 url: "/CreateEvent",
                 icon: <AddRoundedIcon style={{ fill: "lightgray" }} />,
               },
+              {
+                name: "About Us",
+                url: "/about",
+              },
             ].map((item, index) => (
               <ListItem button key={item.name} component={Link} to={item.url}>
                 <ListItemIcon>{item.icon}</ListItemIcon>

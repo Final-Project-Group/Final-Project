@@ -15,6 +15,7 @@ import CreateEvent from "./components/CreateEvent";
 import EventDetails from "./components/EventDetails";
 import EditEvent from "./components/EditEvent";
 import Navbar from "./components/Navbar";
+import About from "./components/About";
 import {
   ThemeProvider,
   makeStyles,
@@ -178,6 +179,11 @@ function App() {
               exact
               path="/Profile"
               render={(props) => <Profile {...props} user={user} />}
+            />
+            <Route
+              exact
+              path="/about"
+              render={(props) => <About {...props} user={user} />}
             />
           </Switch>
         </div>        
