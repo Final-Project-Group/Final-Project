@@ -32,7 +32,7 @@ function About(props) {
                 }}
               />
             </a>
-            <a href="https://twitter.com">
+            <a href="https://twitter.com" target="_blank" rel="noreferrer">
               <TwitterIcon
                 style={{
                   width: "5vw",
@@ -40,7 +40,7 @@ function About(props) {
                 }}
               />
             </a>
-            <a href="https://instagram.com">
+            <a href="https://instagram.com" target="_blank" rel="noreferrer">
               <InstagramIcon
                 style={{
                   width: "5vw",
@@ -80,7 +80,7 @@ function About(props) {
                 }}
               />
             </a>
-            <a href="https://twitter.com">
+            <a href="https://twitter.com" target="_blank" rel="noreferrer">
               <TwitterIcon
                 style={{
                   width: "5vw",
@@ -88,7 +88,7 @@ function About(props) {
                 }}
               />
             </a>
-            <a href="https://instagram.com">
+            <a href="https://instagram.com" target="_blank" rel="noreferrer">
               <InstagramIcon
                 style={{
                   width: "5vw",
