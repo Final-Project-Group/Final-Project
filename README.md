@@ -1,4 +1,5 @@
 # Jogo App
+For this project we had two weeks to create a full stack application. This app that allows people to connect through sports by creating / joining local sport events. We used React, Jwt, MongoDB, Node.js, Material Ui, Google Maps API.
 View our web app live! https://jogo-app.netlify.app/
 
 ## IronPlate with Hooks
